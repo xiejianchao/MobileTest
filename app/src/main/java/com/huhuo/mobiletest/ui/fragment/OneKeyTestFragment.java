@@ -23,7 +23,7 @@ import org.xutils.view.annotation.ViewInject;
 public class OneKeyTestFragment extends BaseFragment {
 
     private static final String TAG = OneKeyTestFragment.class.getSimpleName();
-    
+
     @ViewInject(R.id.tv_info)
     private TextView tvInfo;
 
@@ -56,7 +56,7 @@ public class OneKeyTestFragment extends BaseFragment {
     @Event(value = R.id.btn_test)
     private void testClick(View view) {
         startActivity(new Intent(context,TestActivity.class));
-        Logger.d(TAG,"测试提交代码到github");
+        Logger.d(TAG,"测试提交代码到github2");
     }
 
 

@@ -14,6 +14,7 @@ import com.huhuo.mobiletest.model.MessageModel;
 import com.huhuo.mobiletest.model.RecentMessageModel;
 import com.huhuo.mobiletest.utils.ImageUtil;
 import com.huhuo.mobiletest.utils.Logger;
+import com.huhuo.mobiletest.utils.ToastUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -49,6 +50,7 @@ public class ReportFragment extends BaseFragment {
             Logger.e(TAG, "DatabaseHelper.getInstance() is null");
         }
 
+        ToastUtil.showMessage("onActivityCreated");
 //        testInsertMessage2Db();
     }
 
