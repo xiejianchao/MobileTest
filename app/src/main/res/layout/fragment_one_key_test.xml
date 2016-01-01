@@ -30,6 +30,13 @@
         android:text="信息"
         android:textColor="@color/color_white"
         />
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="去新页面"
+        android:textColor="@color/color_white"
+        />
 
 
 </LinearLayout>

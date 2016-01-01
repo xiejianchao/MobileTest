@@ -1,16 +1,20 @@
 package com.huhuo.mobiletest.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
+import com.huhuo.mobiletest.ui.activity.TestActivity;
 import com.huhuo.mobiletest.utils.NetStateUtils;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
 import com.huhuo.mobiletest.utils.SimCardUtil;
 import com.huhuo.mobiletest.utils.ToastUtil;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 
@@ -45,6 +49,11 @@ public class OneKeyTestFragment extends BaseFragment {
 
 
         tvInfo.setText(sb.toString());
+    }
+
+    @Event(value = R.id.btn_test)
+    private void testClick(View view) {
+        startActivity(new Intent(context,TestActivity.class));
     }
 
 

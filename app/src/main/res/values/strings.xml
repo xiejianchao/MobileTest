@@ -28,7 +28,6 @@
     <string name="image_desc">No Desc</string>
 
 
-
     <!-- 公共-->
     <!--
     <string name="record_loadingandwait">正在加载,请稍候&#8230;</string>
@@ -59,8 +58,8 @@
     <string name="test_ok">确定</string>
 
 
-
     <string name="pull_to_bottom">你居然拉到底了&#8230;</string>
+    <string name="title_activity_test">TestActivity</string>
 
 
 </resources>
