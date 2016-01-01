@@ -1,0 +1,31 @@
+<resources>>
+
+    <style name="AppMaterialBaseTheme.Default" parent="AppMaterialBaseTheme">
+        <item name="android:navigationBarColor">@color/color_navigation</item>
+    </style>
+
+    <!-- Activity不能滑动返回时设置的主题-->
+    <style name="AppMaterialBaseTheme.NoTransLucent" parent="AppMaterialBaseTheme">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:navigationBarColor">@color/color_navigation</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+
+    <!-- 使CardView具有水波纹效果
+    <style name="CardViewStyle" parent="CardView.Light">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+    -->
+
+    <style name="FragmentTitleStyle">
+        <item name="android:text">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:elevation">5dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="197dp"
+        android:layout_height="155dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="105dp"
+        android:background="@drawable/vp_guide_wine"
+        />
+
+    <Button
+        android:layout_marginBottom="130dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_guide_see"
+        android:background="@drawable/selector_guide_vp_see"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_height="32dp" />
+
+
+</RelativeLayout>

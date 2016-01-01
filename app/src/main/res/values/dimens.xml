@@ -1,0 +1,44 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="guide_higth">60dp</dimen>
+
+
+    <!-- 字体大小 -->
+    <dimen name="xtext">16sp</dimen>
+    <dimen name="htext">14sp</dimen>
+    <dimen name="mtext">12sp</dimen>
+    <dimen name="ltext">9sp</dimen>
+
+
+
+    <dimen name="divider">0.5dp</dimen>
+    <dimen name="leftmargin">2dp</dimen>
+    <dimen name="rightmargin">2dp</dimen>
+
+    <dimen name="chat_bottom_icon_width">33dp</dimen>
+    <dimen name="chat_bottom_icon_height">26dp</dimen>
+    <dimen name="chat_bottom_line_height">0.5dp</dimen>
+
+    <dimen name="NormalTextSize">18dip</dimen>
+    <dimen name="BasicPaddingSize">4.0dip</dimen>
+    <dimen name="InputEditTextMinHeight">42.0dip</dimen>
+    <dimen name="InputEditTextMarginBottom">5dip</dimen>
+    <dimen name="TextlineSpacingExtra">5dip</dimen>
+    <dimen name="TextPaddingRight">30dip</dimen>
+
+    <!-- 私信相关-->
+    <!-- 私信会话列表头像宽高 -->
+    <dimen name="msg_avatar_size">50dp</dimen>
+    <!-- 私信气泡和头像marginTop的距离 -->
+    <dimen name="msg_pop_margin_top_distance">13dp</dimen>
+    <dimen name="private_msg_pic_max_height_width">100dp</dimen>
+    <!-- 私信语音默认宽度 -->
+    <dimen name="msg_voice_pop_default_width">60dp</dimen>
+    <!-- 私信语音默认高度 -->
+    <dimen name="msg_voice_pop_default_height">40dp</dimen>
+
+</resources>

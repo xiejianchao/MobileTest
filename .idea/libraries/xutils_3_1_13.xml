@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="xutils-3.1.13">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.xutils/xutils/3.1.13/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/org.xutils/xutils/3.1.13/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.xutils/xutils/3.1.13/cfa84401c808b7f0a6d1b35658cc644b2e88b9d8/xutils-3.1.13-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

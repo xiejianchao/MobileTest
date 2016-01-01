@@ -1,0 +1,96 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppMaterialBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <!-- 自定义Drawer返回箭头的颜色
+        <item name="drawerArrowStyle">@style/MyDrawerArrowToggle</item>
+        -->
+
+        <!-- 各控制元件(如：check box、switch 或是 radoi) 被勾选 (checked) 或是选定 (selected) 的颜色。-->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- 各控制元件(如：check box、switch 或是 radoi) 默认的颜色 的颜色。
+        <item name="colorControlNormal"></item>
+        -->
+    </style>
+
+    <!-- Activity默认主题-->
+    <style name="AppMaterialBaseTheme.Default" parent="AppMaterialBaseTheme">
+
+    </style>
+
+    <!-- Activity不能滑动返回时设置的主题-->
+    <style name="AppMaterialBaseTheme.NoTransLucent" parent="AppMaterialBaseTheme">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppMaterialBaseTheme.Launcher" parent="AppMaterialBaseTheme">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="MaterialBaseTheme.Light.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="MaterialBaseTheme.Light.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+
+    <!-- drawer 返回箭头的颜色-->
+    <style name="MyDrawerArrowToggle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/color_white</item>
+    </style>
+
+    <style name="AppMaterialBaseTheme.Default.AppBarOverlay"
+           parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppMaterialBaseTheme.Default.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <!-- 黑色二号字体 -->
+    <style name="text_second_style">
+        <item name="android:textSize">@dimen/htext</item>
+        <item name="android:textColor">@color/common_font_color</item>
+    </style>
+
+    <style name="PrivateMessageEditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/NormalTextSize</item>
+        <item name="android:textColor">@color/color_normal_text_color</item>
+        <item name="android:textColorHint">@color/color_hint_color_white_bg</item>
+        <item name="android:background">@drawable/selector_edittext_bg</item>
+        <item name="android:paddingTop">@dimen/BasicPaddingSize</item>
+        <item name="android:paddingBottom">@dimen/BasicPaddingSize</item>
+        <item name="android:layout_marginBottom">@dimen/InputEditTextMarginBottom</item>
+        <item name="android:minHeight">@dimen/InputEditTextMinHeight</item>
+        <item name="android:lineSpacingExtra">@dimen/TextlineSpacingExtra</item>
+        <item name="android:paddingRight">@dimen/TextPaddingRight</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:maxLength">150</item>
+
+    </style>
+
+
+    <style name="FragmentTitleStyle">
+        <item name="android:text">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:background">@color/colorPrimary</item>
+
+    </style>
+
+</resources>
+

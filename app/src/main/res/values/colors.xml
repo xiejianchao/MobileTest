@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">@android:color/transparent</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_navigation">@color/colorPrimary</color>
+
+    <color name="color_tab_background_pressed">@color/colorPrimaryDark</color>
+    <color name="color_indicatorColor_selected">@color/colorPrimary</color>
+    <color name="color_selected_tab_text_color">@color/colorPrimary</color>
+    <color name="color_swiperefresh_color">@color/colorPrimary</color>
+
+    <color name="color_white">#ffffffff</color>
+    <color name="color_black">#333333</color>
+
+    <color name="color_blue_default">@color/colorPrimaryDark</color>
+
+    <color name="color_gray">#cccccc</color>
+    <color name="color_msg_bg">#efefef</color>
+    <color name="color_group_session_name_bg">#666666</color>
+
+
+
+    <color name="color_gray_bg">#bebebe</color>
+    <color name="color_statusbar_bg">#FF0099CC</color>
+
+    <!-- 黄色 -->
+    <color name="color_yellow">#fdc700</color>
+    <color name="color_text_yellow">@color/color_yellow</color>
+
+
+    <!-- 导航背景 -->
+    <color name="color_guide_background">@color/color_yellow</color>
+    <color name="color_guide_background_press">#bfbfbf</color>
+    <color name="color_btn_exit">#dd2f22</color>
+
+    <color name="color_chat_attachment_bg">#efefef</color>
+
+    <!-- 聊天 -->
+    <color name="color_text_shadow_color">#666666</color>
+    <color name="color_text_shadow_color1">#4cFFFFFF</color>
+    <color name="color_chat_footer_attachment_item_name">#FFA0A0A0</color>
+    <color name="color_chat_footer_voice_btn_text">#FF2D2D2D</color>
+    <color name="color_group_session_name">#666666</color>
+    <color name="color_chat_send_pic_pressed_color">#e0000000</color>
+    <color name="color_chat_last_msg_color">#7d7d7d</color>
+    <color name="color_chat_top_chat_color">#f5f8fe</color>
+
+    <!-- 文字基本色 -->
+    <color name="common_font_color">#666666</color>
+    <!-- 辅助字体颜色 -->
+    <color name="help_font_color">#aaaaaa</color>
+
+
+    <color name="color_normal_text_color">#ff353535</color>
+    <color name="color_hint_color_white_bg">#ffc5c5c5</color>
+
+    <color name="color_send_green_bg_normal">#22c064</color>
+    <color name="color_send_green_bg_pressed">#31ac6f</color>
+
+
+
+</resources>
