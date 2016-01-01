@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.ui.activity.TestActivity;
+import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetStateUtils;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
 import com.huhuo.mobiletest.utils.SimCardUtil;
@@ -21,7 +22,8 @@ import org.xutils.view.annotation.ViewInject;
 @ContentView(R.layout.fragment_one_key_test)
 public class OneKeyTestFragment extends BaseFragment {
 
-
+    private static final String TAG = OneKeyTestFragment.class.getSimpleName();
+    
     @ViewInject(R.id.tv_info)
     private TextView tvInfo;
 
@@ -54,6 +56,7 @@ public class OneKeyTestFragment extends BaseFragment {
     @Event(value = R.id.btn_test)
     private void testClick(View view) {
         startActivity(new Intent(context,TestActivity.class));
+        Logger.d(TAG,"测试提交代码到github");
     }
 
 
