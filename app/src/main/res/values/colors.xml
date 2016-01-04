@@ -16,6 +16,7 @@
     <color name="color_black">#333333</color>
 
     <color name="color_blue_default">@color/colorPrimaryDark</color>
+    <color name="color_blue_light">#6e8ff9</color>
 
     <color name="color_gray">#cccccc</color>
     <color name="color_msg_bg">#efefef</color>

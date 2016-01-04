@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
@@ -147,6 +148,7 @@ public abstract class BaseActivity extends SwipeBackActivity {
 
         if (item.getItemId() == android.R.id.home) {
             finish();
+            SystemClock.sleep(150);
             return true;
         }
 

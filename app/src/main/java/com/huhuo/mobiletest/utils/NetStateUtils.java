@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.telephony.TelephonyManager;
 
 import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
@@ -106,7 +105,7 @@ public class NetStateUtils {
 			return;
 		}
 		dialog = DialogBuilder.creatDialog(context, R.string.test_setting_net_title,
-				R.string.test_net_setting, R.string.test_ok,
+				R.string.test_net_setting, R.string.common_ok,
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -114,7 +113,7 @@ public class NetStateUtils {
 						gotoSetting(context);
 
 					}
-				}, R.string.test_cancel, new DialogInterface.OnClickListener() {
+				}, R.string.common_cancel, new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {

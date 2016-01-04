@@ -77,7 +77,16 @@
 
         <activity
             android:name=".ui.activity.TestActivity"
-            android:label="@string/title_activity_test"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
+        <activity
+            android:name=".ui.activity.WebPageTestActivity"
+            android:label="@string/test_type_webpage"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
+        <activity
+            android:name=".ui.activity.NetSpeedTestActivity"
+            android:label="@string/test_type_speed"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
     </application>

@@ -29,9 +29,6 @@
 
 
     <!-- 公共-->
-    <!--
-    <string name="record_loadingandwait">正在加载,请稍候&#8230;</string>
-    -->
     <string name="common_no_sdcard">无存储卡,请插入存储卡后再试</string>
     <string name="common_today">今天</string>
     <string name="common_yesterday">昨天</string>
@@ -47,19 +44,23 @@
     <string name="common_china_mobile">中国移动</string>
     <string name="common_china_unicom">中国联通</string>
     <string name="common_china_telecom">中国电信</string>
+    <string name="common_cancel">取消</string>
+    <string name="common_prompt">提示</string>
+    <string name="common_ok">确定</string>
 
 
     <!-- 无网络情况 -->
     <string name="test_net_setting">未发现手机网络。前往设置？</string>
     <string name="test_cant_conn_net">无法连接网络</string>
     <string name="test_setting_net_title">设置网络</string>
-    <string name="test_cancel">取消</string>
-    <string name="test_prompt">提示</string>
-    <string name="test_ok">确定</string>
 
-
-    <string name="pull_to_bottom">你居然拉到底了&#8230;</string>
-    <string name="title_activity_test">TestActivity</string>
+    <!-- 测试项-->
+    <string name="test_type_webpage">网页测试</string>
+    <string name="test_type_voice">语音测试</string>
+    <string name="test_type_video">视频测试</string>
+    <string name="test_type_speed">速度测试</string>
+    <string name="test_type_conn">连接测试</string>
+    <string name="test_type_synthesis">综合测试</string>
 
 
 </resources>

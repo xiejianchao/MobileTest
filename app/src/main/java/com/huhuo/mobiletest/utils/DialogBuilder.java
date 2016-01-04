@@ -115,9 +115,9 @@ public class DialogBuilder {
 	public static AlertDialog creatDialog(Context context, String message,
 			DialogInterface.OnClickListener posClickListener,
 			DialogInterface.OnClickListener negClickListener) {
-		return creatDialog(context, context.getString(R.string.test_prompt),
-				message, context.getString(R.string.test_ok), posClickListener,
-				context.getString(R.string.test_cancel), negClickListener, true);
+		return creatDialog(context, context.getString(R.string.common_prompt),
+				message, context.getString(R.string.common_ok), posClickListener,
+				context.getString(R.string.common_cancel), negClickListener, true);
 	}
 
 	/**
@@ -152,9 +152,9 @@ public class DialogBuilder {
 	public static AlertDialog creatDialog(Context context, String message,
 			DialogInterface.OnClickListener posClickListener,
 			DialogInterface.OnClickListener negClickListener, boolean cancelable) {
-		return creatDialog(context, context.getString(R.string.test_prompt),
-				message, context.getString(R.string.test_ok), posClickListener,
-				context.getString(R.string.test_cancel), negClickListener,
+		return creatDialog(context, context.getString(R.string.common_prompt),
+				message, context.getString(R.string.common_ok), posClickListener,
+				context.getString(R.string.common_cancel), negClickListener,
 				cancelable);
 	}
 
@@ -229,8 +229,8 @@ public class DialogBuilder {
 	 */
 	public static AlertDialog creatSingleDialog(Context context,
 			String message, DialogInterface.OnClickListener posClickListener) {
-		return creatSingleDialog(context, context.getString(R.string.test_prompt),
-				message, context.getString(R.string.test_ok), posClickListener, true);
+		return creatSingleDialog(context, context.getString(R.string.common_prompt),
+				message, context.getString(R.string.common_ok), posClickListener, true);
 	}
 
 	/**
@@ -244,8 +244,8 @@ public class DialogBuilder {
 	 */
 	public static void showSingleDialog(Context context, String message,
 			DialogInterface.OnClickListener posClickListener) {
-		creatSingleDialog(context, context.getString(R.string.test_prompt), message,
-				context.getString(R.string.test_ok), posClickListener, true).show();
+		creatSingleDialog(context, context.getString(R.string.common_prompt), message,
+				context.getString(R.string.common_ok), posClickListener, true).show();
 	}
 
 	/**
@@ -261,8 +261,8 @@ public class DialogBuilder {
 	public static AlertDialog creatSingleDialog(Context context,
 			String message, DialogInterface.OnClickListener posClickListener,
 			boolean cancelable) {
-		return creatSingleDialog(context, context.getString(R.string.test_prompt),
-				message, context.getString(R.string.test_ok), posClickListener,
+		return creatSingleDialog(context, context.getString(R.string.common_prompt),
+				message, context.getString(R.string.common_ok), posClickListener,
 				cancelable);
 	}
 
@@ -278,8 +278,8 @@ public class DialogBuilder {
 	 */
 	public static void showSingleDialog(Context context, String message,
 			DialogInterface.OnClickListener posClickListener, boolean cancelable) {
-		creatSingleDialog(context, context.getString(R.string.test_prompt), message,
-				context.getString(R.string.test_ok), posClickListener, cancelable)
+		creatSingleDialog(context, context.getString(R.string.common_prompt), message,
+				context.getString(R.string.common_ok), posClickListener, cancelable)
 				.show();
 	}
 
@@ -389,8 +389,8 @@ public class DialogBuilder {
 	public static AlertDialog creatDialog(Context context, int message,
 			DialogInterface.OnClickListener posClickListener,
 			DialogInterface.OnClickListener negClickListener) {
-		return creatDialog(context, R.string.test_prompt, message, R.string.test_ok,
-				posClickListener, R.string.test_cancel, negClickListener, true);
+		return creatDialog(context, R.string.common_prompt, message, R.string.common_ok,
+				posClickListener, R.string.common_cancel, negClickListener, true);
 	}
 
 	/**
@@ -425,8 +425,8 @@ public class DialogBuilder {
 	public static AlertDialog creatDialog(Context context, int message,
 			DialogInterface.OnClickListener posClickListener,
 			DialogInterface.OnClickListener negClickListener, boolean cancelable) {
-		return creatDialog(context, R.string.test_prompt, message, R.string.test_ok,
-				posClickListener, R.string.test_cancel, negClickListener, cancelable);
+		return creatDialog(context, R.string.common_prompt, message, R.string.common_ok,
+				posClickListener, R.string.common_cancel, negClickListener, cancelable);
 	}
 
 	/**
@@ -500,8 +500,8 @@ public class DialogBuilder {
 	 */
 	public static AlertDialog creatSingleDialog(Context context, int message,
 			DialogInterface.OnClickListener posClickListener) {
-		return creatSingleDialog(context, R.string.test_prompt, message,
-				R.string.test_ok, posClickListener, true);
+		return creatSingleDialog(context, R.string.common_prompt, message,
+				R.string.common_ok, posClickListener, true);
 	}
 
 	/**
@@ -515,7 +515,7 @@ public class DialogBuilder {
 	 */
 	public static void showSingleDialog(Context context, int message,
 			DialogInterface.OnClickListener posClickListener) {
-		creatSingleDialog(context, R.string.test_prompt, message, R.string.test_ok,
+		creatSingleDialog(context, R.string.common_prompt, message, R.string.common_ok,
 				posClickListener, true).show();
 	}
 
@@ -531,8 +531,8 @@ public class DialogBuilder {
 	 */
 	public static AlertDialog creatSingleDialog(Context context, int message,
 			DialogInterface.OnClickListener posClickListener, boolean cancelable) {
-		return creatSingleDialog(context, R.string.test_prompt, message,
-				R.string.test_ok, posClickListener, cancelable);
+		return creatSingleDialog(context, R.string.common_prompt, message,
+				R.string.common_ok, posClickListener, cancelable);
 	}
 
 	/**
@@ -547,7 +547,7 @@ public class DialogBuilder {
 	 */
 	public static void showSingleDialog(Context context, int message,
 			DialogInterface.OnClickListener posClickListener, boolean cancelable) {
-		creatSingleDialog(context, R.string.test_prompt, message, R.string.test_ok,
+		creatSingleDialog(context, R.string.common_prompt, message, R.string.common_ok,
 				posClickListener, cancelable).show();
 	}
 

@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
+import com.huhuo.mobiletest.ui.activity.NetSpeedTestActivity;
 import com.huhuo.mobiletest.ui.activity.TestActivity;
+import com.huhuo.mobiletest.ui.activity.WebPageTestActivity;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetStateUtils;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
@@ -55,8 +57,7 @@ public class OneKeyTestFragment extends BaseFragment {
 
     @Event(value = R.id.btn_test)
     private void testClick(View view) {
-        startActivity(new Intent(context,TestActivity.class));
-        Logger.d(TAG,"测试提交代码到github2");
+        startActivity(new Intent(context,NetSpeedTestActivity.class));
     }
 
 
