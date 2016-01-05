@@ -37,7 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:drawablePadding="5dp"
                 android:drawableTop="@drawable/selector_my_tab"
-                android:text="@string/app_name"
+                android:text="@string/test_one_key_test"
                 android:textColor="#82858b" />
         </RelativeLayout>
 

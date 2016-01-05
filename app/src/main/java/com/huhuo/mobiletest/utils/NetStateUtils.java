@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.telephony.TelephonyManager;
 
 import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
@@ -51,6 +52,7 @@ public class NetStateUtils {
 		if (isMobileNetworkEnable()) {
 			ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo networkInfo = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+//			TelephonyManager
 			final String subtypeName = networkInfo.getSubtypeName();
 			final int subtype = networkInfo.getSubtype();
 			type = subtypeName + " || " + subtype;

@@ -5,10 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.huhuo.mobiletest.ui.activity.NetSpeedTestActivity"
     tools:showIn="@layout/activity_net_speed_test">
@@ -17,7 +13,27 @@
         android:id="@+id/circle_view"
         android:layout_width="230dip"
         android:layout_height="230dip"
-        android:layout_gravity="center_vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible"
         />
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/circle_view"
+        android:text="Hello World!"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:id="@+id/btn_xutils_test_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/tv_result"
+        android:text="使用性能更高的方式测试网速极限"/>
 
 </RelativeLayout>

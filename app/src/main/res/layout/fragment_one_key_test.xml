@@ -31,14 +31,6 @@
         android:text="信息"
         android:textColor="@color/color_white"
         />
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_below="@id/tv_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="去新页面"
-        android:textColor="@color/color_white"
-        />
 
     <LinearLayout
         android:id="@+id/test_layout_1"
@@ -63,6 +55,7 @@
             />
 
         <Button
+            android:id="@+id/btn_speed_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/test_type_speed"

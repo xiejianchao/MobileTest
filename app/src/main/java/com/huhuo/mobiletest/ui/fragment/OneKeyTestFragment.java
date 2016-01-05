@@ -35,7 +35,7 @@ public class OneKeyTestFragment extends BaseFragment {
 
         StringBuilder sb = new StringBuilder();
         final boolean canUseSim = SimCardUtil.isCanUseSim();
-        sb.append(canUseSim ? "SIM卡可用" : "SIM卡不可用" + "\n");
+        sb.append(canUseSim ? "SIM卡可用\n" : "SIM卡不可用" + "\n");
         final String simType = SimCardUtil.getSimType();
         sb.append("运营商：" + simType + "\n");
 
@@ -51,12 +51,11 @@ public class OneKeyTestFragment extends BaseFragment {
             ToastUtil.showShortToast("当前连接的网络不是移动网络");
         }
 
-
         tvInfo.setText(sb.toString());
     }
 
-    @Event(value = R.id.btn_test)
-    private void testClick(View view) {
+    @Event(value = R.id.btn_speed_test)
+    private void speedTestClick(View view) {
         startActivity(new Intent(context,NetSpeedTestActivity.class));
     }
 
