@@ -20,18 +20,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9778bb29-e79e-479c-829d-c0da8de966a1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/DialogBuilder.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/DialogBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/NetSpeedTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/NetSpeedTestActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetStateUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetStateUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/OneKeyTestFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/OneKeyTestFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_net_speed_test.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_net_speed_test.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_one_key_test.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_one_key_test.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="9778bb29-e79e-479c-829d-c0da8de966a1" name="Default" comment="" />
     <ignored path="MobileTest.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
