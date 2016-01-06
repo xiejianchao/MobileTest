@@ -231,10 +231,15 @@ public class NetSpeedTestActivity extends BaseActivity {
                         + " \n当前下载：" + currentSize
                         + " \n进度：" + percentStr
                         + " \n最快网速：" + speedStr
-                        + " \n平均网速：" + avgSpeedStr;
+                        + " \n平均网速：" + avgSpeedStr
+                        + " \n评估您的最高宽带为：" + (mbSpeed * 8) + "MB"
+                        + " \n评估您的平均宽带为：" + (avgMbSpeed * 8) + "MB"
+                ;
                 tvResult.setText(showStr);
                 cancelTimer();
                 startTest = false;
+
+                chartView.setCurrentStatus(0);
             }
         });
     }

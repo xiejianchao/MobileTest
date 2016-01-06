@@ -287,6 +287,21 @@ public class NetWorkUtil {
     }
 
     /**
+     * 获得当前移动网络的类型名称，GPRS,EDGE,WCDMA,LTE等等
+     * @return
+     */
+    public static String getCurrentNetWorkTypeName() {
+        if (isMobileAvailable()) {
+            ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            final String subtypeName = networkInfo.getSubtypeName();
+            return subtypeName;
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * 获取网络类型
      *
      * @return

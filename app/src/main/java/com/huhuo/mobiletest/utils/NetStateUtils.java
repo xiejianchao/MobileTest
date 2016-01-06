@@ -1,5 +1,6 @@
 package com.huhuo.mobiletest.utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -103,10 +104,13 @@ public class NetStateUtils {
 	 * setNetwork if the net is unuse,open the system setting
 	 */
 	public static void setNetwork(final Context context) {
+		if (!(context instanceof Activity)) {
+			throw new RuntimeException("context must be Activity");
+		}
 		if (dialog != null && dialog.isShowing()) {
 			return;
 		}
-		dialog = DialogBuilder.creatDialog(context, R.string.test_setting_net_title,
+		dialog = DialogBuilder.creatDialog((Activity)context, R.string.test_setting_net_title,
 				R.string.test_net_setting, R.string.common_ok,
 				new DialogInterface.OnClickListener() {
 

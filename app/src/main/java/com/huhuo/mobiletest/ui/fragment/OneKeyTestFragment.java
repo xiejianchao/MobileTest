@@ -39,7 +39,7 @@ public class OneKeyTestFragment extends BaseFragment {
         final String simType = SimCardUtil.getSimType();
         sb.append("运营商：" + simType + "\n");
 
-        final boolean netOk = NetStateUtils.isNetOk(context);
+        final boolean netOk = NetStateUtils.isNetOk(getActivity());
         sb.append(netOk ? "有可用网络\n" : "无可用网络\n");
 
 //        if (NetStateUtils.isMobileNetworkEnable()) {
@@ -47,6 +47,7 @@ public class OneKeyTestFragment extends BaseFragment {
             final String mobileNetType = NetStateUtils.getMobileNetType();
 //            sb.append("移动网络可用，移动网络类型为：" + mobileNetType + "\n");
             sb.append("移动网络可用，移动网络类型为：" + NetWorkUtil.getCurrentNetworkType() + "\n");
+            sb.append("移动网络可用，移动网络类型名称为：" + NetWorkUtil.getCurrentNetWorkTypeName() + "\n");
         } else {
             ToastUtil.showShortToast("当前连接的网络不是移动网络");
         }
@@ -56,7 +57,12 @@ public class OneKeyTestFragment extends BaseFragment {
 
     @Event(value = R.id.btn_speed_test)
     private void speedTestClick(View view) {
-        startActivity(new Intent(context,NetSpeedTestActivity.class));
+        startActivity(new Intent(context, NetSpeedTestActivity.class));
+    }
+
+    @Event(value = R.id.btn_webpage_test)
+    private void webPageTestClick(View view) {
+        startActivity(new Intent(context,WebPageTestActivity.class));
     }
 
 

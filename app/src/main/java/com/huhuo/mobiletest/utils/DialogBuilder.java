@@ -1,5 +1,6 @@
 package com.huhuo.mobiletest.utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -344,7 +345,7 @@ public class DialogBuilder {
 	 *            dialog isCan cancel,true-can cancel,false-can't
 	 * @return
 	 */
-	public static AlertDialog creatDialog(Context context, int title,
+	public static AlertDialog creatDialog(Activity context, int title,
 			int message, int posText,
 			DialogInterface.OnClickListener posClickListener, int negText,
 			DialogInterface.OnClickListener negClickListener) {
@@ -368,7 +369,7 @@ public class DialogBuilder {
 	 * @param negText
 	 * @param negClickListener
 	 */
-	public static void showDialog(Context context, int title, int message,
+	public static void showDialog(Activity context, int title, int message,
 			int posText, DialogInterface.OnClickListener posClickListener,
 			int negText, DialogInterface.OnClickListener negClickListener) {
 		creatDialog(context, title, message, posText, posClickListener,

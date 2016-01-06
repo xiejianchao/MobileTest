@@ -106,6 +106,7 @@ public class WebPageTestActivity extends BaseActivity {
         x.http().get(params, new Callback.CommonCallback.ProgressCallback<String>() {
 
             String percentStr = null;
+            long start = System.currentTimeMillis();
 
             @Override
             public void onError(Throwable e, boolean isOnCallback) {
@@ -157,37 +158,14 @@ public class WebPageTestActivity extends BaseActivity {
 
             @Override
             public void onSuccess(String result) {
-                ToastUtil.showShortToast("下载成功");
-                Logger.d(TAG, "下载网页成功：" + result);
-                if (hashMap.size() <= 0) {
-                    return;
-                }
-                final NetSpeedModel speedModel = getSpeedModel(hashMap);
-                float mbSpeed = (float) speedModel.getFastestSpeed() / 1024;
-                String speedStr = null;
-                String avgSpeedStr = null;
-                if (mbSpeed >= 1) {
-                    String bigMbStr = df.format(mbSpeed);
-                    speedStr = bigMbStr + "Mb/s";
-                } else {
-                    speedStr = speedModel.getFastestSpeed() + "Kb/s";
-                }
+                ToastUtil.showShortToast("下载成功1");
+                Logger.d(TAG, "下载网页成功1：" + result);
 
-                float avgMbSpeed = (float) speedModel.getAvgSpeed() / 1024;
-                if (avgMbSpeed > 1) {
-                    String avgSpeedMbStr = df.format(avgMbSpeed);
-                    avgSpeedStr = avgSpeedMbStr + "Mb/s";
-                } else {
-                    avgSpeedStr = speedModel.getAvgSpeed() + "Kb/s";
-                }
+                long end = System.currentTimeMillis();
+                Logger.w(TAG, "加载网页耗时：" + (end - start) + " 毫秒");
 
-                showStr = "总大小：" + fileTotalSize
-                        + " \n当前下载：" + currentSize
-                        + " \n进度：" + percentStr
-                        + " \n最快网速：" + speedStr
-                        + " \n平均网速：" + avgSpeedStr;
 
-                Logger.d(TAG, showStr);
+
             }
         });
     }
