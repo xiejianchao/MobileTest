@@ -62,6 +62,14 @@
     <string name="test_type_conn">连接测试</string>
     <string name="test_type_synthesis">综合测试</string>
     <string name="test_one_key_test">一键测试</string>
+    <string name="title_activity_connect">ConnectActivity</string>
 
+    <!-- 测试网站名称-->
+    <string name="test_website_10086">移动</string>
+    <string name="test_website_baidu">百度</string>
+    <string name="test_website_tecent">腾讯</string>
+    <string name="test_website_youku">优酷</string>
+    <string name="test_website_sina">新浪</string>
+    <string name="test_website_taobao">淘宝</string>
 
 </resources>

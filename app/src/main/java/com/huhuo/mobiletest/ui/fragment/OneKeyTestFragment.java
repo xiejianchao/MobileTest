@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
+import com.huhuo.mobiletest.ui.activity.ConnectActivity;
 import com.huhuo.mobiletest.ui.activity.NetSpeedTestActivity;
 import com.huhuo.mobiletest.ui.activity.TestActivity;
 import com.huhuo.mobiletest.ui.activity.WebPageTestActivity;
@@ -63,6 +64,11 @@ public class OneKeyTestFragment extends BaseFragment {
     @Event(value = R.id.btn_webpage_test)
     private void webPageTestClick(View view) {
         startActivity(new Intent(context,WebPageTestActivity.class));
+    }
+
+    @Event(value = R.id.btn_connect)
+    private void connectTestClick(View view) {
+        startActivity(new Intent(context,ConnectActivity.class));
     }
 
 

@@ -1,4 +1,4 @@
-package com.huhuo.mobiletest.utils;
+package com.huhuo.mobiletest.net;
 
 import android.content.Context;
 

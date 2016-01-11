@@ -53,20 +53,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.LoginActivity"
-            android:label="@string/hezu_login"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppMaterialBaseTheme.Default"/>
-        <activity
-            android:name=".ui.activity.RegistActivity"
-            android:label="@string/regist"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppMaterialBaseTheme.Default"/>
-        <activity
-            android:name=".ui.activity.GuideActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppMaterialBaseTheme.Default"/>
 
         <!-- Service Register -->
         // ECSDK核心服务类
@@ -87,6 +73,11 @@
         <activity
             android:name=".ui.activity.NetSpeedTestActivity"
             android:label="@string/test_type_speed"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
+        <activity
+            android:name=".ui.activity.ConnectActivity"
+            android:label="@string/title_activity_connect"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
     </application>
