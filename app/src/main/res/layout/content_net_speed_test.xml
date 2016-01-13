@@ -34,6 +34,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_below="@id/tv_result"
-        android:text="使用性能更高的方式测试网速极限"/>
+        android:text="开始测速"/>
 
 </RelativeLayout>

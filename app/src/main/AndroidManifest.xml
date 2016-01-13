@@ -77,7 +77,12 @@
         </activity>
         <activity
             android:name=".ui.activity.ConnectActivity"
-            android:label="@string/title_activity_connect"
+            android:label="@string/test_type_conn"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
+        <activity
+            android:name=".ui.activity.VideoTestActivity"
+            android:label="@string/test_type_video"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
     </application>

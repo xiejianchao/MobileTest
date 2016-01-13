@@ -71,5 +71,6 @@
     <string name="test_website_youku">优酷</string>
     <string name="test_website_sina">新浪</string>
     <string name="test_website_taobao">淘宝</string>
+    <string name="title_activity_video_test">VideoTestActivity</string>
 
 </resources>

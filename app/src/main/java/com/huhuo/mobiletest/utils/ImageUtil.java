@@ -27,7 +27,7 @@ public class ImageUtil {
 
     private static final String TAG = ImageUtil.class.getSimpleName();
     private static DisplayImageOptions circleOptions;
-    private static DisplayImageOptions fadeInOptions;
+    private static DisplayImageOptions defaultOptions;
 
     private static ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
@@ -37,7 +37,7 @@ public class ImageUtil {
                 .showImageOnLoading(R.drawable.ic_stub)
                 .showImageForEmptyUri(R.drawable.ic_empty)
                 .showImageOnFail(R.drawable.ic_error)
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)//设置图片以如何的编码方式显示
+                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)//设置图片以如何的编码方式显示,图片会缩放到目标大小完全
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
@@ -45,17 +45,16 @@ public class ImageUtil {
                 .displayer(new CircleBitmapDisplayer(Color.RED, 1))//圆形ImageView的边框大小
                 .build();
 
-        fadeInOptions = new DisplayImageOptions.Builder()
+        defaultOptions = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.ic_stub)
                 .showImageForEmptyUri(R.drawable.ic_empty)
                 .showImageOnFail(R.drawable.ic_error)
                 .resetViewBeforeLoading(true)
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)//设置图片以如何的编码方式显示
-                .cacheOnDisk(true)
-                .imageScaleType(ImageScaleType.EXACTLY)
+                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)//设置图片以如何的编码方式显示,图片会缩放到目标大小完全
                 .bitmapConfig(Bitmap.Config.RGB_565)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
                 .considerExifParams(true)
-                .displayer(new FadeInBitmapDisplayer(300))
                 .build();
     }
 
@@ -66,9 +65,8 @@ public class ImageUtil {
      * @param url
      */
     public static void displayImage(ImageView imageView, String url) {
-        ImageLoader.getInstance().displayImage(url, imageView, fadeInOptions);
+        ImageLoader.getInstance().displayImage(url, imageView,defaultOptions,animateFirstListener);
     }
-
 
     public static void displayImageLocal(ImageView imageView, String url) {
         String path = Uri.fromFile(new File(url)).toString();
@@ -76,8 +74,7 @@ public class ImageUtil {
         Logger.d(TAG, "path:" + path);
         Logger.d(TAG, "path2:" + path2);
 
-        ImageLoader.getInstance().displayImage(path2, imageView, fadeInOptions);
-
+        ImageLoader.getInstance().displayImage(path2, imageView,defaultOptions,animateFirstListener);
     }
 
     /**
@@ -108,5 +105,20 @@ public class ImageUtil {
         }
     }
 
+    public static void clearMemoryCache(){
+        ImageLoader.getInstance().clearMemoryCache();
+    }
+
+    /**
+     * 默认不清楚，只有在主动清理缓存是才清楚磁盘缓存
+     */
+    public static void clearDiskCache(){
+        ImageLoader.getInstance().clearDiskCache();
+    }
+
+    public static void clearAllCache(){
+        clearMemoryCache();
+        clearDiskCache();
+    }
 
 }

@@ -20,6 +20,7 @@ import org.xutils.x;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @ContentView(R.layout.activity_web_page_test)
@@ -73,9 +74,10 @@ public class WebPageTestActivity extends BaseActivity {
 
     private int nextTestItem = 0;
 
+    private List<Float> speedList = new ArrayList<Float>();
+
     @Override
     protected void init(Bundle savedInstanceState) {
-
         df = new DecimalFormat("#.##");
 
         initTestItem();
@@ -84,11 +86,10 @@ public class WebPageTestActivity extends BaseActivity {
         final WebPageTestModel model = list.get(nextTestItem);
         testXUtils2(model);
 
+
     }
 
     private void initTestItem() {
-
-
         WebPageTestModel model = new WebPageTestModel();
         model.setUrl("http://www.10086.cn");
         model.setName(getString(R.string.test_website_10086));
@@ -151,7 +152,7 @@ public class WebPageTestActivity extends BaseActivity {
 
         tvTestAllInfo.setText("正在测试" + tvTestInfo.getText().toString());
 
-//        SystemClock.sleep(500);
+        SystemClock.sleep(500);
 
         progressView.setPercent(3);
         x.http().get(params,new DefaultHttpRequestCallBack<String>(){
@@ -194,13 +195,16 @@ public class WebPageTestActivity extends BaseActivity {
                 long loadPageTime = (end - start);
                 float loadPageTimeSecond = (float)loadPageTime / 1000;
 
+                float kbps = (float)webPageSize * 8 / loadPageTimeSecond;
+                speedList.add(kbps);
+
                 Logger.d(TAG, "网页大小：" + df.format(webPageSize) + "kb");
 
                 Logger.d(TAG, "加载网页耗时：" + loadPageTime + " 毫秒");
                 Logger.d(TAG, "加载网页耗时：" + loadPageTimeSecond + " 秒");
                 Logger.d(TAG, "加载网页速率：" + df.format(webPageSize / loadPageTimeSecond) + "KB/秒");
 
-                tvTestInfo.append("\n " + df.format(webPageSize * 8 / loadPageTimeSecond) + "kbps" +"");
+                tvTestInfo.append("\n " + df.format(kbps) + "kbps" +"");
 
                 ToastUtil.showShortToast("下载成功,耗时：" + (loadPageTime) + " 毫秒");
             }
@@ -208,17 +212,14 @@ public class WebPageTestActivity extends BaseActivity {
             @Override
             public void onFinished() {
                 super.onFinished();
-
                 try {
                     progressView.setPercent(100);
                     Logger.d(TAG, "onFinished");
-
-
                     if (nextTestItem <= list.size() - 1) {
                         nextTestItem ++;
                         if (nextTestItem == list.size()) {
-                            Logger.e(TAG,"执行测试index超过总量");
-                            tvTestAllInfo.setText("测试完毕，您的网络令人神往！");
+                            Logger.e(TAG, "执行测试index超过总量");
+                            cacuAvgSpeed();
                             return;
                         }
                         testXUtils2(list.get(nextTestItem));
@@ -228,6 +229,26 @@ public class WebPageTestActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    private void cacuAvgSpeed() {
+        final int testCount = speedList.size();
+        float allKbps = 0f;
+        for (Float f : speedList) {
+            allKbps += f;
+        }
+        if (allKbps > 0) {
+            float avgKbps = (float)allKbps / testCount;
+            Logger.d(TAG, "所有网站测试完毕，一共测试了" + testCount +
+                    "个网站，平均速度：" + df.format(avgKbps) + "kbps");
+            if (avgKbps >= 2000) {
+                tvTestAllInfo.setText("测试完毕，您的网络速度很快，令人神往！");
+            } else if (avgKbps >= 800 && avgKbps < 2000) {
+                tvTestAllInfo.setText("测试完毕，您的网络速度一般，还需加油！");
+            } else {
+                tvTestAllInfo.setText("测试完毕，您的网络速度很慢！");
+            }
+        }
     }
 
 

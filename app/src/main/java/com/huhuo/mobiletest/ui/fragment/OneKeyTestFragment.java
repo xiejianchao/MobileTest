@@ -10,6 +10,7 @@ import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.ui.activity.ConnectActivity;
 import com.huhuo.mobiletest.ui.activity.NetSpeedTestActivity;
 import com.huhuo.mobiletest.ui.activity.TestActivity;
+import com.huhuo.mobiletest.ui.activity.VideoTestActivity;
 import com.huhuo.mobiletest.ui.activity.WebPageTestActivity;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetStateUtils;
@@ -69,6 +70,11 @@ public class OneKeyTestFragment extends BaseFragment {
     @Event(value = R.id.btn_connect)
     private void connectTestClick(View view) {
         startActivity(new Intent(context,ConnectActivity.class));
+    }
+
+    @Event(value = R.id.btn_video_test)
+    private void videoTestClick(View view) {
+        startActivity(new Intent(context,VideoTestActivity.class));
     }
 
 
