@@ -3,13 +3,16 @@ package com.huhuo.mobiletest.model;
 /**
  * Created by xiejc on 15/12/4.
  */
-public class NetSpeedModel {
+public class CommonTestModel {
 
     private float slowestSpeed;
     private long fastestSpeed;
     private long avgSpeed;
-
     private long currentSpeed;
+    private String name;
+    private float delay;
+    private float successRate;
+    private int speedLevel;
 
     public float getSlowestSpeed() {
         return slowestSpeed;
@@ -41,5 +44,37 @@ public class NetSpeedModel {
 
     public void setCurrentSpeed(long currentSpeed) {
         this.currentSpeed = currentSpeed;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getDelay() {
+        return delay;
+    }
+
+    public void setDelay(float delay) {
+        this.delay = delay;
+    }
+
+    public float getSuccessRate() {
+        return successRate;
+    }
+
+    public void setSuccessRate(float successRate) {
+        this.successRate = successRate;
+    }
+
+    public int getSpeedLevel() {
+        return speedLevel;
+    }
+
+    public void setSpeedLevel(int speedLevel) {
+        this.speedLevel = speedLevel;
     }
 }

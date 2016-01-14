@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.model.WebPageTestModel;
+import com.huhuo.mobiletest.net.HttpHelper;
+import com.huhuo.mobiletest.net.SSLHelper;
 import com.huhuo.mobiletest.net.callback.DefaultHttpRequestCallBack;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ToastUtil;
@@ -86,7 +88,6 @@ public class WebPageTestActivity extends BaseActivity {
         final WebPageTestModel model = list.get(nextTestItem);
         testXUtils2(model);
 
-
     }
 
     private void initTestItem() {
@@ -155,6 +156,8 @@ public class WebPageTestActivity extends BaseActivity {
         SystemClock.sleep(500);
 
         progressView.setPercent(3);
+
+
         x.http().get(params,new DefaultHttpRequestCallBack<String>(){
 
             String percentStr = null;

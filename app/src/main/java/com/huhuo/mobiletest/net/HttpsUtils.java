@@ -10,7 +10,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 
-public class HttpUtils {
+public class HttpsUtils {
 
 	private static final AsyncHttpClient client = new AsyncHttpClient(); // 实例话对象
 	static {

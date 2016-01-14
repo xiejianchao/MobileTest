@@ -4,17 +4,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.constants.Constants;
-import com.huhuo.mobiletest.model.NetSpeedModel;
+import com.huhuo.mobiletest.model.CommonTestModel;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ToastUtil;
 import com.huhuo.mobiletest.view.DialChart03View;
@@ -208,7 +204,7 @@ public class NetSpeedTestActivity extends BaseActivity {
             @Override
             public void onSuccess(File result) {
                 ToastUtil.showShortToast("下载成功");
-                final NetSpeedModel speedModel = getSpeedModel(hashMap);
+                final CommonTestModel speedModel = getSpeedModel(hashMap);
                 float mbSpeed = (float) speedModel.getFastestSpeed() / 1024;
                 String speedStr = null;
                 String avgSpeedStr = null;
@@ -244,8 +240,8 @@ public class NetSpeedTestActivity extends BaseActivity {
         });
     }
 
-    private NetSpeedModel getSpeedModel(HashMap<Integer,Long> map) {
-        final NetSpeedModel model = new NetSpeedModel();
+    private CommonTestModel getSpeedModel(HashMap<Integer,Long> map) {
+        final CommonTestModel model = new CommonTestModel();
         float slowestSpeed = 1.1f;
         long fastestSpeed = 0;
 

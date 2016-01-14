@@ -70,27 +70,6 @@ public class MainActivity extends BaseActivity {
         // 默认选中首屏
         setTabSelection(0);
         enableSwipeBack(false);//首页禁止开启右滑返回
-
-        testCreateDir();
-    }
-
-    private void testCreateDir() {
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            final String rootDir = Environment.getExternalStorageDirectory().getAbsolutePath();
-            File rootFile = new File(rootDir);
-            Logger.d(TAG,"root dir canRead:" + rootFile.canRead());
-            Logger.d(TAG,"root dir canWrite:" + rootFile.canWrite());
-            final File file = new File(rootDir + File.separator + "Hello");
-            if (!file.exists()) {
-                final boolean mkdirs = file.mkdirs();
-                Logger.d(TAG,"要创建的目录为：" + file.getAbsolutePath());
-                Logger.d(TAG,"mkdirs:" + mkdirs);
-                Logger.d(TAG,"canRead:" + file.canRead());
-                Logger.d(TAG,"canWriter:" + file.canWrite());
-            }
-        } else {
-            Logger.d(TAG,"sdcard没有装载");
-        }
     }
 
     @Event(value = {
