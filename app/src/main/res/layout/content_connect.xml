@@ -13,8 +13,9 @@
     <TextView
         android:id="@+id/tv_ping_info"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:text="Ping测试开始..."
+        android:layout_margin="10dp"
         />
 
     <android.support.v7.widget.RecyclerView
@@ -25,6 +26,7 @@
         android:scrollbars="vertical"
         android:fadingEdge="none"
         android:layout_below="@id/tv_ping_info"
+        android:visibility="visible"
         />
 
     <LinearLayout

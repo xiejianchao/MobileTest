@@ -13,6 +13,9 @@ public class CommonTestModel {
     private float delay;
     private float successRate;
     private int speedLevel;
+    private String url;
+
+    private boolean isStart;
 
     public float getSlowestSpeed() {
         return slowestSpeed;
@@ -76,5 +79,21 @@ public class CommonTestModel {
 
     public void setSpeedLevel(int speedLevel) {
         this.speedLevel = speedLevel;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public boolean isStart() {
+        return isStart;
+    }
+
+    public void setIsStart(boolean isStart) {
+        this.isStart = isStart;
     }
 }

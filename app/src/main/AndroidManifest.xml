@@ -11,6 +11,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     // 允许读取电话的状态
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    //允许应用拨打电话
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    //允许应用程序读取通话记录
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     // 允许一个程序获取信息有关当前或最近运行的任务，一个缩略的任务状态，是否活动等等
     <uses-permission android:name="android.permission.GET_TASKS"/>
     // 允许程序录制音频
@@ -85,6 +90,12 @@
             android:label="@string/test_type_video"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
+        <activity
+            android:name=".ui.activity.VoiceTestActivity"
+            android:label="@string/test_type_voice"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
+
     </application>
 
 </manifest>

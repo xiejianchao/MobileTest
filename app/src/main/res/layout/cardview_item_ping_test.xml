@@ -12,6 +12,7 @@
     app:cardCornerRadius="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
+    android:layout_margin="5dp"
     >
     <!--
     app:cardCornerRadius="5dp"
@@ -21,7 +22,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-
             >
 
             <TextView
@@ -95,7 +95,7 @@
                     android:max="100"
                     android:layout_marginBottom="5dp"
                     android:layout_alignParentBottom="true"
-                    android:progress="20"
+                    android:progress="5"
                     android:visibility="visible" />
 
             </RelativeLayout>

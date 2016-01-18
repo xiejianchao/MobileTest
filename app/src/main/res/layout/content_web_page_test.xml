@@ -184,7 +184,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="@string/test_website_tecent"
+                android:text="@string/test_website_tencent"
                 />
 
         </LinearLayout>

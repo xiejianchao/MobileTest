@@ -47,6 +47,9 @@
     <string name="common_cancel">取消</string>
     <string name="common_prompt">提示</string>
     <string name="common_ok">确定</string>
+    <string name="common_delay_ms">%1$s ms</string>
+    <string name="common_test_item">开始测试 %1$s ...</string>
+    <string name="common_test_start_ping">开始ping测试 ...</string>
 
 
     <!-- 无网络情况 -->
@@ -62,15 +65,30 @@
     <string name="test_type_conn">连接测试</string>
     <string name="test_type_synthesis">综合测试</string>
     <string name="test_one_key_test">一键测试</string>
-    <string name="title_activity_connect">ConnectActivity</string>
+
+    <!-- 测试速度级别-->
+    <string name="test_speed_level_faster">很快</string>
+    <string name="test_speed_level_general">一般</string>
+    <string name="test_speed_level_slow">慢</string>
+    <string name="test_speed_level_very_slow">很慢</string>
+    <string name="test_speed_level_timeout">超时</string>
+    <string name="test_speed_level_customer">您的网速%1$s</string>
+
 
     <!-- 测试网站名称-->
     <string name="test_website_10086">移动</string>
     <string name="test_website_baidu">百度</string>
-    <string name="test_website_tecent">腾讯</string>
+    <string name="test_website_tencent">腾讯</string>
     <string name="test_website_youku">优酷</string>
     <string name="test_website_sina">新浪</string>
     <string name="test_website_taobao">淘宝</string>
-    <string name="title_activity_video_test">VideoTestActivity</string>
+
+    <!-- 测试网站网址-->
+    <string name="test_10086_url">http://www.10086.cn</string>
+    <string name="test_baidu_url">http://www.baidu.com</string>
+    <string name="test_tencent_url">http://www.qq.com</string>
+    <string name="test_youku_url">http://www.youku.com</string>
+    <string name="test_sina_url">http://www.sina.com.cn</string>
+    <string name="test_taobao_url">http://re.1688.com/</string>
 
 </resources>

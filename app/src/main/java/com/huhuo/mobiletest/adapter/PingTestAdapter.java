@@ -1,5 +1,6 @@
 package com.huhuo.mobiletest.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.model.CommonTestModel;
+import com.huhuo.mobiletest.utils.Logger;
 
 import java.util.ArrayList;
 
@@ -17,10 +20,16 @@ import java.util.ArrayList;
  */
 public class PingTestAdapter extends RecyclerView.Adapter<PingTestAdapter.MyViewHolder> {
 
+    private static final String TAG = PingTestAdapter.class.getSimpleName();
+
     private ArrayList<CommonTestModel> models;
 
     public PingTestAdapter(ArrayList<CommonTestModel> models ) {
         this.models = models;
+    }
+
+    public void update(int position) {
+        notifyItemChanged(position);
     }
 
     @Override
@@ -48,6 +57,35 @@ public class PingTestAdapter extends RecyclerView.Adapter<PingTestAdapter.MyView
 
         final CommonTestModel model = models.get(position);
         holder.tvPingName.setText(model.getName());
+        final float delay = model.getDelay();
+        Logger.d(TAG, "测试url:" + model.getUrl() + ",delay:" + delay);
+
+        Context context = MobileTestApplication.getInstance().getApplicationContext();
+
+        if (model.isStart()) {
+            holder.tvDelay.setText(context.getString(R.string.common_delay_ms,delay));
+            holder.progressBar.setProgress(100);
+            holder.tvSuccRate.setText(model.getSuccessRate() + "%");
+            holder.tvSpeedLevel.setVisibility(View.VISIBLE);
+            holder.tvSuccRate.setVisibility(View.VISIBLE);
+
+            if (delay < 60) {
+                holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_faster));
+            } else if (delay > 60 && delay < 100) {
+                holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_general));
+            } else if (delay > 100){
+                holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_very_slow));
+            } else {
+                holder.tvDelay.setText(context.getString(R.string.common_delay_ms,"0.0"));
+                holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_timeout));
+            }
+        } else {
+            holder.progressBar.setProgress(5);
+            holder.tvDelay.setText(model.getName());
+            holder.tvSuccRate.setVisibility(View.GONE);
+            holder.tvSpeedLevel.setVisibility(View.GONE);
+        }
+
 
     }
 

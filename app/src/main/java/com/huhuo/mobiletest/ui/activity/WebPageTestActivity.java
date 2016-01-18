@@ -7,8 +7,6 @@ import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.model.WebPageTestModel;
-import com.huhuo.mobiletest.net.HttpHelper;
-import com.huhuo.mobiletest.net.SSLHelper;
 import com.huhuo.mobiletest.net.callback.DefaultHttpRequestCallBack;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ToastUtil;
@@ -86,48 +84,48 @@ public class WebPageTestActivity extends BaseActivity {
 
         nextTestItem = 0;
         final WebPageTestModel model = list.get(nextTestItem);
-        testXUtils2(model);
+        testWebPage(model);
 
     }
 
     private void initTestItem() {
         WebPageTestModel model = new WebPageTestModel();
-        model.setUrl("http://www.10086.cn");
+        model.setUrl(getString(R.string.test_10086_url));
         model.setName(getString(R.string.test_website_10086));
         model.setProgressView(mobileProgressView);
         model.setTextView(tv10086Info);
         list.add(model);
 
         model = new WebPageTestModel();
-        model.setUrl("http://www.baidu.com");
+        model.setUrl(getString(R.string.test_baidu_url));
         model.setName(getString(R.string.test_website_baidu));
         model.setProgressView(baiduProgressView);
         model.setTextView(tvBaiduInfo);
         list.add(model);
 
         model = new WebPageTestModel();
-        model.setUrl("http://www.qq.com");
-        model.setName(getString(R.string.test_website_tecent));
+        model.setUrl(getString(R.string.test_tencent_url));
+        model.setName(getString(R.string.test_website_tencent));
         model.setProgressView(tencentProgressView);
         model.setTextView(tvTencentInfo);
         list.add(model);
 
         model = new WebPageTestModel();
-        model.setUrl("http://www.youku.com");
+        model.setUrl(getString(R.string.test_youku_url));
         model.setName(getString(R.string.test_website_youku));
         model.setProgressView(youkuProgressView);
         model.setTextView(tvYoukuInfo);
         list.add(model);
 
         model = new WebPageTestModel();
-        model.setUrl("http://www.sina.com.cn");
+        model.setUrl(getString(R.string.test_sina_url));
         model.setName(getString(R.string.test_website_sina));
         model.setProgressView(sinaProgressView);
         model.setTextView(tvSinaInfo);
         list.add(model);
 
         model = new WebPageTestModel();
-        model.setUrl("http://www.alibaba.com");
+        model.setUrl(getString(R.string.test_taobao_url));
         model.setName(getString(R.string.test_website_taobao));
         model.setProgressView(taobaoProgressView);
         model.setTextView(tvTaobaoInfo);
@@ -139,11 +137,11 @@ public class WebPageTestActivity extends BaseActivity {
 
         nextTestItem = 0;
         final WebPageTestModel model = list.get(nextTestItem);
-        testXUtils2(model);
+        testWebPage(model);
 
     }
 
-    private void testXUtils2(WebPageTestModel model) {
+    private void testWebPage(WebPageTestModel model) {
         String url = model.getUrl();
         Logger.d(TAG,"测试URL:" + url);
         RequestParams params = new RequestParams(url);
@@ -156,7 +154,6 @@ public class WebPageTestActivity extends BaseActivity {
         SystemClock.sleep(500);
 
         progressView.setPercent(3);
-
 
         x.http().get(params,new DefaultHttpRequestCallBack<String>(){
 
@@ -207,9 +204,8 @@ public class WebPageTestActivity extends BaseActivity {
                 Logger.d(TAG, "加载网页耗时：" + loadPageTimeSecond + " 秒");
                 Logger.d(TAG, "加载网页速率：" + df.format(webPageSize / loadPageTimeSecond) + "KB/秒");
 
-                tvTestInfo.append("\n " + df.format(kbps) + "kbps" +"");
+                tvTestInfo.append("\n " + df.format(kbps) + "kbps" + "");
 
-                ToastUtil.showShortToast("下载成功,耗时：" + (loadPageTime) + " 毫秒");
             }
 
             @Override
@@ -225,7 +221,7 @@ public class WebPageTestActivity extends BaseActivity {
                             cacuAvgSpeed();
                             return;
                         }
-                        testXUtils2(list.get(nextTestItem));
+                        testWebPage(list.get(nextTestItem));
                     }
                 } catch (Exception e) {
                     Logger.e(TAG,"onFinished",e);
