@@ -41,7 +41,7 @@ public class MobileTestApplication extends Application{
             x.Ext.setDebug(false);
         }
 
-//        initDatabaseHelper();
+        initDatabaseHelper();
 
         initImageLoader(getApplicationContext());
     }

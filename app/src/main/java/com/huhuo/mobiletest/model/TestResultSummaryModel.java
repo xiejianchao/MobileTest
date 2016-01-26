@@ -3,6 +3,8 @@ package com.huhuo.mobiletest.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.Date;
+
 /**
  * Created by xiejc on 16/1/25.
  */
@@ -18,7 +20,7 @@ public class TestResultSummaryModel {
 
     //测试发生的日期
     @DatabaseField
-    private long testDate;
+    private Date testDate;
 
     //测试结果的级别
     @DatabaseField
@@ -47,11 +49,11 @@ public class TestResultSummaryModel {
         this.testType = testType;
     }
 
-    public long getTestDate() {
+    public Date getTestDate() {
         return testDate;
     }
 
-    public void setTestDate(long testDate) {
+    public void setTestDate(Date testDate) {
         this.testDate = testDate;
     }
 

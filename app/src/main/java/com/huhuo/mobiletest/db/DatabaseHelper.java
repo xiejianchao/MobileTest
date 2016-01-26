@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.huhuo.mobiletest.model.MessageModel;
 import com.huhuo.mobiletest.model.RecentMessageModel;
+import com.huhuo.mobiletest.model.TestItemModel;
+import com.huhuo.mobiletest.model.TestResult;
+import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.utils.Logger;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
@@ -32,6 +35,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     public RecentMessageDao conversationDao;
     public MessageDao messageDao;
+    public TestResultDao testResultDao;
 
     /**
      * 用户登录时执行初始化操作
@@ -71,6 +75,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private void initDao() {
         conversationDao = new RecentMessageDao();
         messageDao = new MessageDao();
+        testResultDao = new TestResultDao();
+        Logger.w(TAG,"initDao " + testResultDao);
     }
 
 
@@ -80,6 +86,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             Logger.d(TAG, "onCreate");
             TableUtils.createTableIfNotExists(connectionSource, RecentMessageModel.class);
             TableUtils.createTableIfNotExists(connectionSource, MessageModel.class);
+            TableUtils.createTableIfNotExists(connectionSource, TestResultSummaryModel.class);
+            TableUtils.createTableIfNotExists(connectionSource, TestResult.class);
+            TableUtils.createTableIfNotExists(connectionSource, TestItemModel.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
+import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.ui.fragment.OneKeyTestFragment;
 import com.huhuo.mobiletest.ui.fragment.TaskTestFragment;
 import com.huhuo.mobiletest.ui.fragment.ReportFragment;
@@ -264,4 +265,9 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        DatabaseHelper.getInstance().close();
+    }
 }

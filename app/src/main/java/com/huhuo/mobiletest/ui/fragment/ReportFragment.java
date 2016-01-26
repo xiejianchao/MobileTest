@@ -49,8 +49,6 @@ public class ReportFragment extends BaseFragment {
         } else {
             Logger.e(TAG, "DatabaseHelper.getInstance() is null");
         }
-
-        ToastUtil.showMessage("onActivityCreated");
 //        testInsertMessage2Db();
     }
 

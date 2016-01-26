@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
+import com.huhuo.mobiletest.constants.Constants;
+import com.huhuo.mobiletest.db.DatabaseHelper;
+import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.model.WebPageTestModel;
 import com.huhuo.mobiletest.net.callback.DefaultHttpRequestCallBack;
 import com.huhuo.mobiletest.utils.Logger;
@@ -20,6 +23,7 @@ import org.xutils.x;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -76,6 +80,8 @@ public class WebPageTestActivity extends BaseActivity {
 
     private List<Float> speedList = new ArrayList<Float>();
 
+    private long start;
+
     @Override
     protected void init(Bundle savedInstanceState) {
         df = new DecimalFormat("#.##");
@@ -84,6 +90,7 @@ public class WebPageTestActivity extends BaseActivity {
 
         nextTestItem = 0;
         final WebPageTestModel model = list.get(nextTestItem);
+        start = System.currentTimeMillis();
         testWebPage(model);
 
     }
@@ -134,12 +141,12 @@ public class WebPageTestActivity extends BaseActivity {
     }
     @Event(value = R.id.btn_download)
     private void downloadClick(View view) {
-
         nextTestItem = 0;
         final WebPageTestModel model = list.get(nextTestItem);
         testWebPage(model);
-
     }
+
+    private long allTime;
 
     private void testWebPage(WebPageTestModel model) {
         String url = model.getUrl();
@@ -151,7 +158,7 @@ public class WebPageTestActivity extends BaseActivity {
 
         tvTestAllInfo.setText("正在测试" + tvTestInfo.getText().toString());
 
-        SystemClock.sleep(500);
+//        SystemClock.sleep(500);
 
         progressView.setPercent(3);
 
@@ -200,12 +207,12 @@ public class WebPageTestActivity extends BaseActivity {
 
                 Logger.d(TAG, "网页大小：" + df.format(webPageSize) + "kb");
 
+                allTime += loadPageTime;
                 Logger.d(TAG, "加载网页耗时：" + loadPageTime + " 毫秒");
                 Logger.d(TAG, "加载网页耗时：" + loadPageTimeSecond + " 秒");
                 Logger.d(TAG, "加载网页速率：" + df.format(webPageSize / loadPageTimeSecond) + "KB/秒");
 
                 tvTestInfo.append("\n " + df.format(kbps) + "kbps" + "");
-
             }
 
             @Override
@@ -236,18 +243,51 @@ public class WebPageTestActivity extends BaseActivity {
         for (Float f : speedList) {
             allKbps += f;
         }
+        float avgKbps = 0;
+        float testLevel = 0;
         if (allKbps > 0) {
-            float avgKbps = (float)allKbps / testCount;
+            avgKbps = (float)allKbps / testCount;
             Logger.d(TAG, "所有网站测试完毕，一共测试了" + testCount +
                     "个网站，平均速度：" + df.format(avgKbps) + "kbps");
             if (avgKbps >= 2000) {
+                testLevel = 5;
                 tvTestAllInfo.setText("测试完毕，您的网络速度很快，令人神往！");
             } else if (avgKbps >= 800 && avgKbps < 2000) {
+                testLevel = 3;
                 tvTestAllInfo.setText("测试完毕，您的网络速度一般，还需加油！");
             } else {
+                testLevel = 1;
                 tvTestAllInfo.setText("测试完毕，您的网络速度很慢！");
             }
         }
+        final TestResultSummaryModel summaryModel = new TestResultSummaryModel();
+
+
+//        testTime -= (testCount * 500);
+
+        long avgTime = allTime / testCount;
+        Logger.w(TAG, "完成全部测试花费了：" + allTime + "毫秒");
+        Logger.w(TAG, "完成每个测试平均花费：" + avgTime + "毫秒");
+
+        //测试时间
+        summaryModel.setTestDate(new Date());
+        summaryModel.setDelayTime(avgKbps);
+        summaryModel.setTestLevel(testLevel);
+        summaryModel.setTestType(Constants.TestType.WEB_PAGE);
+        summaryModel.setDelayTime(allTime);
+
+        DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
+
+
+        final List<TestResultSummaryModel> models = DatabaseHelper.getInstance()
+                .testResultDao.queryAll();
+
+        if (models != null) {
+            for (TestResultSummaryModel model : models) {
+                Logger.d(TAG,"从数据库中取出的测试结果：" + model);
+            }
+        }
+
     }
 
 
