@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
@@ -63,6 +64,21 @@ public class MainActivity extends BaseActivity {
     //问题上报tab的TextView
     @ViewInject(R.id.tv_report)
     private TextView tvReport;
+
+    @ViewInject(R.id.layout_one_key_test)
+    private RelativeLayout layoutOneKeyTest;
+
+    @ViewInject(R.id.layout_task_test)
+    private RelativeLayout layoutTaskTest;
+
+    @ViewInject(R.id.layout_test_result)
+    private RelativeLayout layoutTestResult;
+
+    @ViewInject(R.id.layout_test_stat)
+    private RelativeLayout layoutTestStat;
+
+    @ViewInject(R.id.layout_report)
+    private RelativeLayout layoutReport;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -178,47 +194,52 @@ public class MainActivity extends BaseActivity {
     private void switchSelectedTabImg(int index) {
         switch (index) {
             case 0:
-                tvOneKeyTest.setTextColor(getResources().getColor(R.color.color_blue_default));
-                tvOneKeyTest.setSelected(true);
-                tvTaskTest.setSelected(false);
-                tvTestResult.setSelected(false);
-                tvTestStat.setSelected(false);
-                tvReport.setSelected(false);
+                tvOneKeyTest.setTextColor(getResources().getColor(R.color.color_yellow));
+                layoutOneKeyTest.setBackgroundResource(R.drawable.tab_one_key_test_pressed);
+
+                layoutTaskTest.setBackgroundResource(R.drawable.tab_task_test_normal);
+                layoutTestResult.setBackgroundResource(R.drawable.tab_test_result_normal);
+                layoutTestStat.setBackgroundResource(R.drawable.tab_test_stat_normal);
+                layoutReport.setBackgroundResource(R.drawable.tab_error_report_normal);
                 break;
             case 1:
-                tvTaskTest.setTextColor(getResources().getColor(R.color.color_blue_default));
-                tvOneKeyTest.setSelected(false);
-                tvTaskTest.setSelected(true);
-                tvTestResult.setSelected(false);
-                tvTestStat.setSelected(false);
-                tvReport.setSelected(false);
+                tvTaskTest.setTextColor(getResources().getColor(R.color.color_yellow));
+                layoutTaskTest.setBackgroundResource(R.drawable.tab_task_test_pressed);
+
+                layoutOneKeyTest.setBackgroundResource(R.drawable.tab_one_key_test_normal);
+                layoutTestResult.setBackgroundResource(R.drawable.tab_test_result_normal);
+                layoutTestStat.setBackgroundResource(R.drawable.tab_test_stat_normal);
+                layoutReport.setBackgroundResource(R.drawable.tab_error_report_normal);
                 break;
 
             case 2:
-                tvTestResult.setTextColor(getResources().getColor(R.color.color_blue_default));
-                tvOneKeyTest.setSelected(false);
-                tvTaskTest.setSelected(false);
-                tvTestResult.setSelected(true);
-                tvTestStat.setSelected(false);
-                tvReport.setSelected(false);
+                tvTestResult.setTextColor(getResources().getColor(R.color.color_yellow));
+                layoutTestResult.setBackgroundResource(R.drawable.tab_test_result_pressed);
+
+                layoutOneKeyTest.setBackgroundResource(R.drawable.tab_one_key_test_normal);
+                layoutTaskTest.setBackgroundResource(R.drawable.tab_task_test_normal);
+                layoutTestStat.setBackgroundResource(R.drawable.tab_test_stat_normal);
+                layoutReport.setBackgroundResource(R.drawable.tab_error_report_normal);
                 break;
 
             case 3:
-                tvTestStat.setTextColor(getResources().getColor(R.color.color_blue_default));
-                tvOneKeyTest.setSelected(false);
-                tvTaskTest.setSelected(false);
-                tvTestResult.setSelected(false);
-                tvTestStat.setSelected(true);
-                tvReport.setSelected(false);
+                tvTestStat.setTextColor(getResources().getColor(R.color.color_yellow));
+                layoutTestStat.setBackgroundResource(R.drawable.tab_test_stat_pressed);
+
+                layoutOneKeyTest.setBackgroundResource(R.drawable.tab_one_key_test_normal);
+                layoutTaskTest.setBackgroundResource(R.drawable.tab_task_test_normal);
+                layoutTestResult.setBackgroundResource(R.drawable.tab_test_result_normal);
+                layoutReport.setBackgroundResource(R.drawable.tab_error_report_normal);
                 break;
 
             case 4:
-                tvReport.setTextColor(getResources().getColor(R.color.color_blue_default));
-                tvOneKeyTest.setSelected(false);
-                tvTaskTest.setSelected(false);
-                tvTestResult.setSelected(false);
-                tvTestStat.setSelected(false);
-                tvReport.setSelected(true);
+                tvReport.setTextColor(getResources().getColor(R.color.color_yellow));
+                layoutReport.setBackgroundResource(R.drawable.tab_error_report_pressed);
+
+                layoutOneKeyTest.setBackgroundResource(R.drawable.tab_one_key_test_normal);
+                layoutTaskTest.setBackgroundResource(R.drawable.tab_task_test_normal);
+                layoutTestResult.setBackgroundResource(R.drawable.tab_test_result_normal);
+                layoutTestStat.setBackgroundResource(R.drawable.tab_test_stat_normal);
                 break;
 
         }
@@ -229,15 +250,15 @@ public class MainActivity extends BaseActivity {
      */
     private void clearSelection() {
         tvOneKeyTest.setTextColor(getResources().getColor(
-                R.color.color_guide_background_press));
+                R.color.color_white));
         tvTaskTest.setTextColor(getResources().getColor(
-                R.color.color_guide_background_press));
+                R.color.color_white));
         tvTestResult.setTextColor(getResources().getColor(
-                R.color.color_guide_background_press));
+                R.color.color_white));
         tvTestStat.setTextColor(getResources().getColor(
-                R.color.color_guide_background_press));
+                R.color.color_white));
         tvReport.setTextColor(getResources().getColor(
-                R.color.color_guide_background_press));
+                R.color.color_white));
     }
 
     /**

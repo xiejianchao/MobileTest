@@ -92,7 +92,6 @@ public class WebPageTestActivity extends BaseActivity {
         final WebPageTestModel model = list.get(nextTestItem);
         start = System.currentTimeMillis();
         testWebPage(model);
-
     }
 
     private void initTestItem() {
@@ -158,7 +157,7 @@ public class WebPageTestActivity extends BaseActivity {
 
         tvTestAllInfo.setText("正在测试" + tvTestInfo.getText().toString());
 
-//        SystemClock.sleep(500);
+        SystemClock.sleep(500);
 
         progressView.setPercent(3);
 
@@ -261,10 +260,6 @@ public class WebPageTestActivity extends BaseActivity {
             }
         }
         final TestResultSummaryModel summaryModel = new TestResultSummaryModel();
-
-
-//        testTime -= (testCount * 500);
-
         long avgTime = allTime / testCount;
         Logger.w(TAG, "完成全部测试花费了：" + allTime + "毫秒");
         Logger.w(TAG, "完成每个测试平均花费：" + avgTime + "毫秒");
@@ -277,7 +272,6 @@ public class WebPageTestActivity extends BaseActivity {
         summaryModel.setDelayTime(allTime);
 
         DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
-
 
         final List<TestResultSummaryModel> models = DatabaseHelper.getInstance()
                 .testResultDao.queryAll();
