@@ -242,6 +242,28 @@ public class NetWorkUtil {
         return df.format(len) + "\n" + unit + "/s";
     }
 
+    public static String getSignalLevel(int asu){
+
+        String level = null;
+        if (asu < 0 || asu >= 99) {
+//            level = SIGNAL_STRENGTH_NONE_OR_UNKNOWN;
+            level = "无";
+        } else if (asu >= 16) {
+//            level = SIGNAL_STRENGTH_GREAT;
+            level = "很好";
+        } else if (asu >= 8) {
+//            level = SIGNAL_STRENGTH_GOOD;
+            level = "好";
+        } else if (asu >= 4) {
+//            level = SIGNAL_STRENGTH_MODERATE;
+            level = "弱";
+        } else {
+//            level = SIGNAL_STRENGTH_POOR;
+            level = "差";
+        }
+        return level;
+    }
+
     /**
      * 获取运营商
      *

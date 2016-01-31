@@ -9,6 +9,16 @@ public class Constants {
 
     public static final String HTTP_PREFIX = "http://";
 
+    /**
+     * 好像是介绍满足的什么破玩意
+     */
+    public static final String PATH = "http://v.cctv.com/flash/mp4video6/TMS/2010/12/05/641b5afeb00e4da6f29cb2a2b8204768_h264418000nero_aac32-1.mp4?start=158";
+
+    /**
+     * 儿童类视频
+     */
+    public static final String PATH2 = "http://video.cztv.com/video/rzx/201208/15/1345010952759.mp4";
+
     public static final String DEFAULT_USER_ID = "13466608793";
     public static final String OTHER_USER_ID_1 = "1001";
     public static final String OTHER_USER_ID_2 = "1002";

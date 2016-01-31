@@ -192,54 +192,61 @@ public class MainActivity extends BaseActivity {
     }
 
     private void switchSelectedTabImg(int index) {
+        layoutOneKeyTest.setSelected(true);
+        layoutTaskTest.setSelected(true);
+        layoutTestResult.setSelected(true);
+        layoutTestStat.setSelected(true);
+        layoutReport.setSelected(true);
+
         switch (index) {
             case 0:
                 tvOneKeyTest.setTextColor(getResources().getColor(R.color.color_yellow));
                 layoutOneKeyTest.setBackgroundResource(R.drawable.tab_one_key_test_pressed);
+//                layoutOneKeyTest.setPressed(true);
 
-                layoutTaskTest.setBackgroundResource(R.drawable.tab_task_test_normal);
-                layoutTestResult.setBackgroundResource(R.drawable.tab_test_result_normal);
-                layoutTestStat.setBackgroundResource(R.drawable.tab_test_stat_normal);
-                layoutReport.setBackgroundResource(R.drawable.tab_error_report_normal);
+                layoutTaskTest.setBackgroundResource(R.drawable.selector_task_test);
+                layoutTestResult.setBackgroundResource(R.drawable.selector_test_result);
+                layoutTestStat.setBackgroundResource(R.drawable.selector_test_stat);
+                layoutReport.setBackgroundResource(R.drawable.selector_error_report);
                 break;
             case 1:
                 tvTaskTest.setTextColor(getResources().getColor(R.color.color_yellow));
                 layoutTaskTest.setBackgroundResource(R.drawable.tab_task_test_pressed);
 
-                layoutOneKeyTest.setBackgroundResource(R.drawable.tab_one_key_test_normal);
-                layoutTestResult.setBackgroundResource(R.drawable.tab_test_result_normal);
-                layoutTestStat.setBackgroundResource(R.drawable.tab_test_stat_normal);
-                layoutReport.setBackgroundResource(R.drawable.tab_error_report_normal);
+                layoutOneKeyTest.setBackgroundResource(R.drawable.selector_one_key_test);
+                layoutTestResult.setBackgroundResource(R.drawable.selector_test_result);
+                layoutTestStat.setBackgroundResource(R.drawable.selector_test_stat);
+                layoutReport.setBackgroundResource(R.drawable.selector_error_report);
                 break;
 
             case 2:
                 tvTestResult.setTextColor(getResources().getColor(R.color.color_yellow));
                 layoutTestResult.setBackgroundResource(R.drawable.tab_test_result_pressed);
 
-                layoutOneKeyTest.setBackgroundResource(R.drawable.tab_one_key_test_normal);
-                layoutTaskTest.setBackgroundResource(R.drawable.tab_task_test_normal);
-                layoutTestStat.setBackgroundResource(R.drawable.tab_test_stat_normal);
-                layoutReport.setBackgroundResource(R.drawable.tab_error_report_normal);
+                layoutOneKeyTest.setBackgroundResource(R.drawable.selector_one_key_test);
+                layoutTaskTest.setBackgroundResource(R.drawable.selector_task_test);
+                layoutTestStat.setBackgroundResource(R.drawable.selector_test_stat);
+                layoutReport.setBackgroundResource(R.drawable.selector_error_report);
                 break;
 
             case 3:
                 tvTestStat.setTextColor(getResources().getColor(R.color.color_yellow));
                 layoutTestStat.setBackgroundResource(R.drawable.tab_test_stat_pressed);
 
-                layoutOneKeyTest.setBackgroundResource(R.drawable.tab_one_key_test_normal);
-                layoutTaskTest.setBackgroundResource(R.drawable.tab_task_test_normal);
-                layoutTestResult.setBackgroundResource(R.drawable.tab_test_result_normal);
-                layoutReport.setBackgroundResource(R.drawable.tab_error_report_normal);
+                layoutOneKeyTest.setBackgroundResource(R.drawable.selector_one_key_test);
+                layoutTaskTest.setBackgroundResource(R.drawable.selector_task_test);
+                layoutTestResult.setBackgroundResource(R.drawable.selector_test_result);
+                layoutReport.setBackgroundResource(R.drawable.selector_error_report);
                 break;
 
             case 4:
                 tvReport.setTextColor(getResources().getColor(R.color.color_yellow));
                 layoutReport.setBackgroundResource(R.drawable.tab_error_report_pressed);
 
-                layoutOneKeyTest.setBackgroundResource(R.drawable.tab_one_key_test_normal);
-                layoutTaskTest.setBackgroundResource(R.drawable.tab_task_test_normal);
-                layoutTestResult.setBackgroundResource(R.drawable.tab_test_result_normal);
-                layoutTestStat.setBackgroundResource(R.drawable.tab_test_stat_normal);
+                layoutOneKeyTest.setBackgroundResource(R.drawable.selector_one_key_test);
+                layoutTaskTest.setBackgroundResource(R.drawable.selector_task_test);
+                layoutTestResult.setBackgroundResource(R.drawable.selector_test_result);
+                layoutTestStat.setBackgroundResource(R.drawable.selector_test_stat);
                 break;
 
         }

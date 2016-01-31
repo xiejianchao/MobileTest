@@ -40,7 +40,7 @@ public class ReportFragment extends BaseFragment {
 
         //TestCode
         String url = "http://pic33.nipic.com/20131008/13661616_190558208000_2.jpg";
-        ImageUtil.displayImage(ivTest, url);
+//        ImageUtil.displayImage(ivTest, url);
 
         if (DatabaseHelper.getInstance() != null) {
             recentMessageDao = DatabaseHelper.getInstance().conversationDao;

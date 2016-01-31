@@ -57,7 +57,7 @@ public class VoiceTestActivity extends BaseActivity {
 
     private PhoneReceive receive;
 
-    private static final String TEST_PHONE_NUMBER = "10010";
+    private static final String TEST_PHONE_NUMBER = "10086";
     private StringBuilder sb = new StringBuilder();
 
     private Date startCallTime;

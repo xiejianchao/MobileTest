@@ -5,15 +5,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/test_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.huhuo.mobiletest.ui.activity.VideoTestActivity"
     tools:showIn="@layout/activity_video_test">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/test_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tv_speed_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Video测试开始..."
+            android:textColor="@color/color_white"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            />
+        <TextView
+            android:id="@+id/tv_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1024kbps"
+            android:textColor="@color/color_yellow"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_suface"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/test_info_layout"
+        >
+
+        <SurfaceView
+            android:id="@+id/surfaceView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_black"
+            />
+
+        <TextView
+            android:id="@+id/tv_video_test_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/phone_info_bg"
+            android:textColor="@color/color_white"
+            android:visibility="gone"
+            android:textSize="18sp"
+            android:lineSpacingExtra="5dp"
+            android:padding="50dp"
+            android:text=""
+            />
+
+        <SeekBar
+            android:id="@+id/skbProgress"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.0"
+            android:clickable="false"
+            android:max="100"
+            android:progress="2"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:layout_alignParentBottom="true"
+            />
+
+        <TextView
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:layout_alignParentBottom="true"
+            android:alpha="50"
+            android:background="@color/transparent"
+            />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_stop_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="该功能正在开发中..."
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/stop_test_normal"
+        android:text="停止测试"
         />
 
 </RelativeLayout>

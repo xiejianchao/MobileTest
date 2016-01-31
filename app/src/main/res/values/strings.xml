@@ -50,6 +50,7 @@
     <string name="common_delay_ms">%1$s ms</string>
     <string name="common_test_item">开始测试 %1$s ...</string>
     <string name="common_test_start_ping">开始ping测试 ...</string>
+    <string name="common_video_test_start">video 测试开始 ...</string>
 
 
     <!-- 无网络情况 -->

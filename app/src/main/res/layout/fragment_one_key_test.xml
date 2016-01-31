@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_blue_default"
+    android:background="@drawable/test_bg"
     tools:context="com.huhuo.mobiletest.ui.fragment.OneKeyTestFragment"
     android:orientation="vertical"
     >
@@ -23,80 +23,107 @@
             />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:id="@+id/phone_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/phone_info_bg"
+        android:layout_marginTop="40dp"
         android:layout_below="@id/toolbar"
-        android:text="信息"
-        android:textColor="@color/color_white"
-        />
+        >
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="信息"
+            android:textColor="@color/color_white"
+            />
 
-    <LinearLayout
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:id="@+id/test_layout_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:orientation="horizontal"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/phone_info_layout"
+        android:layout_marginTop="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         >
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_webpage_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/test_type_webpage"
-            android:layout_weight="1"
+            android:background="@drawable/selector_webpage_test"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
             />
 
-        <Button
+        <ImageButton
+            android:id="@+id/synthesize_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/test_type_synthesis"
-            android:layout_weight="1"
+            android:background="@drawable/selector_synthesize_test"
+            android:layout_centerHorizontal="true"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_speed_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/test_type_speed"
-            android:layout_weight="1"
+            android:background="@drawable/selector_speed_test"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
             />
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/test_layout_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/test_layout_1"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         >
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_video_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/test_type_video"
+            android:background="@drawable/selector_video_test"
             android:layout_weight="1"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_voice_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/test_type_voice"
+            android:background="@drawable/selector_voice_test"
             android:layout_weight="1"
+            android:layout_centerHorizontal="true"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_connect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/test_type_conn"
+            android:background="@drawable/selector_conn_test"
             android:layout_weight="1"
+            android:layout_alignParentRight="true"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
