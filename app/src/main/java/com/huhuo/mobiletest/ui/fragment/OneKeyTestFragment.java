@@ -109,7 +109,7 @@ public class OneKeyTestFragment extends BaseFragment {
         startActivity(new Intent(context,VoiceTestActivity.class));
     }
     @Event(value = R.id.synthesize_test)
-    private void voiceSynthesizeClick(View view) {
+    private void synthesizeClick(View view) {
         ToastUtil.showShortToast("尚未开发完毕");
     }
 
