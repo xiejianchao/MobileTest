@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
+import android.telephony.gsm.GsmCellLocation;
 import android.view.View;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.ui.activity.ConnectActivity;
 import com.huhuo.mobiletest.ui.activity.NetSpeedTestActivity;
-import com.huhuo.mobiletest.ui.activity.TestActivity;
 import com.huhuo.mobiletest.ui.activity.VideoTestActivity;
 import com.huhuo.mobiletest.ui.activity.VoiceTestActivity;
 import com.huhuo.mobiletest.ui.activity.WebPageTestActivity;
@@ -32,55 +32,54 @@ public class OneKeyTestFragment extends BaseFragment {
 
     private static final String TAG = OneKeyTestFragment.class.getSimpleName();
 
-    @ViewInject(R.id.tv_info)
+    @ViewInject(R.id.tv_phone_info_1)
     private TextView tvInfo;
 
     private TelephonyManager Tel;
     private MyPhoneStateListener    MyListener;
-    private TelephonyManager telephoneManager;
     private int signal;
     private String signalLevel;
+    private int lac;
+    private int cid;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        GsmCellLocation location = NetWorkUtil.getGsmCellLocation();
+        lac = location.getLac();
+        cid = location.getCid();
+
         initPhoneInfo();
+
+
 
         /* Update the listener, and start it */
         MyListener   = new MyPhoneStateListener();
         Tel       = ( TelephonyManager )context.getSystemService(Context.TELEPHONY_SERVICE);
         Tel.listen(MyListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
-        telephoneManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
     }
 
     private void initPhoneInfo() {
         StringBuilder sb = new StringBuilder();
         final boolean netOk = NetStateUtils.isNetOk(context);
         final boolean canUseSim = SimCardUtil.isCanUseSim();
+        String netType = NetWorkUtil.getCurrentNetWorkTypeName();
+        final String simType = SimCardUtil.getSimType();
         if (canUseSim) {
-            if (netOk) {
-                final String simType = SimCardUtil.getSimType();
-                sb.append("信号强度：" + signal + "dBm " + "\n");
-                //网络已连接，并且是移动网络，显示移动网络类型
-                if (NetWorkUtil.isMobileAvailable()) {
-                    String netType = NetWorkUtil.getCurrentNetWorkTypeName();
-                    sb.append(simType + "：" + netType + "\n");
-                    sb.append("网络类型：移动网络" + "\n");
-                } else {//网络已连接，不是移动网络，必然是WIFI
-                    sb.append(simType + "：" + "2G" + "\n");
-                    sb.append("网络类型：WiFi" + "\n");
-                }
+            sb.append((canUseSim ? "SIM卡可用" : "SIM卡不可用") );
+            if (NetWorkUtil.isMobileAvailable()) {
+                sb.append(" " + netType + "\n");
+            } else {
+                sb.append(" 2G" + "\n");
             }
         } else {
-            sb.append("SIM卡不可用" + "\n");
-            if (netOk) {
-                sb.append("网络类型：WiFi" + "\n");
-            } else {
-                sb.append("无可用网络\n");
-            }
+            sb.append((canUseSim ? "SIM卡可用" : "SIM卡不可用") + "\n");
         }
-
+        sb.append("运营商：" + simType + "\n");
+        sb.append((netOk ? "有可用网络" : "无可用网络") + "\n");
+        sb.append("LAC：" + lac + "\n");
+        sb.append("CI：" + cid);
         tvInfo.setText(sb.toString());
     }
 
@@ -122,22 +121,28 @@ public class OneKeyTestFragment extends BaseFragment {
         public void onSignalStrengthsChanged(SignalStrength signalStrength)
         {
             super.onSignalStrengthsChanged(signalStrength);
+            int asu = signalStrength.getGsmSignalStrength();
             Logger.d(TAG, "Go to Firstdroid!!! GSM Cinr = "
-                    + String.valueOf(signalStrength.getGsmSignalStrength()));
+                    + String.valueOf(asu));
             int dBm = 0;
             if (!signalStrength.isGsm()) {
                 dBm = signalStrength.getCdmaDbm();
                 Logger.d(TAG,"cdma信号：" + dBm);
             } else {
-                int asu = signalStrength.getGsmSignalStrength();
+                asu = signalStrength.getGsmSignalStrength();
                 dBm = (-113 + 2 * asu);
                 Logger.d(TAG,"gsm信号：" + dBm);
             }
 
             signal = dBm;
 
-            signalLevel = NetWorkUtil.getSignalLevel(signalStrength.getGsmSignalStrength());
+            signalLevel = NetWorkUtil.getSignalLevel(asu);
             initPhoneInfo();
+            GsmCellLocation location = NetWorkUtil.getGsmCellLocation();
+            lac = location.getLac();
+            cid = location.getCid();
+            Logger.v(TAG,"cid:" + cid);
+            Logger.v(TAG,"lac:" + lac);
         }
 
     };

@@ -19,6 +19,7 @@ import com.huhuo.mobiletest.model.RecordEntity;
 import com.huhuo.mobiletest.utils.DateUtil;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
+import com.huhuo.mobiletest.utils.SimCardUtil;
 import com.huhuo.mobiletest.utils.ToastUtil;
 
 import org.xutils.view.annotation.ContentView;
@@ -127,8 +128,8 @@ public class VoiceTestActivity extends BaseActivity {
                     final String formatTime = DateUtil.getFormatTime(endCallTime, DateUtil
                             .PATTERN_STANDARD);
                     if (startCall) {
-                        sb.append("挂断后回到空闲状态 "+ formatTime +"\n");
-                        tvStatus.append("挂断后回到空闲状态 "+ formatTime +"\n");
+//                        sb.append("挂断后回到空闲状态 "+ formatTime +"\n");
+//                        tvStatus.append("挂断后回到空闲状态 "+ formatTime +"\n");
 
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -237,9 +238,7 @@ public class VoiceTestActivity extends BaseActivity {
             String testResult = entity.duration == 0 ? "失败" : "成功";
             tvTestCallResult.append(testResult);
 
-            sb.append("接通时延long：" + intevalLong + "毫秒\n");
-            sb.append("接通时延2：" + intevalFloat + "float秒\n");
-            sb.append("接通时延3：" + inteval + "int秒\n");
+            sb.append("接通时延：" + inteval + "秒\n");
             sb.append("拨打时间：" + format + "\n");
             sb.append("接通延时：" + inteval + "\n");
             sb.append("接通时间：" + sdf.format(realStartCallDate) + "\n");
@@ -271,7 +270,7 @@ public class VoiceTestActivity extends BaseActivity {
             if (typeName.equalsIgnoreCase("4G")) {
                 //TODO 这里需要详细区分是,暂时先这样，SRLTE，SGLTE，SVLTE，CSFB，VoLTE
 
-                final String provider = NetWorkUtil.getProvider();
+                final String provider = SimCardUtil.getSimType();
                 if (!TextUtils.isEmpty(provider)) {
                     if (provider.equals("中国电信")) {
                         type = "SRLTE";
