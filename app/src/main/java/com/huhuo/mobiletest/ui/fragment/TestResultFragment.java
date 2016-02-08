@@ -89,7 +89,7 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
             if (adapter == null) {
                 Logger.v(TAG,"adapter == null,now init...");
                 adapter = new TestResultAdapter();
-            } 
+            }
             adapter.updateAll(models);
         }
     }
