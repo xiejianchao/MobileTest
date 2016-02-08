@@ -37,7 +37,7 @@ public class PingTestAdapter extends RecyclerView.Adapter<PingTestAdapter.MyView
         //如果如果需要显示不同类型的网站，需要重写该方法，通知onCreateViewHolder 显示不同的布局
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cardview_item_ping_test, parent, false);
+                .inflate(R.layout.recycleview_item_ping_test, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -105,13 +105,11 @@ public class PingTestAdapter extends RecyclerView.Adapter<PingTestAdapter.MyView
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
             tvPingName = (TextView) itemView.findViewById(R.id.tv_ping_name);
             tvDelay = (TextView) itemView.findViewById(R.id.tv_ping_delay);
             tvSuccRate = (TextView) itemView.findViewById(R.id.tv_ping_success_rate);
             tvSpeedLevel = (TextView) itemView.findViewById(R.id.tv_ping_speed_level);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressbar);
-
         }
     }
 }

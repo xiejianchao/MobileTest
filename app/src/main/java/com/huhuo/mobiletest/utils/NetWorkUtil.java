@@ -272,12 +272,14 @@ public class NetWorkUtil {
         if (!TextUtils.isEmpty(SimCardUtil.getSimType()) && !SimCardUtil.getSimType().equals("中国电信")) {
             // 中国移动和中国联通获取LAC、CID的方式
             GsmCellLocation location = (GsmCellLocation) telephonyManager.getCellLocation();
-            int lac = location.getLac();
-            int cellId = location.getCid();
+            if (location != null) {
+                int lac = location.getLac();
+                int cellId = location.getCid();
 
-            GsmCellLocation gcl = new GsmCellLocation();
-            gcl.setLacAndCid(lac,cellId);
-            return gcl;
+                GsmCellLocation gcl = new GsmCellLocation();
+                gcl.setLacAndCid(lac,cellId);
+                return gcl;
+            }
         }
         return null;
 
@@ -289,11 +291,13 @@ public class NetWorkUtil {
         if (!TextUtils.isEmpty(SimCardUtil.getSimType()) && SimCardUtil.getSimType().equals("中国电信")) {
             // 中国电信获取LAC、CID的方式
             CdmaCellLocation location1 = (CdmaCellLocation) telephonyManager.getCellLocation();
-            int lac = location1.getNetworkId();
-            int cellId = location1.getBaseStationId();
-            cellId /= 16;
+            if (location1 != null) {
+                int lac = location1.getNetworkId();
+                int cellId = location1.getBaseStationId();
+                cellId /= 16;
 
-            return location1;
+                return location1;
+            }
         }
 
         return null;

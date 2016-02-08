@@ -24,7 +24,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final int DB_VERSION = 3;
     private static String USER_DB_NAME;
-    private static final String DATABASE_NAME_BASE = "ald.db";
+    private static final String DATABASE_NAME_BASE = "mobile_test.db";
 
 
     private static final String TAG = DatabaseHelper.class.getSimpleName();

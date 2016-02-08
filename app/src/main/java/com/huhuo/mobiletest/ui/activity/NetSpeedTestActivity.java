@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.model.CommonTestModel;
+import com.huhuo.mobiletest.net.HttpHelper;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ToastUtil;
 import com.huhuo.mobiletest.view.DialChart03View;
@@ -43,7 +44,7 @@ public class NetSpeedTestActivity extends BaseActivity {
     @ViewInject(R.id.tv_result)
     private TextView tvResult;
 
-    @ViewInject(R.id.btn_xutils_test_speed)
+    @ViewInject(R.id.btn_test_speed)
     private Button btnTest;
 
     private Timer timer;
@@ -120,22 +121,24 @@ public class NetSpeedTestActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-
         df = new DecimalFormat("#.##");
         chartView.setCurrentStatus(0.1f);
-
+        startTestDownloadSpeed();
     }
 
-    @Event(value = R.id.btn_xutils_test_speed,type = View.OnClickListener.class)
+    @Event(value = R.id.btn_test_speed,type = View.OnClickListener.class)
     private void btnDownloadTest(View view) {
-        ToastUtil.showShortToast("hello click");
+        startTestDownloadSpeed();
+    }
+
+    private void startTestDownloadSpeed() {
         RequestParams req = new RequestParams(Constants.TAOBAO_APK_URL);
         req.setAutoRename(false);
         req.setAutoResume(true);
         File saveFile = new File(Environment.getExternalStorageDirectory() + "/textXUtils3");
         if (!saveFile.exists()) {
             saveFile.mkdirs();
-            Logger.e(TAG,"XUTILS目录不存在，创建...");
+            Logger.e(TAG, "XUTILS目录不存在，创建...");
         }
         String savePath = saveFile.getAbsolutePath() + "/360.apk";
         Logger.d(TAG,"save path : " + savePath);
@@ -154,7 +157,7 @@ public class NetSpeedTestActivity extends BaseActivity {
                 ToastUtil.showShortToast("下载失败，error:" + e == null ? "" : e
                         .getMessage());
                 if (e != null) {
-                    Logger.e(TAG, e.toString());
+                    Logger.e(TAG, "onError:" + e.toString());
                 } else {
                     Logger.e(TAG, "网络错误，下载失败");
                 }
@@ -203,7 +206,6 @@ public class NetSpeedTestActivity extends BaseActivity {
 
             @Override
             public void onSuccess(File result) {
-                ToastUtil.showShortToast("下载成功");
                 final CommonTestModel speedModel = getSpeedModel(hashMap);
                 float mbSpeed = (float) speedModel.getFastestSpeed() / 1024;
                 String speedStr = null;
@@ -283,7 +285,7 @@ public class NetSpeedTestActivity extends BaseActivity {
 
     private void startTimer() {
         timer = new Timer();
-        Logger.e(TAG, "开始计算当前网速！");
+        Logger.d(TAG, "开始计算当前网速！");
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -299,9 +301,9 @@ public class NetSpeedTestActivity extends BaseActivity {
                 hashMap.put(speedCount, currentSpeed);
 
                 if (currentSpeed <= 0) {
-                    Logger.e(TAG, "当前网速：" + 0 + "kb" + " , 上次网速：" + lastSpeed + "kb");
+                    Logger.d(TAG, "当前网速：" + 0 + "kb" + " , 上次网速：" + lastSpeed + "kb");
                 } else {
-                    Logger.e(TAG, "当前网速：" + currentSpeed + "kb" + " , 上次网速：" + lastSpeed + "kb");
+                    Logger.d(TAG, "当前网速：" + currentSpeed + "kb" + " , 上次网速：" + lastSpeed + "kb");
                 }
 
                 lastTotalSize = currentSize;

@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
-import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.db.DatabaseHelper;
+import com.huhuo.mobiletest.constants.TestCode;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.model.WebPageTestModel;
 import com.huhuo.mobiletest.net.callback.DefaultHttpRequestCallBack;
@@ -266,11 +266,9 @@ public class WebPageTestActivity extends BaseActivity {
 
         //测试时间
         summaryModel.setTestDate(new Date());
-        summaryModel.setDelayTime(avgKbps);
         summaryModel.setTestLevel(testLevel);
-        summaryModel.setTestType(Constants.TestType.WEB_PAGE);
+        summaryModel.setTestType(TestCode.TEST_TYPE_WEBPAGE);
         summaryModel.setDelayTime(allTime);
-
         DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
 
         final List<TestResultSummaryModel> models = DatabaseHelper.getInstance()

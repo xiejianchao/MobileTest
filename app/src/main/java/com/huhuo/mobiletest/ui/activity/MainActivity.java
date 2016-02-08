@@ -166,6 +166,8 @@ public class MainActivity extends BaseActivity {
                 } else {
                     transaction.show(testResultFragment);
                 }
+
+                testResultFragment.refreshData();
                 break;
 
             case 3:

@@ -62,7 +62,7 @@ public class OneKeyTestFragment extends BaseFragment {
 
     private void initPhoneInfo() {
         StringBuilder sb = new StringBuilder();
-        final boolean netOk = NetStateUtils.isNetOk(context);
+        final boolean netOk = NetStateUtils.isNetOk(getActivity());
         final boolean canUseSim = SimCardUtil.isCanUseSim();
         String netType = NetWorkUtil.getCurrentNetWorkTypeName();
         final String simType = SimCardUtil.getSimType();

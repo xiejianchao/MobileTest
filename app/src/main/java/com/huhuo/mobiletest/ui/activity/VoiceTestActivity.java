@@ -119,7 +119,7 @@ public class VoiceTestActivity extends BaseActivity {
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK://接听状态
                     Logger.d(TAG,"接听来电");
-                    sb.append("接听来电\n");
+//                    sb.append("接听来电\n");
                     tvStatus.append("接听来电\n");
                     break;
                 case TelephonyManager.CALL_STATE_IDLE://挂断后回到空闲状态
@@ -128,9 +128,6 @@ public class VoiceTestActivity extends BaseActivity {
                     final String formatTime = DateUtil.getFormatTime(endCallTime, DateUtil
                             .PATTERN_STANDARD);
                     if (startCall) {
-//                        sb.append("挂断后回到空闲状态 "+ formatTime +"\n");
-//                        tvStatus.append("挂断后回到空闲状态 "+ formatTime +"\n");
-
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {

@@ -16,7 +16,7 @@ public class TestResultSummaryModel {
 
     //测试类型
     @DatabaseField
-    private String testType;
+    private int testType;
 
     //测试发生的日期
     @DatabaseField
@@ -41,11 +41,11 @@ public class TestResultSummaryModel {
         this.id = id;
     }
 
-    public String getTestType() {
+    public int getTestType() {
         return testType;
     }
 
-    public void setTestType(String testType) {
+    public void setTestType(int testType) {
         this.testType = testType;
     }
 
