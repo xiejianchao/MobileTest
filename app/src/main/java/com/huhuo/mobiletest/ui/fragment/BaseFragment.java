@@ -1,5 +1,6 @@
 package com.huhuo.mobiletest.ui.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +25,7 @@ public class BaseFragment extends Fragment {
 
     private boolean injected = false;
     protected Context context = null;
+    protected Activity activity;
     public static FragmentManager fragmentManager;
 
     protected Handler handler = new Handler();
@@ -33,6 +35,7 @@ public class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         injected = true;
+        activity = getActivity();
         context = MobileTestApplication.getInstance().getContext();
         mInputMethodManager = (InputMethodManager) getActivity().getSystemService(
                 Context.INPUT_METHOD_SERVICE);

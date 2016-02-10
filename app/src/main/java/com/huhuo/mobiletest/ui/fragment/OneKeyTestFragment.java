@@ -36,7 +36,7 @@ public class OneKeyTestFragment extends BaseFragment {
     private TextView tvInfo;
 
     private TelephonyManager Tel;
-    private MyPhoneStateListener    MyListener;
+    private MyPhoneStateListener phoneStateListener;
     private int signal;
     private String signalLevel;
     private int lac;
@@ -52,17 +52,14 @@ public class OneKeyTestFragment extends BaseFragment {
 
         initPhoneInfo();
 
-
-
-        /* Update the listener, and start it */
-        MyListener   = new MyPhoneStateListener();
+        phoneStateListener = new MyPhoneStateListener();
         Tel       = ( TelephonyManager )context.getSystemService(Context.TELEPHONY_SERVICE);
-        Tel.listen(MyListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+        Tel.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
     }
 
     private void initPhoneInfo() {
         StringBuilder sb = new StringBuilder();
-        final boolean netOk = NetStateUtils.isNetOk(getActivity());
+        final boolean netOk = NetStateUtils.isNetOk(activity);
         final boolean canUseSim = SimCardUtil.isCanUseSim();
         String netType = NetWorkUtil.getCurrentNetWorkTypeName();
         final String simType = SimCardUtil.getSimType();
@@ -112,18 +109,14 @@ public class OneKeyTestFragment extends BaseFragment {
         ToastUtil.showShortToast("尚未开发完毕");
     }
 
-    /* —————————– */
-    /* Start the PhoneState listener */
-   /* —————————– */
+
     private class MyPhoneStateListener extends PhoneStateListener {
-        /* Get the Signal strength from the provider, each tiome there is an update */
+
         @Override
-        public void onSignalStrengthsChanged(SignalStrength signalStrength)
-        {
+        public void onSignalStrengthsChanged(SignalStrength signalStrength) {
             super.onSignalStrengthsChanged(signalStrength);
             int asu = signalStrength.getGsmSignalStrength();
-            Logger.d(TAG, "Go to Firstdroid!!! GSM Cinr = "
-                    + String.valueOf(asu));
+            Logger.d(TAG, "asu = " + String.valueOf(asu));
             int dBm = 0;
             if (!signalStrength.isGsm()) {
                 dBm = signalStrength.getCdmaDbm();
@@ -145,7 +138,7 @@ public class OneKeyTestFragment extends BaseFragment {
             Logger.v(TAG,"lac:" + lac);
         }
 
-    };
+    }
 
 
     @Override
