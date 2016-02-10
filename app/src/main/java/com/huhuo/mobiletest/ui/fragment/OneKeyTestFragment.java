@@ -132,10 +132,12 @@ public class OneKeyTestFragment extends BaseFragment {
             signalLevel = NetWorkUtil.getSignalLevel(asu);
             initPhoneInfo();
             GsmCellLocation location = NetWorkUtil.getGsmCellLocation();
-            lac = location.getLac();
-            cid = location.getCid();
-            Logger.v(TAG,"cid:" + cid);
-            Logger.v(TAG,"lac:" + lac);
+            if (location != null) {
+                lac = location.getLac();
+                cid = location.getCid();
+                Logger.v(TAG,"cid:" + cid);
+                Logger.v(TAG,"lac:" + lac);
+            }
         }
 
     }

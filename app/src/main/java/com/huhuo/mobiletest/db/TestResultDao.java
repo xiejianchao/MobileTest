@@ -2,9 +2,7 @@ package com.huhuo.mobiletest.db;
 
 
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
-import com.huhuo.mobiletest.utils.Logger;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -16,12 +14,12 @@ public class TestResultDao {
 
     private static final String TAG = TestResultDao.class.getSimpleName();
 
-    private Dao<TestResultSummaryModel, Integer> messageDao;
+    private Dao<TestResultSummaryModel, Integer> testSummaryDao;
     private DatabaseHelper helper;
 
     public TestResultDao() {
         helper = DatabaseHelper.getInstance();
-        messageDao = helper.getDao(TestResultSummaryModel.class);
+        testSummaryDao = helper.getDao(TestResultSummaryModel.class);
 
     }
 
@@ -32,7 +30,7 @@ public class TestResultDao {
      */
     public void insert(TestResultSummaryModel model) {
         try {
-            messageDao.create(model);
+            testSummaryDao.create(model);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -44,7 +42,7 @@ public class TestResultDao {
      */
     public void insertOrUpdate(TestResultSummaryModel model) {
         try {
-            messageDao.createOrUpdate(model);
+            testSummaryDao.createOrUpdate(model);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,7 +50,7 @@ public class TestResultDao {
 
     public TestResultSummaryModel queryById(int id) {
         try {
-            final TestResultSummaryModel model = messageDao.queryForId(id);
+            final TestResultSummaryModel model = testSummaryDao.queryForId(id);
             return model;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,7 +60,7 @@ public class TestResultDao {
 
     public List<TestResultSummaryModel> queryAll() {
         try {
-            final List<TestResultSummaryModel> models = messageDao.queryForAll();
+            final List<TestResultSummaryModel> models = testSummaryDao.queryForAll();
             return models;
         } catch (SQLException e) {
             e.printStackTrace();

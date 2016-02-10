@@ -181,6 +181,8 @@ public class ConnectActivity extends BaseActivity {
                             ,getString(R.string.test_speed_level_timeout)));
                 }
 
+
+
                 return;
             }
 

@@ -13,7 +13,6 @@ import com.huhuo.mobiletest.adapter.TestResultAdapter;
 import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.utils.Logger;
-import com.huhuo.mobiletest.utils.ToastUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;

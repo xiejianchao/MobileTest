@@ -87,7 +87,6 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
         holder.tvTestDelay.setText(testDelay);
         holder.rbTestLevel.setRating(model.getTestLevel());
 
-        Logger.d(TAG, "onBindViewHolder " + model);
         if (onItemClickListener != null) {
             Logger.d(TAG,"注册item click 事件");
             holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +95,6 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
                     onItemClickListener.onItemclick(holder.cardView,position);
                 }
             });
-        } else {
-            Logger.d(TAG,"onItemClickListener 不能注册item click 事件");
         }
 
     }

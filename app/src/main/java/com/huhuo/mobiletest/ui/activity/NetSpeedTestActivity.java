@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.constants.Constants;
+import com.huhuo.mobiletest.constants.TestCode;
+import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.CommonTestModel;
+import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.net.HttpHelper;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ToastUtil;
@@ -26,6 +29,7 @@ import org.xutils.x;
 
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -58,6 +62,8 @@ public class NetSpeedTestActivity extends BaseActivity {
     private long lastSpeed = 0;
     private long fileTotalSize = 0;
     private String showStr;
+    private long startTime = 0;
+    private long endTime = 0;
 
     private HashMap<Integer,Long> hashMap = new HashMap<Integer,Long>();
 
@@ -132,7 +138,7 @@ public class NetSpeedTestActivity extends BaseActivity {
     }
 
     private void startTestDownloadSpeed() {
-        RequestParams req = new RequestParams(Constants.TAOBAO_APK_URL);
+        RequestParams req = new RequestParams(Constants.WANDOUJIA_APK_URL);
         req.setAutoRename(false);
         req.setAutoResume(true);
         File saveFile = new File(Environment.getExternalStorageDirectory() + "/textXUtils3");
@@ -184,6 +190,7 @@ public class NetSpeedTestActivity extends BaseActivity {
             public void onStarted() {
                 tvResult.setText("正在建立连接...");
                 Logger.d(TAG, "onStarted");
+                startTime = System.currentTimeMillis();
             }
 
             @Override
@@ -230,17 +237,41 @@ public class NetSpeedTestActivity extends BaseActivity {
                         + " \n进度：" + percentStr
                         + " \n最快网速：" + speedStr
                         + " \n平均网速：" + avgSpeedStr
-                        + " \n评估您的最高宽带为：" + (mbSpeed * 8) + "MB"
-                        + " \n评估您的平均宽带为：" + (avgMbSpeed * 8) + "MB"
+                        + " \n评估您的最高宽带为：" + df.format(mbSpeed * 8) + "MB"
+                        + " \n评估您的平均宽带为：" + df.format(avgMbSpeed * 8) + "MB"
                 ;
                 tvResult.setText(showStr);
                 cancelTimer();
                 startTest = false;
 
                 chartView.setCurrentStatus(0);
+
+                endTime = System.currentTimeMillis();
+                long downloadTime = (endTime - startTime);
+                Logger.v(TAG, "下载测试耗时：" + downloadTime / 1000);
+
+                TestResultSummaryModel summaryModel = new TestResultSummaryModel();
+                summaryModel.setTestDate(new Date());
+                summaryModel.setTestLevel(getTestLevel(mbSpeed));
+                summaryModel.setTestType(TestCode.TEST_TYPE_SPEED);
+                summaryModel.setDelayTime(downloadTime);
+                DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
             }
         });
     }
+
+    private float getTestLevel(float mbSpeed) {
+        int level = 1;
+        if (mbSpeed >= 8) {
+            level = 5;
+        } else if (mbSpeed > 5 && mbSpeed < 8) {
+            level = 3;
+        } else {
+            level = 1;
+        }
+        return level;
+    }
+
 
     private CommonTestModel getSpeedModel(HashMap<Integer,Long> map) {
         final CommonTestModel model = new CommonTestModel();
@@ -258,7 +289,7 @@ public class NetSpeedTestActivity extends BaseActivity {
                 fastestSpeed = speed;
             }
 
-            if (speed > 0 && speed <= slowestSpeed) {
+            if (speed > 0 && speed < slowestSpeed && speed != slowestSpeed) {
                 slowestSpeed = speed;
             }
             totalSpeed += speed;

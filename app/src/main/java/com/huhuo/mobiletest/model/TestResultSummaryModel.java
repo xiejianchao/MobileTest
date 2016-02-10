@@ -26,7 +26,11 @@ public class TestResultSummaryModel {
     @DatabaseField
     private float testLevel;
 
-    //测试耗费的时间，就是延迟
+    /**
+     * 测试耗费的时间，就是延迟
+     * 单位毫秒
+     * @param delayTime
+     */
     @DatabaseField
     private float delayTime;
 
@@ -65,10 +69,18 @@ public class TestResultSummaryModel {
         this.testLevel = testLevel;
     }
 
+    /**
+     * 单位毫秒
+     * @param
+     */
     public float getDelayTime() {
         return delayTime;
     }
 
+    /**
+     * 单位毫秒
+     * @param delayTime
+     */
     public void setDelayTime(float delayTime) {
         this.delayTime = delayTime;
     }

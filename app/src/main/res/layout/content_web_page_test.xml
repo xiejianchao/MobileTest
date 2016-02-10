@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:maxWidth="100dp"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:lines="2"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
@@ -135,6 +135,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/test_website_baidu"
+                android:lines="2"
                 android:textColor="@color/color_white"
                 />
 
@@ -186,6 +187,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/test_website_tencent"
+                android:lines="2"
                 android:textColor="@color/color_white"
                 />
 
@@ -238,6 +240,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/test_website_youku"
+                android:lines="2"
                 android:textColor="@color/color_white"
                 />
 
@@ -290,6 +293,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/test_website_sina"
+                android:lines="2"
                 android:textColor="@color/color_white"
                 />
 
@@ -342,6 +346,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/test_website_taobao"
+                android:lines="2"
                 android:textColor="@color/color_white"
                 />
 

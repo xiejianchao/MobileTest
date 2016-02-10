@@ -35,7 +35,7 @@ public class Constants {
     public static final String QQ_APK_URL = "http://qd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk";
     public static final String WEIXIN_APK_URL = "http://dldir1.qq.com/weixin/android/weixin637android660.apk";
     public static final String TAOBAO_APK_URL = "http://shouji.360tpcdn.com/151117/3ecba109b405f9b5ac8579a30c851aa7/com.taobao.taobao_126.apk";
-    public static final String M360_APK_URL = "http://shouji.360tpcdn.com/151117/087f56fe47dbd91565ef0fe7ccc34a03/com.qihoo360.mobilesafe_241.apk";
+    public static final String WANDOUJIA_APK_URL = "http://shouji.360tpcdn.com/160202/167f923ce96bad3b25fb6c2b5d729513/com.wandoujia.phoenix2_8973.apk";
 
 //    public static class TestType {
 //        public static final String PING = "ping";
