@@ -71,8 +71,8 @@ public class WebPageTestDetailsAdapter extends BaseAdapter {
         TestItemModel model = items.get(position);
         holder.tvNet.setText(model.getNetType());
         holder.tvTarget.setText(model.getTarget());
-        holder.tvTotal.setText(model.getTotalSize() + "");
-        holder.tvTotal.setText(model.getTotalSize() + "");
+        float size = (float)model.getTotalSize() / 1024;
+        holder.tvTotal.setText(df.format(size) + "");
 
         float delay = (float)model.getDelayTime() / 1000;
         String delayTime = df.format(delay);
