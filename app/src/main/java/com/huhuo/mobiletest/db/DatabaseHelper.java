@@ -24,7 +24,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final int DB_VERSION = 3;
     private static String USER_DB_NAME;
-    private static final String DATABASE_NAME_BASE = "ald.db";
+    private static final String DATABASE_NAME_BASE = "mobile_test.db";
 
 
     private static final String TAG = DatabaseHelper.class.getSimpleName();
@@ -36,6 +36,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public RecentMessageDao conversationDao;
     public MessageDao messageDao;
     public TestResultDao testResultDao;
+    public TestItemDao testItemDao;
 
     /**
      * 用户登录时执行初始化操作
@@ -76,6 +77,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         conversationDao = new RecentMessageDao();
         messageDao = new MessageDao();
         testResultDao = new TestResultDao();
+        testItemDao = new TestItemDao();
         Logger.w(TAG,"initDao " + testResultDao);
     }
 
@@ -87,7 +89,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTableIfNotExists(connectionSource, RecentMessageModel.class);
             TableUtils.createTableIfNotExists(connectionSource, MessageModel.class);
             TableUtils.createTableIfNotExists(connectionSource, TestResultSummaryModel.class);
-            TableUtils.createTableIfNotExists(connectionSource, TestResult.class);
             TableUtils.createTableIfNotExists(connectionSource, TestItemModel.class);
         } catch (SQLException e) {
             e.printStackTrace();

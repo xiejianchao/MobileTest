@@ -15,6 +15,7 @@ import android.telephony.NeighboringCellInfo;
 import android.telephony.TelephonyManager;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.huhuo.mobiletest.MobileTestApplication;
@@ -264,49 +265,87 @@ public class NetWorkUtil {
         return level;
     }
 
-    /**
-     * 获取运营商
-     *
-     * @return
-     */
-    public static String getProvider() {
-        String provider = "未知";
-        try {
-            TelephonyManager telephonyManager = (TelephonyManager) context
-                    .getSystemService(Context.TELEPHONY_SERVICE);
-            String IMSI = telephonyManager.getSubscriberId();
-            Log.v("tag", "getProvider.IMSI:" + IMSI);
-            if (IMSI == null) {
-                if (TelephonyManager.SIM_STATE_READY == telephonyManager.getSimState()) {
-                    String operator = telephonyManager.getSimOperator();
-                    Log.v("tag", "getProvider.operator:" + operator);
-                    if (operator != null) {
-                        if (operator.equals("46000")
-                                || operator.equals("46002")
-                                || operator.equals("46007")) {
-                            provider = "中国移动";
-                        } else if (operator.equals("46001")) {
-                            provider = "中国联通";
-                        } else if (operator.equals("46003")) {
-                            provider = "中国电信";
-                        }
-                    }
-                }
-            } else {
-                if (IMSI.startsWith("46000") || IMSI.startsWith("46002")
-                        || IMSI.startsWith("46007")) {
-                    provider = "中国移动";
-                } else if (IMSI.startsWith("46001")) {
-                    provider = "中国联通";
-                } else if (IMSI.startsWith("46003")) {
-                    provider = "中国电信";
-                }
+    public static GsmCellLocation getGsmCellLocation(){
+        TelephonyManager telephonyManager = (TelephonyManager) context
+                .getSystemService(Context.TELEPHONY_SERVICE);
+
+        if (!TextUtils.isEmpty(SimCardUtil.getSimType()) && !SimCardUtil.getSimType().equals("中国电信")) {
+            // 中国移动和中国联通获取LAC、CID的方式
+            GsmCellLocation location = (GsmCellLocation) telephonyManager.getCellLocation();
+            if (location != null) {
+                int lac = location.getLac();
+                int cellId = location.getCid();
+
+                GsmCellLocation gcl = new GsmCellLocation();
+                gcl.setLacAndCid(lac,cellId);
+                return gcl;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return provider;
+        return null;
+
     }
+
+    public static CdmaCellLocation getCDMACellLocation(){
+        TelephonyManager telephonyManager = (TelephonyManager) context
+                .getSystemService(Context.TELEPHONY_SERVICE);
+        if (!TextUtils.isEmpty(SimCardUtil.getSimType()) && SimCardUtil.getSimType().equals("中国电信")) {
+            // 中国电信获取LAC、CID的方式
+            CdmaCellLocation location1 = (CdmaCellLocation) telephonyManager.getCellLocation();
+            if (location1 != null) {
+                int lac = location1.getNetworkId();
+                int cellId = location1.getBaseStationId();
+                cellId /= 16;
+
+                return location1;
+            }
+        }
+
+        return null;
+    }
+
+//    /**
+//     * 获取运营商
+//     *
+//     * @return
+//     */
+//    public static String getProvider() {
+//        String provider = "未知";
+//        try {
+//            TelephonyManager telephonyManager = (TelephonyManager) context
+//                    .getSystemService(Context.TELEPHONY_SERVICE);
+//            String IMSI = telephonyManager.getSubscriberId();
+//            Log.v("tag", "getProvider.IMSI:" + IMSI);
+//            if (IMSI == null) {
+//                if (TelephonyManager.SIM_STATE_READY == telephonyManager.getSimState()) {
+//                    String operator = telephonyManager.getSimOperator();
+//                    Log.v("tag", "getProvider.operator:" + operator);
+//                    if (operator != null) {
+//                        if (operator.equals("46000")
+//                                || operator.equals("46002")
+//                                || operator.equals("46007")) {
+//                            provider = "中国移动";
+//                        } else if (operator.equals("46001")) {
+//                            provider = "中国联通";
+//                        } else if (operator.equals("46003")) {
+//                            provider = "中国电信";
+//                        }
+//                    }
+//                }
+//            } else {
+//                if (IMSI.startsWith("46000") || IMSI.startsWith("46002")
+//                        || IMSI.startsWith("46007")) {
+//                    provider = "中国移动";
+//                } else if (IMSI.startsWith("46001")) {
+//                    provider = "中国联通";
+//                } else if (IMSI.startsWith("46003")) {
+//                    provider = "中国电信";
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return provider;
+//    }
 
     /**
      * 获得当前移动网络的类型名称，GPRS,EDGE,WCDMA,LTE等等
@@ -378,6 +417,8 @@ public class NetWorkUtil {
             case NETWORK_TYPE_LTE:
             case NETWORK_TYPE_IWLAN:
                 return NETWORK_CLASS_4_G;
+            case NETWORK_TYPE_WIFI:
+                return NETWORK_TYPE_WIFI;
             default:
                 return NETWORK_CLASS_UNKNOWN;
         }

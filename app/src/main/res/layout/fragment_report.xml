@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -13,20 +13,152 @@
         android:layout_alignParentTop="true"
         />
 
-    <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/phone_info_bg"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:paddingTop="35dp"
+                android:paddingLeft="25dp"
+                android:text="点击右侧按钮添加问题类型"
+                android:textColor="@color/color_white"
+                />
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/ib_add_problem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/icon_setting"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/phone_info_bg"
+        >
+
+        <ImageButton
+            android:id="@+id/ib_add_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/icon_setting"
+            />
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_margin="30dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:minHeight="50dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:text="问题描述"
+            android:textColor="@color/color_white"
+            />
+        <EditText
+            android:id="@+id/et_problem_report"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:maxWidth="150dp"
+            android:layout_gravity="center"
+            android:maxLines="4"
+            android:layout_weight="10"
+            android:text=""
+            android:hint="问题描述..."
+            android:textColorHighlight="@color/color_gray"
+            android:textColor="@color/color_white"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:text="清空"
+            android:textColor="@color/color_white"
+            />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/color_blue_light"
+        >
+
+        <TextView
+            android:id="@+id/tv_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:text="按住录音"
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/icon_setting"
+            android:layout_toLeftOf="@id/tv_record"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_send_problem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="正在开发中..."
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="发送"
+        android:gravity="center"
+        android:background="@drawable/stop_test_normal"
         android:textColor="@color/color_white"
         />
-    <ImageView
-        android:id="@+id/iv_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher"
-        />
 
-</RelativeLayout>
+</LinearLayout>

@@ -15,10 +15,14 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
+import com.huhuo.mobiletest.constants.TestCode;
+import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.RecordEntity;
+import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.utils.DateUtil;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
+import com.huhuo.mobiletest.utils.SimCardUtil;
 import com.huhuo.mobiletest.utils.ToastUtil;
 
 import org.xutils.view.annotation.ContentView;
@@ -118,7 +122,7 @@ public class VoiceTestActivity extends BaseActivity {
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK://接听状态
                     Logger.d(TAG,"接听来电");
-                    sb.append("接听来电\n");
+//                    sb.append("接听来电\n");
                     tvStatus.append("接听来电\n");
                     break;
                 case TelephonyManager.CALL_STATE_IDLE://挂断后回到空闲状态
@@ -127,9 +131,6 @@ public class VoiceTestActivity extends BaseActivity {
                     final String formatTime = DateUtil.getFormatTime(endCallTime, DateUtil
                             .PATTERN_STANDARD);
                     if (startCall) {
-                        sb.append("挂断后回到空闲状态 "+ formatTime +"\n");
-                        tvStatus.append("挂断后回到空闲状态 "+ formatTime +"\n");
-
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -197,12 +198,10 @@ public class VoiceTestActivity extends BaseActivity {
         if (startCall && entity.number.equals(TEST_PHONE_NUMBER)) {
             startCall = false;
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
             final Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(entity.lDate);
             final Date time = calendar.getTime();
-            final String format = sdf.format(time);
+            final String format = DateUtil.getFormatTime(time, DateUtil.PATTERN_STANDARD);
 
             calendar.setTime(endCallTime);
             final Date endCallDate = calendar.getTime();
@@ -215,8 +214,6 @@ public class VoiceTestActivity extends BaseActivity {
             Date startCallDate = calendar.getTime();
 
             tvStatus.setText(null);
-            sb.append("通话号码：" + entity.number + "\n");
-
             tvTestPhoneNumber.append(entity.number);
 
             long intevalLong  = realStartCallDate.getTime() - startCallDate.getTime();
@@ -229,7 +226,6 @@ public class VoiceTestActivity extends BaseActivity {
             String duration = entity.duration == 0 ? "呼叫失败" : entity.duration + "";
             tvTestCallDuration.append(duration);
 
-
             final String callType = getCallType(entity.duration);
             String callTypeStr = entity.duration == 0 ? "呼叫失败" : callType;
             tvTestCallType.append(callTypeStr);
@@ -237,22 +233,47 @@ public class VoiceTestActivity extends BaseActivity {
             String testResult = entity.duration == 0 ? "失败" : "成功";
             tvTestCallResult.append(testResult);
 
-            sb.append("接通时延long：" + intevalLong + "毫秒\n");
-            sb.append("接通时延2：" + intevalFloat + "float秒\n");
-            sb.append("接通时延3：" + inteval + "int秒\n");
-            sb.append("拨打时间：" + format + "\n");
-            sb.append("接通延时：" + inteval + "\n");
-            sb.append("接通时间：" + sdf.format(realStartCallDate) + "\n");
-            sb.append("通话时长：" + entity.duration + "\n");
-            sb.append("结束时间：" + sdf.format(endCallTime) + "\n");
+            showCallDetails(entity,format, realStartCallDate, inteval);
 
-            tvStatus.append(sb.toString());
+            //测试完毕，将语音测试数据插入数据库...
+            TestResultSummaryModel summaryModel = new TestResultSummaryModel();
+            summaryModel.setTestDate(new Date());
+            summaryModel.setTestLevel(getTestLevel(inteval));
+            summaryModel.setTestType(TestCode.TEST_TYPE_VOICE);
+            summaryModel.setDelayTime(inteval * 1000);
+            DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
+
             Logger.d(TAG,sb.toString());
         } else {
             ToastUtil.showShortToast("startCall:" + startCall
                     + "phoneNumber:" + entity.number.equals(TEST_PHONE_NUMBER));
         }
 
+    }
+
+    private int getTestLevel(int inteval) {
+        int level;
+        if (inteval <= 3) {
+            level = 5;
+        } else if (inteval > 3 && inteval < 5) {
+            level = 3;
+        } else {
+            level = 1;
+        }
+        Logger.d(TAG,"语音测试等级：" + level);
+        return level;
+    }
+
+    private void showCallDetails(RecordEntity entity,String format, Date
+            realStartCallDate, int inteval) {
+        sb.append("通话号码：" + entity.number + "\n");
+        sb.append("接通时延：" + inteval + "秒\n");
+        sb.append("拨打时间：" + format + "\n");
+        sb.append("接通延时：" + inteval + "\n");
+        sb.append("接通时间：" + DateUtil.getFormatTime(realStartCallDate, DateUtil.PATTERN_STANDARD) + "\n");
+        sb.append("通话时长：" + entity.duration + "\n");
+        sb.append("结束时间：" + DateUtil.getFormatTime(endCallTime, DateUtil.PATTERN_STANDARD) + "\n");
+        tvStatus.append(sb.toString());
     }
 
     private String getCallType(long duration) {
@@ -269,9 +290,9 @@ public class VoiceTestActivity extends BaseActivity {
         } else {
             final String typeName = NetWorkUtil.getCurrentNetworkType();
             if (typeName.equalsIgnoreCase("4G")) {
-                //TODO 这里需要详细区分是,暂时先这样，SRLTE，SGLTE，SVLTE，CSFB，VoLTE
+                //TODO 这里需要详细区分是,暂时先这样，暂时还不知道具体该如何区分 SRLTE，SGLTE，SVLTE，CSFB，VoLTE
 
-                final String provider = NetWorkUtil.getProvider();
+                final String provider = SimCardUtil.getSimType();
                 if (!TextUtils.isEmpty(provider)) {
                     if (provider.equals("中国电信")) {
                         type = "SRLTE";

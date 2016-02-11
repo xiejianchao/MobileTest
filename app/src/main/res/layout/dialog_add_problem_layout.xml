@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/test_bg"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:background="@color/color_gray_bg"
+        android:textColor="@color/color_black"
+        android:padding="5dp"
+        android:text="@string/report_scroll_selected"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@color/color_blue_light"
+                android:padding="5dp"
+                android:text="@string/report_data_problem"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_no_net"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_no_data"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_cant_start_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_cant_data_problem"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_data_stop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_data_stop"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_website_cant_open"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_website_cant_open"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_app_cant_connection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_app_cant_connection"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/common_other"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_blue_light"
+                android:padding="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_voice_problem"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_no_signal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_no_signal"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_have_signal_cant_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_have_signal_cant_call"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_have_signal_cant_call_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_have_signal_cant_call_2"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_calling_stop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_calling_stop"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_silence_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_silence_call"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_echo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_echo"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_crosstalk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_crosstalk"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_voice_quality_low"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/report_voice_quality"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_other_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/color_white"
+                android:text="@string/common_other"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

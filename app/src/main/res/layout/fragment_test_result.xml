@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -13,6 +13,22 @@
         android:layout_alignParentTop="true"
         />
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_test_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:fadingEdge="none"
+            android:visibility="visible"
+            />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
     <TextView
         android:id="@+id/iv_test"
         android:layout_width="wrap_content"
@@ -22,4 +38,4 @@
         android:textColor="@color/color_white"
         />
 
-</RelativeLayout>
+</LinearLayout>

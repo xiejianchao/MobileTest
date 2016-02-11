@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/test_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.huhuo.mobiletest.ui.activity.NetSpeedTestActivity"
     tools:showIn="@layout/activity_net_speed_test">
@@ -22,18 +23,19 @@
         android:id="@+id/tv_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:lines="7"
+        android:text=""
+        android:textColor="@color/color_white"
+        android:layout_centerInParent="true"
         android:layout_below="@id/circle_view"
-        android:text="Hello World!"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
         />
 
     <Button
-        android:id="@+id/btn_xutils_test_speed"
+        android:id="@+id/btn_test_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_below="@id/tv_result"
-        android:text="开始测速"/>
+        android:text="重新测速"/>
 
 </RelativeLayout>

@@ -64,16 +64,17 @@ public class VideoPlayer implements OnBufferingUpdateListener,
     Handler handleProgress = new Handler() {
         public void handleMessage(Message msg) {
 
-            int position = mediaPlayer.getCurrentPosition();
-            int duration = mediaPlayer.getDuration();
+            if (mediaPlayer != null) {
+                int position = mediaPlayer.getCurrentPosition();
+                int duration = mediaPlayer.getDuration();
 
-            if (duration > 0) {
-                long pos = skbProgress.getMax() * position / duration;
-                skbProgress.setProgress((int) pos);
+                if (duration > 0) {
+                    long pos = skbProgress.getMax() * position / duration;
+                    skbProgress.setProgress((int) pos);
+                }
             }
-        }
-
-        ;
+            
+        };
     };
     //*****************************************************
 
@@ -85,6 +86,7 @@ public class VideoPlayer implements OnBufferingUpdateListener,
 
     public void playUrl(String videoUrl) {
         start = System.currentTimeMillis();
+        bufferingCount = 0;
         this.videoUrl = videoUrl;
         //如果要求播放时，孩mediaplayer尚未创建，那就等surfaceCreated回调执行后再播放
         if (mediaPlayer == null) {
@@ -119,6 +121,14 @@ public class VideoPlayer implements OnBufferingUpdateListener,
     public void stop() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
+        }
+    }
+
+    public void destory(){
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
             mediaPlayer.release();
             mediaPlayer = null;
         }
@@ -126,7 +136,7 @@ public class VideoPlayer implements OnBufferingUpdateListener,
 
     @Override
     public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
-        Log.e(TAG, "surface changed");
+        Logger.d(TAG, "surface changed");
     }
 
     @Override
@@ -134,14 +144,14 @@ public class VideoPlayer implements OnBufferingUpdateListener,
         try {
             initMediaPlayer();
         } catch (Exception e) {
-            Log.e(TAG, "error", e);
+            Logger.d(TAG, "error", e);
         }
-        Log.e(TAG, "surface created");
+        Logger.d(TAG, "surface created");
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder arg0) {
-        Log.e(TAG, "surface destroyed");
+        Logger.d(TAG, "surface destroyed");
     }
 
     private void initMediaPlayer(){
@@ -194,8 +204,14 @@ public class VideoPlayer implements OnBufferingUpdateListener,
 
             onBufferingCompletion.onBufferingCompletion(playDelay,bufferingCount);
         }
+    }
 
+    public long getPlayDelay(){
+        return playDelay;
+    }
 
+    public int getBufferingCount(){
+        return bufferingCount;
     }
 
     public interface OnBufferingCompletion {

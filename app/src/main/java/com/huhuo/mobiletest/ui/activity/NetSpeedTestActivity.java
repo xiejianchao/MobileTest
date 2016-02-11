@@ -10,7 +10,11 @@ import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.constants.Constants;
+import com.huhuo.mobiletest.constants.TestCode;
+import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.CommonTestModel;
+import com.huhuo.mobiletest.model.TestResultSummaryModel;
+import com.huhuo.mobiletest.net.HttpHelper;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ToastUtil;
 import com.huhuo.mobiletest.view.DialChart03View;
@@ -25,6 +29,7 @@ import org.xutils.x;
 
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -43,7 +48,7 @@ public class NetSpeedTestActivity extends BaseActivity {
     @ViewInject(R.id.tv_result)
     private TextView tvResult;
 
-    @ViewInject(R.id.btn_xutils_test_speed)
+    @ViewInject(R.id.btn_test_speed)
     private Button btnTest;
 
     private Timer timer;
@@ -57,6 +62,8 @@ public class NetSpeedTestActivity extends BaseActivity {
     private long lastSpeed = 0;
     private long fileTotalSize = 0;
     private String showStr;
+    private long startTime = 0;
+    private long endTime = 0;
 
     private HashMap<Integer,Long> hashMap = new HashMap<Integer,Long>();
 
@@ -120,22 +127,24 @@ public class NetSpeedTestActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-
         df = new DecimalFormat("#.##");
         chartView.setCurrentStatus(0.1f);
-
+        startTestDownloadSpeed();
     }
 
-    @Event(value = R.id.btn_xutils_test_speed,type = View.OnClickListener.class)
+    @Event(value = R.id.btn_test_speed,type = View.OnClickListener.class)
     private void btnDownloadTest(View view) {
-        ToastUtil.showShortToast("hello click");
-        RequestParams req = new RequestParams(Constants.TAOBAO_APK_URL);
+        startTestDownloadSpeed();
+    }
+
+    private void startTestDownloadSpeed() {
+        RequestParams req = new RequestParams(Constants.WANDOUJIA_APK_URL);
         req.setAutoRename(false);
         req.setAutoResume(true);
         File saveFile = new File(Environment.getExternalStorageDirectory() + "/textXUtils3");
         if (!saveFile.exists()) {
             saveFile.mkdirs();
-            Logger.e(TAG,"XUTILS目录不存在，创建...");
+            Logger.e(TAG, "XUTILS目录不存在，创建...");
         }
         String savePath = saveFile.getAbsolutePath() + "/360.apk";
         Logger.d(TAG,"save path : " + savePath);
@@ -154,7 +163,7 @@ public class NetSpeedTestActivity extends BaseActivity {
                 ToastUtil.showShortToast("下载失败，error:" + e == null ? "" : e
                         .getMessage());
                 if (e != null) {
-                    Logger.e(TAG, e.toString());
+                    Logger.e(TAG, "onError:" + e.toString());
                 } else {
                     Logger.e(TAG, "网络错误，下载失败");
                 }
@@ -181,6 +190,7 @@ public class NetSpeedTestActivity extends BaseActivity {
             public void onStarted() {
                 tvResult.setText("正在建立连接...");
                 Logger.d(TAG, "onStarted");
+                startTime = System.currentTimeMillis();
             }
 
             @Override
@@ -203,7 +213,6 @@ public class NetSpeedTestActivity extends BaseActivity {
 
             @Override
             public void onSuccess(File result) {
-                ToastUtil.showShortToast("下载成功");
                 final CommonTestModel speedModel = getSpeedModel(hashMap);
                 float mbSpeed = (float) speedModel.getFastestSpeed() / 1024;
                 String speedStr = null;
@@ -228,17 +237,43 @@ public class NetSpeedTestActivity extends BaseActivity {
                         + " \n进度：" + percentStr
                         + " \n最快网速：" + speedStr
                         + " \n平均网速：" + avgSpeedStr
-                        + " \n评估您的最高宽带为：" + (mbSpeed * 8) + "MB"
-                        + " \n评估您的平均宽带为：" + (avgMbSpeed * 8) + "MB"
+                        + " \n评估您的最高宽带为：" + df.format(mbSpeed * 8) + "MB"
+                        + " \n评估您的平均宽带为：" + df.format(avgMbSpeed * 8) + "MB"
                 ;
                 tvResult.setText(showStr);
                 cancelTimer();
                 startTest = false;
 
                 chartView.setCurrentStatus(0);
+
+                endTime = System.currentTimeMillis();
+                long downloadTime = (endTime - startTime);
+                Logger.v(TAG, "下载测试耗时：" + downloadTime / 1000);
+
+                TestResultSummaryModel summaryModel = new TestResultSummaryModel();
+                summaryModel.setTestDate(new Date());
+                summaryModel.setTestLevel(getTestLevel(mbSpeed));
+                summaryModel.setTestType(TestCode.TEST_TYPE_SPEED);
+                summaryModel.setDelayTime(downloadTime);
+                DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
             }
         });
     }
+
+    private float getTestLevel(float mbSpeed) {
+        int level = 1;
+        if (mbSpeed >= 5) {
+            level = 5;
+        } else if (mbSpeed >= 2 && mbSpeed < 5) {
+            level = 4;
+        } else if (mbSpeed > 1 && mbSpeed < 2){
+            level = 2;
+        } else {
+            level = 1;
+        }
+        return level;
+    }
+
 
     private CommonTestModel getSpeedModel(HashMap<Integer,Long> map) {
         final CommonTestModel model = new CommonTestModel();
@@ -256,7 +291,7 @@ public class NetSpeedTestActivity extends BaseActivity {
                 fastestSpeed = speed;
             }
 
-            if (speed > 0 && speed <= slowestSpeed) {
+            if (speed > 0 && speed < slowestSpeed && speed != slowestSpeed) {
                 slowestSpeed = speed;
             }
             totalSpeed += speed;
@@ -283,7 +318,7 @@ public class NetSpeedTestActivity extends BaseActivity {
 
     private void startTimer() {
         timer = new Timer();
-        Logger.e(TAG, "开始计算当前网速！");
+        Logger.d(TAG, "开始计算当前网速！");
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -299,9 +334,9 @@ public class NetSpeedTestActivity extends BaseActivity {
                 hashMap.put(speedCount, currentSpeed);
 
                 if (currentSpeed <= 0) {
-                    Logger.e(TAG, "当前网速：" + 0 + "kb" + " , 上次网速：" + lastSpeed + "kb");
+                    Logger.d(TAG, "当前网速：" + 0 + "kb" + " , 上次网速：" + lastSpeed + "kb");
                 } else {
-                    Logger.e(TAG, "当前网速：" + currentSpeed + "kb" + " , 上次网速：" + lastSpeed + "kb");
+                    Logger.d(TAG, "当前网速：" + currentSpeed + "kb" + " , 上次网速：" + lastSpeed + "kb");
                 }
 
                 lastTotalSize = currentSize;

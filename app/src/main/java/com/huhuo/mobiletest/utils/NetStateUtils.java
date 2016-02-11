@@ -78,7 +78,7 @@ public class NetStateUtils {
 	 * 
 	 * @return
 	 */
-	public static boolean isNetOk(Context context) {
+	public static boolean isNetOk(Activity context) {
 		return isNetOk(context, true);
 	}
 

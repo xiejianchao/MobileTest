@@ -1,8 +1,11 @@
 package com.huhuo.mobiletest.model;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -11,12 +14,16 @@ import java.util.Date;
 @DatabaseTable(tableName = "tb_test_result_summary")
 public class TestResultSummaryModel {
 
+    public TestResultSummaryModel(){
+
+    }
+
     @DatabaseField(generatedId = true)
     private int id;
 
     //测试类型
     @DatabaseField
-    private String testType;
+    private int testType;
 
     //测试发生的日期
     @DatabaseField
@@ -26,12 +33,19 @@ public class TestResultSummaryModel {
     @DatabaseField
     private float testLevel;
 
-    //测试耗费的时间，就是延迟
+    /**
+     * 测试耗费的时间，就是延迟
+     * 单位毫秒
+     * @param delayTime
+     */
     @DatabaseField
     private float delayTime;
 
-    @DatabaseField(canBeNull = true, foreign = true, columnName = "test_result_id")
-    private TestResult testResult;
+    @DatabaseField
+    private String netType;
+
+    @ForeignCollectionField(eager = false)
+    private ForeignCollection<TestItemModel> testItemModels;
 
     public int getId() {
         return id;
@@ -41,11 +55,11 @@ public class TestResultSummaryModel {
         this.id = id;
     }
 
-    public String getTestType() {
+    public int getTestType() {
         return testType;
     }
 
-    public void setTestType(String testType) {
+    public void setTestType(int testType) {
         this.testType = testType;
     }
 
@@ -65,31 +79,48 @@ public class TestResultSummaryModel {
         this.testLevel = testLevel;
     }
 
+    /**
+     * 单位毫秒
+     * @param
+     */
     public float getDelayTime() {
         return delayTime;
     }
 
+    /**
+     * 单位毫秒
+     * @param delayTime
+     */
     public void setDelayTime(float delayTime) {
         this.delayTime = delayTime;
     }
 
-    public TestResult getTestResult() {
-        return testResult;
+    public ForeignCollection<TestItemModel> getTestItemModels() {
+        return testItemModels;
     }
 
-    public void setTestResult(TestResult testResult) {
-        this.testResult = testResult;
+    public void setTestItemModels(ForeignCollection<TestItemModel> testItemModels) {
+        this.testItemModels = testItemModels;
+    }
+
+    public String getNetType() {
+        return netType;
+    }
+
+    public void setNetType(String netType) {
+        this.netType = netType;
     }
 
     @Override
     public String toString() {
         return "TestResultSummaryModel{" +
                 "id=" + id +
-                ", testType='" + testType + '\'' +
+                ", testType=" + testType +
                 ", testDate=" + testDate +
                 ", testLevel=" + testLevel +
                 ", delayTime=" + delayTime +
-                ", testResult=" + testResult +
+                ", netType='" + netType + '\'' +
+                ", testItemModels=" + testItemModels +
                 '}';
     }
 }

@@ -9,6 +9,10 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "tb_test_item")
 public class TestItemModel {
 
+    public TestItemModel(){
+
+    }
+
     @DatabaseField(generatedId = true)
     private int id;
 
@@ -42,6 +46,9 @@ public class TestItemModel {
     //呼叫类型
     @DatabaseField
     private String callType;
+
+    @DatabaseField(canBeNull = true, foreign = true, foreignAutoRefresh = true)
+    private TestResultSummaryModel testResultSummaryModel;
 
     public int getId() {
         return id;
@@ -115,6 +122,16 @@ public class TestItemModel {
         this.callType = callType;
     }
 
+    public TestResultSummaryModel getTestResultSummaryModel() {
+        return testResultSummaryModel;
+    }
+
+    public void setTestResultSummaryModel(TestResultSummaryModel testResultSummaryModel) {
+        this.testResultSummaryModel = testResultSummaryModel;
+    }
+
+
+
     @Override
     public String toString() {
         return "TestItemModel{" +
@@ -127,6 +144,7 @@ public class TestItemModel {
                 ", avgSpeed=" + avgSpeed +
                 ", bufferCount=" + bufferCount +
                 ", callType='" + callType + '\'' +
+                ", testResultSummaryModel=" + testResultSummaryModel +
                 '}';
     }
 }

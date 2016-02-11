@@ -32,12 +32,25 @@
         android:layout_below="@id/toolbar"
         >
         <TextView
-            android:id="@+id/tv_info"
+            android:id="@+id/tv_phone_info_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIM卡可用\n运营商：中国联通\nSIM卡可用\n运营商：中国联通\n"
+            android:textColor="@color/color_white"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="50dp"
+            />
+        <TextView
+            android:id="@+id/tv_phone_info_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="信息"
+            android:text="SIM卡可用\n运营商：中国移动"
             android:textColor="@color/color_white"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:visibility="gone"
             />
 
     </RelativeLayout>

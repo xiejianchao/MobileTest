@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/test_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.huhuo.mobiletest.ui.activity.ConnectActivity"
     tools:showIn="@layout/activity_connect">
@@ -16,6 +17,7 @@
         android:layout_height="50dp"
         android:text="Ping测试开始..."
         android:layout_margin="10dp"
+        android:textColor="@color/color_white"
         />
 
     <android.support.v7.widget.RecyclerView

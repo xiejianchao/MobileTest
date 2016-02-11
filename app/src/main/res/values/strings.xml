@@ -51,6 +51,7 @@
     <string name="common_test_item">开始测试 %1$s ...</string>
     <string name="common_test_start_ping">开始ping测试 ...</string>
     <string name="common_video_test_start">video 测试开始 ...</string>
+    <string name="common_other">其他</string>
 
 
     <!-- 无网络情况 -->
@@ -66,6 +67,7 @@
     <string name="test_type_conn">连接测试</string>
     <string name="test_type_synthesis">综合测试</string>
     <string name="test_one_key_test">一键测试</string>
+    <string name="test_type_unknow">未知测试</string>
 
     <!-- 测试速度级别-->
     <string name="test_speed_level_faster">很快</string>
@@ -74,6 +76,12 @@
     <string name="test_speed_level_very_slow">很慢</string>
     <string name="test_speed_level_timeout">超时</string>
     <string name="test_speed_level_customer">您的网速%1$s</string>
+
+    <!-- 显示速度的级别文案-->
+    <string name="test_speed_faster">亲！您当前的网络环境令人神往！</string>
+    <string name="test_speed_better">亲！您当前的网络环境妥妥的！</string>
+    <string name="test_speed_general">亲，您当前所在的网络环境马马虎虎！</string>
+    <string name="test_speed_slow">亲！您当前所在的网络很一般！</string>
 
 
     <!-- 测试网站名称-->
@@ -91,5 +99,25 @@
     <string name="test_youku_url">http://www.youku.com</string>
     <string name="test_sina_url">http://www.sina.com.cn</string>
     <string name="test_taobao_url">http://re.1688.com/</string>
+
+    <!-- 问题报告-->
+    <string name="report_data_problem">数据业务问题</string>
+    <string name="report_scroll_selected">上下滑动勾选问题类型</string>
+    <string name="report_voice_problem">语音业务问题</string>
+    <string name="report_no_data">脱网（无信号，无网络）</string>
+    <string name="report_cant_data_problem">无法开始数据业务</string>
+    <string name="report_data_stop">数据业务中断</string>
+    <string name="report_website_cant_open">某个网站无法打开</string>
+    <string name="report_app_cant_connection">某个应用无法联网</string>
+    <string name="report_no_signal">无信号无网络导致脱网</string>
+    <string name="report_have_signal_cant_call">有网络无法呼叫且网络送忙音</string>
+    <string name="report_have_signal_cant_call_2">有网络无法呼叫且网络送暂时无法接通</string>
+    <string name="report_calling_stop">通话过程中断</string>
+    <string name="report_silence_call">单通</string>
+    <string name="report_echo">回音</string>
+    <string name="report_crosstalk">串话</string>
+    <string name="report_voice_quality">话音质量差本方听不清对方</string>
+    <string name="title_activity_web_page_test_details">历史详情</string>
+
 
 </resources>
