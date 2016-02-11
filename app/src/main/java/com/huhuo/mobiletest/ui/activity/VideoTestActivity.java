@@ -199,6 +199,10 @@ public class VideoTestActivity extends BaseActivity {
         tvSpeedInfo.setText("测试结束");
         tvSpeed.setText(null);
 
+        tvVideoTestResult.setVisibility(View.VISIBLE);
+        skbProgress.setVisibility(View.GONE);
+        surfaceView.setVisibility(View.GONE);
+
         tvVideoTestResult.setText("视频测试\n");
 
         String avgSpeedStr = getAvgSpeed();

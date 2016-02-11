@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_net_title"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="网络"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_target_title"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="目标"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_total_title"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="总量/KB"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_delay_title"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="时长/s"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_speed_title"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="速率kbps"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_white"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_net"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="WiFi"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/tv_target"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="淘宝"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="592"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/tv_delay"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="3.2"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/tv_speed"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="987"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

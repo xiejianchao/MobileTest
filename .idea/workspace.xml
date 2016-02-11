@@ -4,6 +4,7 @@
     <shared>
       <config>
         <devices>
+          <device id="Nexus 5X" />
           <device id="Nexus 6P" />
           <device id="Nexus 5" />
         </devices>
@@ -15,30 +16,40 @@
           <theme>@style/AppMaterialBaseTheme.Default</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/listview_item_webpage.xml">
+        <config>
+          <theme>@style/AppMaterialBaseTheme.Default</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/input_bar_bg_active.9.png" />
-    <bookmark url="file://$PROJECT_DIR$" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="9778bb29-e79e-479c-829d-c0da8de966a1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_add_problem_layout.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/view/NestListView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/db/TestItemDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestDetailsActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/WebPageTestDetailsAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_web_page_test_details.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_web_page_test_details.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/listview_item_webpage.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/view/MyListview.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/ConnectActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/ConnectActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/constants/Constants.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/constants/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/db/DatabaseHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/db/DatabaseHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/NetSpeedTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/NetSpeedTestActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/OneKeyTestFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/OneKeyTestFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/ReportFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/ReportFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestItemModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestItemModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/TestResultAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/TestResultAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/db/TestResultDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/db/TestResultDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/TestResultFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/TestResultFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestResultSummaryModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestResultSummaryModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VoiceTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VoiceTestActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_web_page_test.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_web_page_test.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VideoTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VideoTestActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_report.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_report.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -60,6 +71,12 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <PATH>
@@ -82,48 +99,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ReportFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/ReportFragment.java">
+      <file leaf-file-name="WebPageTestDetailsActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestDetailsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5404814">
-              <caret line="80" column="20" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="75" column="35" selection-start-line="75" selection-start-column="35" selection-end-line="75" selection-end-column="35" />
               <folding>
-                <element signature="e#2150#2168#0" expanded="true" />
-                <element signature="e#2269#2287#0" expanded="true" />
-                <element signature="e#5675#6448#0" expanded="true" />
-                <element signature="e#6447#6448#0" expanded="true" />
-                <element signature="e#6518#6691#0" expanded="true" />
-                <element signature="e#6690#6691#0" expanded="true" />
-                <element signature="e#10128#10129#0" expanded="true" />
-                <element signature="e#10167#10168#0" expanded="true" />
+                <element signature="e#3616#3653#0" expanded="true" />
+                <element signature="e#3707#3744#0" expanded="true" />
+                <element signature="e#3874#3909#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dialog_add_problem_layout.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_add_problem_layout.xml">
+      <file leaf-file-name="TestResultFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/TestResultFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6896553">
-              <caret line="172" column="43" selection-start-line="172" selection-start-column="33" selection-end-line="172" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
               <folding>
-                <element signature="e#569#601#0" expanded="true" />
-                <element signature="e#1541#1565#0" expanded="true" />
-                <element signature="e#1898#1932#0" expanded="true" />
-                <element signature="e#2259#2285#0" expanded="true" />
-                <element signature="e#2620#2654#0" expanded="true" />
-                <element signature="e#2991#3027#0" expanded="true" />
-                <element signature="e#3350#3372#0" expanded="true" />
-                <element signature="e#3703#3733#0" expanded="true" />
-                <element signature="e#4060#4086#0" expanded="true" />
-                <element signature="e#4425#4463#0" expanded="true" />
-                <element signature="e#4804#4844#0" expanded="true" />
-                <element signature="e#5174#5203#0" expanded="true" />
-                <element signature="e#5533#5562#0" expanded="true" />
-                <element signature="e#5884#5905#0" expanded="true" />
-                <element signature="e#6232#6258#0" expanded="true" />
-                <element signature="e#6593#6623#0" expanded="true" />
-                <element signature="e#6948#6970#0" expanded="true" />
+                <element signature="e#4020#4795#0" expanded="true" />
+                <element signature="e#4794#4795#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="content_web_page_test_details.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_web_page_test_details.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.074441686">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <folding>
+                <element signature="e#373#413#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -132,11 +141,83 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <file leaf-file-name="listview_item_webpage.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview_item_webpage.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.6666665">
-              <caret line="107" column="18" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
+            <state vertical-scroll-proportion="-1.0588236">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding>
+                <element signature="e#695#728#0" expanded="true" />
+                <element signature="e#1083#1116#0" expanded="true" />
+                <element signature="e#1473#1506#0" expanded="true" />
+                <element signature="e#1862#1895#0" expanded="true" />
+                <element signature="e#2253#2286#0" expanded="true" />
+                <element signature="e#3036#3069#0" expanded="true" />
+                <element signature="e#3492#3525#0" expanded="true" />
+                <element signature="e#3948#3981#0" expanded="true" />
+                <element signature="e#4404#4437#0" expanded="true" />
+                <element signature="e#4860#4893#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dimens.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="32" column="41" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebPageTestDetailsAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/WebPageTestDetailsAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="80" column="61" selection-start-line="80" selection-start-column="61" selection-end-line="80" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#830#831#0" expanded="true" />
+                <element signature="e#895#896#0" expanded="true" />
+                <element signature="e#952#953#0" expanded="true" />
+                <element signature="e#983#984#0" expanded="true" />
+                <element signature="e#1039#1040#0" expanded="true" />
+                <element signature="e#1070#1071#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebPageTestActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="attrs.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/platforms/android-23/data/res/values/attrs.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="666" column="34" selection-start-line="666" selection-start-column="20" selection-end-line="666" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestResultAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/TestResultAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -147,8 +228,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="layoutResourceFile_vertical" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -2595,22 +2676,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/selector_video_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/selector_voice_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/selector_speed_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/selector_conn_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/selector_webpage_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/selector_synthesize_test.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/video/util/VideoUtil.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_task_test.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_test_stat.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_one_key_test.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetStateUtils.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/db/DatabaseHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/MobileTestApplication.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_video_test.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/video/VideoPlayer.java" />
@@ -2621,31 +2691,42 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/cardview_item_ping_test.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/PingTestAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/recycleview_item_ping_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestCode.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VideoTestActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestResult.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/constants/TestCode.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_test_result.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/cardview_item_test_result.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/BaseFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_web_page_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/TestResultAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestResultSummaryModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/db/TestResultDao.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/constants/Constants.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VoiceTestActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/NetSpeedTestActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/ConnectActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/TestResultFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/OneKeyTestFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_report.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_add_problem_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_report.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/ReportFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/ConnectActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/NetSpeedTestActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VideoTestActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/TestResultAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestResult.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/db/TestItemDao.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/db/DatabaseHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/view/InnerListView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/view/NestListView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/constants/Constants.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestItemModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_web_page_test_details.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestResultSummaryModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/TestResultFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestDetailsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/WebPageTestDetailsAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/listview_item_webpage.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_web_page_test_details.xml" />
       </list>
     </option>
   </component>
@@ -2665,7 +2746,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="722" />
+    <option name="height" value="716" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -2690,8 +2771,10 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2847,6 +2930,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mobiletest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MobileTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MobileTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobiletest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3132,13 +3249,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$PROJECT_DIR$/../../android-sdk/sdk" />
-    <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/libs/commons-net-1.4.1.jar" />
     <property name="recentsLimit" value="5" />
@@ -3154,18 +3269,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.huhuo.mobiletest.db" />
       <recent name="com.huhuo.mobiletest.adapter" />
       <recent name="com.huhuo.mobiletest.video" />
       <recent name="com.huhuo.mobiletest.utils" />
-      <recent name="com.huhuo.mobiletest.db" />
       <recent name="com.huhuo.mobiletest.view" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/view" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/libs" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/net/callback" />
     </key>
     <key name="android.template.packageName">
       <recent name="com.huhuo.mobiletest.ui.activity" />
@@ -3360,38 +3475,38 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="722" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1280" height="716" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32875606" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16306156" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.51913875" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15806988" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15511551" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18833333" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7013201" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2442623" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3349835" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33333334" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32838285" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3250825" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32838285" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296636" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.48086125" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.49043062" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21464226" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21333334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="0" y="31" width="1280" height="715" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15676567" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -3450,27 +3565,57 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VideoTestActivity.java</url>
-          <line>279</line>
+          <line>283</line>
           <properties />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VideoTestActivity.java</url>
-          <line>271</line>
+          <line>275</line>
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/ReportFragment.java</url>
-          <line>150</line>
+          <line>135</line>
           <properties />
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/ReportFragment.java</url>
-          <line>197</line>
+          <line>187</line>
           <properties />
           <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestActivity.java</url>
+          <line>226</line>
+          <properties />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java</url>
+          <line>370</line>
+          <properties />
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java</url>
+          <line>371</line>
+          <properties />
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java</url>
+          <line>427</line>
+          <properties />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java</url>
+          <line>397</line>
+          <properties />
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -3481,125 +3626,39 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="36" />
+      <option name="time" value="47" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="101" column="47" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetWorkUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="420" column="41" selection-start-line="420" selection-start-column="41" selection-end-line="420" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/constants/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="37" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/cardview_item_test_result.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8937824">
-          <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="169" column="39" selection-start-line="169" selection-start-column="39" selection-end-line="169" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/attrs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3043478">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.xutils/xutils/3.2.2/bf91c4c37ccc3d54dc268ad8b1ffba1de98831e3/xutils-3.2.2-sources.jar!/org/xutils/view/annotation/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.53571427">
-          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/WebPageTestModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.259901">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/DateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33168316">
-          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_web_page_test.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="348" column="33" selection-start-line="348" selection-start-column="33" selection-end-line="348" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_web_page_test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68677497">
-          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/NetStateUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/BaseFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_voice_test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.206897">
-          <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_voice_test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="31.689655">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-4.6551723">
+          <caret line="78" column="12" selection-start-line="78" selection-start-column="12" selection-end-line="89" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -3610,278 +3669,162 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/TestResultAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="82" column="49" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
+          <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestResultSummaryModel.java">
+    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/platforms/android-23/data/res/values/attrs.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="73" column="13" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
-          <folding>
-            <element signature="e#1541#1542#0" expanded="true" />
-            <element signature="e#1583#1584#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/db/TestResultDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/constants/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_test_result.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43715847">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/TestResultFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62283736">
-          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/NetSpeedTestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4515571">
-          <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/ConnectActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_video_test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5416667">
-          <caret line="103" column="54" selection-start-line="103" selection-start-column="38" selection-end-line="103" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_video_test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.625">
-          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VideoTestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30968857">
-          <caret line="264" column="54" selection-start-line="264" selection-start-column="54" selection-end-line="264" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/VoiceTestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29584774">
-          <caret line="255" column="22" selection-start-line="255" selection-start-column="22" selection-end-line="255" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_report.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.724138">
-          <caret line="38" column="43" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="43" />
-          <folding>
-            <element signature="e#491#522#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/utils/DialogBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/android/app/AlertDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4079602">
-          <caret line="983" column="23" selection-start-line="983" selection-start-column="23" selection-end-line="983" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/android/app/Dialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37064677">
-          <caret line="269" column="24" selection-start-line="269" selection-start-column="24" selection-end-line="269" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32524273">
-          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/android/app/Instrumentation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33142856">
-          <caret line="1236" column="0" selection-start-line="1236" selection-start-column="0" selection-end-line="1236" selection-end-column="0" />
-          <folding>
-            <element signature="e#47467#47468#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../android-sdk/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/android/support/v4/app/FragmentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33142856">
-          <caret line="548" column="0" selection-start-line="548" selection-start-column="0" selection-end-line="548" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../android-sdk/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/android/support/v4/app/FragmentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="329" column="0" selection-start-line="329" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
-          <folding>
-            <element signature="e#10870#10871#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74285716">
-          <caret line="6648" column="0" selection-start-line="6648" selection-start-column="0" selection-end-line="6648" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../android-sdk/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/android/support/v4/app/FragmentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33142856">
-          <caret line="1613" column="0" selection-start-line="1613" selection-start-column="0" selection-end-line="1613" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../android-sdk/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/android/support/v4/app/Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33142856">
-          <caret line="1970" column="0" selection-start-line="1970" selection-start-column="0" selection-end-line="1970" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/OneKeyTestFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33142856">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/android/app/ActivityThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33142856">
-          <caret line="2434" column="0" selection-start-line="2434" selection-start-column="0" selection-end-line="2434" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../android-sdk/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1-sources.jar!/android/support/v4/app/BackStackRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33142856">
-          <caret line="739" column="0" selection-start-line="739" selection-start-column="0" selection-end-line="739" selection-end-column="0" />
+          <caret line="666" column="34" selection-start-line="666" selection-start-column="20" selection-end-line="666" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6666665">
-          <caret line="107" column="18" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.8797654">
+          <caret line="83" column="33" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_add_problem_layout.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestItemModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6896553">
-          <caret line="172" column="43" selection-start-line="172" selection-start-column="33" selection-end-line="172" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.4556962">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_web_page_test_details.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.965517">
+          <caret line="25" column="46" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/model/TestResultSummaryModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8101266">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
-            <element signature="e#569#601#0" expanded="true" />
-            <element signature="e#1541#1565#0" expanded="true" />
-            <element signature="e#1898#1932#0" expanded="true" />
-            <element signature="e#2259#2285#0" expanded="true" />
-            <element signature="e#2620#2654#0" expanded="true" />
-            <element signature="e#2991#3027#0" expanded="true" />
-            <element signature="e#3350#3372#0" expanded="true" />
-            <element signature="e#3703#3733#0" expanded="true" />
-            <element signature="e#4060#4086#0" expanded="true" />
-            <element signature="e#4425#4463#0" expanded="true" />
-            <element signature="e#4804#4844#0" expanded="true" />
-            <element signature="e#5174#5203#0" expanded="true" />
-            <element signature="e#5533#5562#0" expanded="true" />
-            <element signature="e#5884#5905#0" expanded="true" />
-            <element signature="e#6232#6258#0" expanded="true" />
-            <element signature="e#6593#6623#0" expanded="true" />
-            <element signature="e#6948#6970#0" expanded="true" />
+            <element signature="docComment;method#getDelayTime#0;class#TestResultSummaryModel#0" expanded="false" />
+            <element signature="docComment;method#setDelayTime#0;class#TestResultSummaryModel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_test_result.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6147541">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/app/libs/ormlite-core-4.49-SNAPSHOT.jar!/com/j256/ormlite/dao/ForeignCollection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.888889">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/adapter/WebPageTestDetailsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="80" column="61" selection-start-line="80" selection-start-column="61" selection-end-line="80" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#830#831#0" expanded="true" />
+            <element signature="e#895#896#0" expanded="true" />
+            <element signature="e#952#953#0" expanded="true" />
+            <element signature="e#983#984#0" expanded="true" />
+            <element signature="e#1039#1040#0" expanded="true" />
+            <element signature="e#1070#1071#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/view/NestListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13605443">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/activity/WebPageTestDetailsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="35" selection-start-line="75" selection-start-column="35" selection-end-line="75" selection-end-column="35" />
+          <folding>
+            <element signature="e#3616#3653#0" expanded="true" />
+            <element signature="e#3707#3744#0" expanded="true" />
+            <element signature="e#3874#3909#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/res/values/values.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18115942">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/TestResultFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+          <folding>
+            <element signature="e#4020#4795#0" expanded="true" />
+            <element signature="e#4794#4795#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview_item_webpage.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0588236">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#695#728#0" expanded="true" />
+            <element signature="e#1083#1116#0" expanded="true" />
+            <element signature="e#1473#1506#0" expanded="true" />
+            <element signature="e#1862#1895#0" expanded="true" />
+            <element signature="e#2253#2286#0" expanded="true" />
+            <element signature="e#3036#3069#0" expanded="true" />
+            <element signature="e#3492#3525#0" expanded="true" />
+            <element signature="e#3948#3981#0" expanded="true" />
+            <element signature="e#4404#4437#0" expanded="true" />
+            <element signature="e#4860#4893#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3889,77 +3832,17 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/android/widget/CompoundButton.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_web_page_test_details.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/android/widget/CheckBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/java/lang/reflect/Proxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7911833">
-          <caret line="395" column="0" selection-start-line="395" selection-start-column="0" selection-end-line="395" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/android/os/Looper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325792">
-          <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/android/os/Handler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325792">
-          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk/sdk/sources/android-23/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325792">
-          <caret line="19899" column="0" selection-start-line="19899" selection-start-column="0" selection-end-line="19899" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.xutils/xutils/3.2.2/bf91c4c37ccc3d54dc268ad8b1ffba1de98831e3/xutils-3.2.2-sources.jar!/org/xutils/view/EventListenerManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35520363">
-          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/huhuo/mobiletest/ui/fragment/ReportFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5404814">
-          <caret line="80" column="20" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.074441686">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding>
-            <element signature="e#2150#2168#0" expanded="true" />
-            <element signature="e#2269#2287#0" expanded="true" />
-            <element signature="e#5675#6448#0" expanded="true" />
-            <element signature="e#6447#6448#0" expanded="true" />
-            <element signature="e#6518#6691#0" expanded="true" />
-            <element signature="e#6690#6691#0" expanded="true" />
-            <element signature="e#10128#10129#0" expanded="true" />
-            <element signature="e#10167#10168#0" expanded="true" />
+            <element signature="e#373#413#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>

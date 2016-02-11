@@ -1,6 +1,7 @@
 package com.huhuo.mobiletest.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,17 +11,22 @@ import android.view.View;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.OnItemClickListener;
 import com.huhuo.mobiletest.adapter.TestResultAdapter;
+import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.db.DatabaseHelper;
+import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
+import com.huhuo.mobiletest.ui.activity.WebPageTestDetailsActivity;
 import com.huhuo.mobiletest.utils.Logger;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 @ContentView(R.layout.fragment_test_result)
 public class TestResultFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener,
@@ -50,11 +56,14 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
         adapter.setOnItemClickListener(this);
 
         swipeRefreshLayout.setOnRefreshListener(this);
-
-        Logger.d(TAG,"onActivityCreated");
-
         if (models != null) {
             for (TestResultSummaryModel model : models) {
+                Collection<TestItemModel> testItemModels = model.getTestItemModels();
+                if (testItemModels != null && testItemModels.size() > 0) {
+                    for (TestItemModel item : testItemModels) {
+                        Logger.d(TAG,"item:" + item.toString());
+                    }
+                }
                 Logger.d(TAG,"测试结果项：" + model);
             }
         }
@@ -78,6 +87,12 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
     public void onItemclick(View view, int position) {
         if (models != null) {
             TestResultSummaryModel model = models.get(position);
+            int id = model.getId();
+
+            Intent intent = new Intent();
+            intent.setClass(getActivity(),WebPageTestDetailsActivity.class);
+            intent.putExtra(Constants.Key.ID,id);
+            startActivity(intent);
             Logger.v(TAG,"item Click : " + model);
         }
     }
@@ -91,13 +106,16 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
             }
             adapter.updateAll(models);
         }
+
     }
 
     public ArrayList<TestResultSummaryModel> initData(){
         models = (ArrayList<TestResultSummaryModel>) DatabaseHelper.getInstance().testResultDao.
                 queryAll();
 
-
+        if (models == null) {
+            return null;
+        }
         Collections.sort(models, new Comparator<TestResultSummaryModel>() {
             @Override
             public int compare(TestResultSummaryModel lhs, TestResultSummaryModel rhs) {

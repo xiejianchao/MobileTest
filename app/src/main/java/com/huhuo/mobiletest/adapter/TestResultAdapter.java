@@ -79,7 +79,7 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
         final TestResultSummaryModel model = models.get(position);
         Context context = MobileTestApplication.getInstance().getApplicationContext();
         String testDate = DateUtil.getFormatTime(model.getTestDate(), DateUtil.PATTERN_STANDARD);
-        float time = ((float) model.getDelayTime() / 1000);
+        float time = (model.getDelayTime() / 1000);
         final String testDelay = df.format(time);
 
         holder.tvTestTypeName.setText(TestCode.getTestName(model.getTestType()));
@@ -88,7 +88,6 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
         holder.rbTestLevel.setRating(model.getTestLevel());
 
         if (onItemClickListener != null) {
-            Logger.d(TAG,"注册item click 事件");
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

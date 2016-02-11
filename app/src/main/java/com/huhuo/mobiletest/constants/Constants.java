@@ -29,6 +29,7 @@ public class Constants {
     public static class Key {
         public static final String VALUE = "value";
         public static final String DESC = "desc";
+        public static final String ID = "id";
     }
 
     public static final String QQ_URL = "http://124.193.109.3/hotfiles/10700000073834DC/124.202.164.6/files/40700000073834DC/dldir1.qq.com/qqfile/qq/QQ7.9/16621/QQ7.9.exe";

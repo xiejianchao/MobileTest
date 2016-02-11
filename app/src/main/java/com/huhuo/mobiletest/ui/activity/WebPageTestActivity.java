@@ -8,10 +8,12 @@ import android.widget.TextView;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.constants.TestCode;
+import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.model.WebPageTestModel;
 import com.huhuo.mobiletest.net.callback.DefaultHttpRequestCallBack;
 import com.huhuo.mobiletest.utils.Logger;
+import com.huhuo.mobiletest.utils.NetWorkUtil;
 import com.huhuo.mobiletest.utils.ToastUtil;
 import com.timqi.sectorprogressview.ColorfulRingProgressView;
 
@@ -82,6 +84,8 @@ public class WebPageTestActivity extends BaseActivity {
 
     private long start;
 
+    private TestResultSummaryModel summaryModel;
+
     @Override
     protected void init(Bundle savedInstanceState) {
         df = new DecimalFormat("#.##");
@@ -91,6 +95,10 @@ public class WebPageTestActivity extends BaseActivity {
         nextTestItem = 0;
         final WebPageTestModel model = list.get(nextTestItem);
         start = System.currentTimeMillis();
+
+        summaryModel = new TestResultSummaryModel();
+        DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
+
         testWebPage(model);
     }
 
@@ -147,8 +155,8 @@ public class WebPageTestActivity extends BaseActivity {
 
     private long allTime;
 
-    private void testWebPage(WebPageTestModel model) {
-        String url = model.getUrl();
+    private void testWebPage(final WebPageTestModel model) {
+        final String url = model.getUrl();
         Logger.d(TAG,"测试URL:" + url);
         RequestParams params = new RequestParams(url);
 
@@ -201,6 +209,9 @@ public class WebPageTestActivity extends BaseActivity {
                 long loadPageTime = (end - start);
                 float loadPageTimeSecond = (float)loadPageTime / 1000;
 
+                float speed = webPageSize / loadPageTimeSecond;
+                String speedStr = df.format(speed);
+
                 float kbps = (float)webPageSize * 8 / loadPageTimeSecond;
                 speedList.add(kbps);
 
@@ -209,9 +220,30 @@ public class WebPageTestActivity extends BaseActivity {
                 allTime += loadPageTime;
                 Logger.d(TAG, "加载网页耗时：" + loadPageTime + " 毫秒");
                 Logger.d(TAG, "加载网页耗时：" + loadPageTimeSecond + " 秒");
-                Logger.d(TAG, "加载网页速率：" + df.format(webPageSize / loadPageTimeSecond) + "KB/秒");
+                Logger.d(TAG, "加载网页速率：" + speedStr + "KB/秒");
 
                 tvTestInfo.append("\n " + df.format(kbps) + "kbps" + "");
+
+                String networkType = NetWorkUtil.getCurrentNetworkType();
+                TestItemModel testItemModel = new TestItemModel();
+                testItemModel.setNetType(networkType);
+                testItemModel.setTarget(model.getName());
+                testItemModel.setTotalSize(result.length());
+                testItemModel.setDelayTime(loadPageTime);
+                testItemModel.setAvgSpeed(speed);
+                testItemModel.setTestResultSummaryModel(summaryModel);
+                DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
+
+                if (nextTestItem <= list.size() - 1) {
+                    nextTestItem ++;
+                    if (nextTestItem == list.size()) {
+                        Logger.e(TAG, "执行测试index超过总量");
+                        cacuAvgSpeed();
+                        return;
+                    }
+                    testWebPage(list.get(nextTestItem));
+                }
+
             }
 
             @Override
@@ -220,15 +252,7 @@ public class WebPageTestActivity extends BaseActivity {
                 try {
                     progressView.setPercent(100);
                     Logger.d(TAG, "onFinished");
-                    if (nextTestItem <= list.size() - 1) {
-                        nextTestItem ++;
-                        if (nextTestItem == list.size()) {
-                            Logger.e(TAG, "执行测试index超过总量");
-                            cacuAvgSpeed();
-                            return;
-                        }
-                        testWebPage(list.get(nextTestItem));
-                    }
+
                 } catch (Exception e) {
                     Logger.e(TAG,"onFinished",e);
                 }
@@ -246,7 +270,7 @@ public class WebPageTestActivity extends BaseActivity {
         float testLevel = 0;
         if (allKbps > 0) {
             avgKbps = (float)allKbps / testCount;
-            Logger.d(TAG, "所有网站测试完毕，一共测试了" + testCount +
+            Logger.d(TAG, "测试完毕，一共测试了" + testCount +
                     "个网站，平均速度：" + df.format(avgKbps) + "kbps");
             if (avgKbps >= 2000) {
                 testLevel = 5;
@@ -259,7 +283,7 @@ public class WebPageTestActivity extends BaseActivity {
                 tvTestAllInfo.setText("测试完毕，您的网络速度很慢！");
             }
         }
-        final TestResultSummaryModel summaryModel = new TestResultSummaryModel();
+
         long avgTime = allTime / testCount;
         Logger.w(TAG, "完成全部测试花费了：" + allTime + "毫秒");
         Logger.w(TAG, "完成每个测试平均花费：" + avgTime + "毫秒");
@@ -269,7 +293,10 @@ public class WebPageTestActivity extends BaseActivity {
         summaryModel.setTestLevel(testLevel);
         summaryModel.setTestType(TestCode.TEST_TYPE_WEBPAGE);
         summaryModel.setDelayTime(allTime);
-        DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
+        String networkType = NetWorkUtil.getCurrentNetworkType();
+        summaryModel.setNetType(networkType);
+
+        DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
 
         final List<TestResultSummaryModel> models = DatabaseHelper.getInstance()
                 .testResultDao.queryAll();

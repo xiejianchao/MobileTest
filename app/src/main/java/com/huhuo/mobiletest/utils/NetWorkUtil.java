@@ -417,6 +417,8 @@ public class NetWorkUtil {
             case NETWORK_TYPE_LTE:
             case NETWORK_TYPE_IWLAN:
                 return NETWORK_CLASS_4_G;
+            case NETWORK_TYPE_WIFI:
+                return NETWORK_TYPE_WIFI;
             default:
                 return NETWORK_CLASS_UNKNOWN;
         }

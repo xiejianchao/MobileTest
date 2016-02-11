@@ -29,15 +29,7 @@
     <dimen name="TextlineSpacingExtra">5dip</dimen>
     <dimen name="TextPaddingRight">30dip</dimen>
 
-    <!-- 私信相关-->
-    <!-- 私信会话列表头像宽高 -->
-    <dimen name="msg_avatar_size">50dp</dimen>
-    <!-- 私信气泡和头像marginTop的距离 -->
-    <dimen name="msg_pop_margin_top_distance">13dp</dimen>
-    <dimen name="private_msg_pic_max_height_width">100dp</dimen>
-    <!-- 私信语音默认宽度 -->
-    <dimen name="msg_voice_pop_default_width">60dp</dimen>
-    <!-- 私信语音默认高度 -->
-    <dimen name="msg_voice_pop_default_height">40dp</dimen>
+
+    <dimen name="test_list_item_text_size">13sp</dimen>
 
 </resources>

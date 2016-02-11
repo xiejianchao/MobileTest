@@ -1,40 +1,25 @@
 package com.huhuo.mobiletest.ui.fragment;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 
 import com.huhuo.mobiletest.R;
-import com.huhuo.mobiletest.constants.Constants;
-import com.huhuo.mobiletest.db.DatabaseHelper;
-import com.huhuo.mobiletest.db.MessageDao;
-import com.huhuo.mobiletest.db.RecentMessageDao;
-import com.huhuo.mobiletest.model.MessageModel;
-import com.huhuo.mobiletest.model.RecentMessageModel;
-import com.huhuo.mobiletest.utils.ImageUtil;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ToastUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 
@@ -171,10 +156,15 @@ public class ReportFragment extends BaseFragment implements CompoundButton.OnChe
         }
     };
 
+    @Event(value = R.id.btn_send_problem)
+    private void sendProblem(View view) {
+        ToastUtil.showMessage("暂未实现...");
+    }
+
     @Event(value = R.id.ib_add_problem)
     private void addProblemClick(View view) {
         problemDialog.show();
-        setHeight();
+        setDialogHeight();
 
         cbNoNet.setChecked(cbMap.get(cbNoNet) == null ? false : cbMap.get(cbNoNet));
         cbCantStartNet.setChecked(cbMap.get(cbCantStartNet) == null ? false : cbMap.get
@@ -230,7 +220,7 @@ public class ReportFragment extends BaseFragment implements CompoundButton.OnChe
         Logger.v(TAG,"之前保存的数据业务中断：" + b4);
     }
 
-    private void setHeight() {
+    private void setDialogHeight() {
         WindowManager m = getActivity().getWindowManager();
         Display d = m.getDefaultDisplay();  //为获取屏幕宽、高
         WindowManager.LayoutParams p = problemDialog.getWindow().getAttributes();  //获取对话框当前的参数值

@@ -262,10 +262,12 @@ public class NetSpeedTestActivity extends BaseActivity {
 
     private float getTestLevel(float mbSpeed) {
         int level = 1;
-        if (mbSpeed >= 8) {
+        if (mbSpeed >= 5) {
             level = 5;
-        } else if (mbSpeed > 5 && mbSpeed < 8) {
-            level = 3;
+        } else if (mbSpeed >= 2 && mbSpeed < 5) {
+            level = 4;
+        } else if (mbSpeed > 1 && mbSpeed < 2){
+            level = 2;
         } else {
             level = 1;
         }
