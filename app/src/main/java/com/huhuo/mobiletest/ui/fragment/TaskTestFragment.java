@@ -27,9 +27,7 @@ public class TaskTestFragment extends BaseFragment implements SwipeRefreshLayout
     private LinearLayoutManager mLayoutManager;
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
+    protected void init(Bundle savedInstanceState) {
         recyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);

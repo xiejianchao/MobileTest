@@ -43,12 +43,7 @@ public class OneKeyTestFragment extends BaseFragment {
     private int cid;
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        GsmCellLocation location = NetWorkUtil.getGsmCellLocation();
-        lac = location.getLac();
-        cid = location.getCid();
+    protected void init(Bundle savedInstanceState) {
 
         initPhoneInfo();
 

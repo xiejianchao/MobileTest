@@ -30,7 +30,7 @@ import java.util.List;
 
 
 @ContentView(R.layout.activity_web_page_test)
-public class WebPageTestActivity extends BaseActivity {
+public class    WebPageTestActivity extends BaseActivity {
 
     private static final String TAG = WebPageTestActivity.class.getSimpleName();
 

@@ -13,10 +13,8 @@ public class TestStatFragment extends BaseFragment {
 
     private static final String TAG = TestStatFragment.class.getSimpleName();
 
-
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void init(Bundle savedInstanceState) {
 
     }
 

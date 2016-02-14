@@ -2,11 +2,6 @@ package com.huhuo.mobiletest.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -28,10 +23,10 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 
-@ContentView(R.layout.activity_web_page_test_details)
-public class WebPageTestDetailsActivity extends BaseActivity {
+@ContentView(R.layout.activity_download_test_details)
+public class DownloadTestDetailsActivity extends BaseActivity {
 
-    private static final String TAG = WebPageTestDetailsActivity.class.getSimpleName();
+    private static final String TAG = DownloadTestDetailsActivity.class.getSimpleName();
 
     @ViewInject(R.id.tv_test_level)
     private TextView tvTestLevel;

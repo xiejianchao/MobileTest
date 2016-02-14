@@ -120,4 +120,6 @@
     <string name="title_activity_web_page_test_details">历史详情</string>
 
 
+    <string name="media_ejected">储存卡已拔出，语音功能将暂时不可用</string>
+
 </resources>

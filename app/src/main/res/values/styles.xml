@@ -8,6 +8,7 @@
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:screenOrientation">portrait</item>
 
         <!-- 自定义Drawer返回箭头的颜色
         <item name="drawerArrowStyle">@style/MyDrawerArrowToggle</item>

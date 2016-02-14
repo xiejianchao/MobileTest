@@ -59,8 +59,7 @@ public class ReportFragment extends BaseFragment implements CompoundButton.OnChe
     private HashMap<CheckBox,Boolean> lastMap = new HashMap<CheckBox,Boolean>();
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void init(Bundle savedInstanceState) {
         dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_add_problem_layout,null);
 
         initViews();
@@ -158,7 +157,7 @@ public class ReportFragment extends BaseFragment implements CompoundButton.OnChe
 
     @Event(value = R.id.btn_send_problem)
     private void sendProblem(View view) {
-        ToastUtil.showMessage("暂未实现...");
+        ToastUtil.showMessage("等待接口");
     }
 
     @Event(value = R.id.ib_add_problem)

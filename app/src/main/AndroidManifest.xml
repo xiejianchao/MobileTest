@@ -102,6 +102,11 @@
             android:label="@string/title_activity_web_page_test_details"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
+        <activity
+            android:name=".ui.activity.DownloadTestDetailsActivity"
+            android:label="@string/title_activity_web_page_test_details"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
     </application>
 
 </manifest>

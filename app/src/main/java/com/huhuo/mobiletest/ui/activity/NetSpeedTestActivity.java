@@ -13,9 +13,12 @@ import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.constants.TestCode;
 import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.CommonTestModel;
+import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.net.HttpHelper;
+import com.huhuo.mobiletest.utils.FileAccessor;
 import com.huhuo.mobiletest.utils.Logger;
+import com.huhuo.mobiletest.utils.NetWorkUtil;
 import com.huhuo.mobiletest.utils.ToastUtil;
 import com.huhuo.mobiletest.view.DialChart03View;
 
@@ -65,8 +68,20 @@ public class NetSpeedTestActivity extends BaseActivity {
     private long startTime = 0;
     private long endTime = 0;
 
+    private TestResultSummaryModel summaryModel;
+
     private HashMap<Integer,Long> hashMap = new HashMap<Integer,Long>();
 
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        df = new DecimalFormat("#.##");
+        chartView.setCurrentStatus(0.1f);
+
+        summaryModel = new TestResultSummaryModel();
+        DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
+
+        startTestDownloadSpeed();
+    }
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -125,12 +140,6 @@ public class NetSpeedTestActivity extends BaseActivity {
         }
     };
 
-    @Override
-    protected void init(Bundle savedInstanceState) {
-        df = new DecimalFormat("#.##");
-        chartView.setCurrentStatus(0.1f);
-        startTestDownloadSpeed();
-    }
 
     @Event(value = R.id.btn_test_speed,type = View.OnClickListener.class)
     private void btnDownloadTest(View view) {
@@ -138,15 +147,11 @@ public class NetSpeedTestActivity extends BaseActivity {
     }
 
     private void startTestDownloadSpeed() {
-        RequestParams req = new RequestParams(Constants.WANDOUJIA_APK_URL);
+        RequestParams req = new RequestParams(Constants.TAOBAO_APK_URL);
         req.setAutoRename(false);
         req.setAutoResume(true);
-        File saveFile = new File(Environment.getExternalStorageDirectory() + "/textXUtils3");
-        if (!saveFile.exists()) {
-            saveFile.mkdirs();
-            Logger.e(TAG, "XUTILS目录不存在，创建...");
-        }
-        String savePath = saveFile.getAbsolutePath() + "/360.apk";
+        final String savePath = FileAccessor.getDownloadPathByUrl(Constants
+                .TAOBAO_APK_URL);
         Logger.d(TAG,"save path : " + savePath);
         req.setSaveFilePath(savePath);
         textXUtilsFinal(req);
@@ -250,14 +255,30 @@ public class NetSpeedTestActivity extends BaseActivity {
                 long downloadTime = (endTime - startTime);
                 Logger.v(TAG, "下载测试耗时：" + downloadTime / 1000);
 
-                TestResultSummaryModel summaryModel = new TestResultSummaryModel();
-                summaryModel.setTestDate(new Date());
-                summaryModel.setTestLevel(getTestLevel(mbSpeed));
-                summaryModel.setTestType(TestCode.TEST_TYPE_SPEED);
-                summaryModel.setDelayTime(downloadTime);
-                DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
+                save2Database(result, speedModel, downloadTime);
             }
         });
+    }
+
+    private void save2Database(File result, CommonTestModel speedModel, long
+            downloadTime) {
+        String networkType = NetWorkUtil.getCurrentNetworkType();
+        TestItemModel testItemModel = new TestItemModel();
+        testItemModel.setNetType(networkType);
+        testItemModel.setTarget("北京服务器");
+        testItemModel.setTotalSize(result.length());
+        testItemModel.setDelayTime(downloadTime);
+        testItemModel.setAvgSpeed(speedModel.getAvgSpeed());
+        testItemModel.setTestResultSummaryModel(summaryModel);
+        DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
+
+        //更新测试结果整体结果
+        summaryModel.setTestDate(new Date());
+        summaryModel.setTestLevel(getTestLevel(speedModel.getFastestSpeed() / 1024));
+        summaryModel.setTestType(TestCode.TEST_TYPE_SPEED);
+        summaryModel.setDelayTime(downloadTime);
+        summaryModel.setNetType(networkType);
+        DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
     }
 
     private float getTestLevel(float mbSpeed) {

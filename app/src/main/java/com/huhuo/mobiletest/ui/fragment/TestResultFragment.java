@@ -12,11 +12,14 @@ import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.OnItemClickListener;
 import com.huhuo.mobiletest.adapter.TestResultAdapter;
 import com.huhuo.mobiletest.constants.Constants;
+import com.huhuo.mobiletest.constants.TestCode;
 import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
+import com.huhuo.mobiletest.ui.activity.DownloadTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.WebPageTestDetailsActivity;
 import com.huhuo.mobiletest.utils.Logger;
+import com.huhuo.mobiletest.utils.ToastUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -45,8 +48,7 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
     private ArrayList<TestResultSummaryModel> models;
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void init(Bundle savedInstanceState) {
         models = initData();
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -67,7 +69,6 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
                 Logger.d(TAG,"测试结果项：" + model);
             }
         }
-
     }
 
     @Override
@@ -87,14 +88,31 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
     public void onItemclick(View view, int position) {
         if (models != null) {
             TestResultSummaryModel model = models.get(position);
+            final int testType = model.getTestType();
             int id = model.getId();
+            switch (testType) {
+                case TestCode.TEST_TYPE_WEBPAGE:
+                    //网页测试
+                    toTestDetailsActivity(WebPageTestDetailsActivity.class,id);
+                    break;
+                case TestCode.TEST_TYPE_SPEED:
+                    //速度测试
+                    toTestDetailsActivity(DownloadTestDetailsActivity.class,id);
+                    break;
+                default:
+                    ToastUtil.showShortToast("暂时只显示网页测试详情，其他类型正在等待合并代码");
+                    break;
+            }
 
-            Intent intent = new Intent();
-            intent.setClass(getActivity(),WebPageTestDetailsActivity.class);
-            intent.putExtra(Constants.Key.ID,id);
-            startActivity(intent);
-            Logger.v(TAG,"item Click : " + model);
+            Logger.v(TAG, "item Click : " + model);
         }
+    }
+
+    private void toTestDetailsActivity(Class<?> clazz,int id) {
+        Intent intent = new Intent();
+        intent.setClass(getActivity(),clazz);
+        intent.putExtra(Constants.Key.ID,id);
+        startActivity(intent);
     }
 
     public void refreshData(){

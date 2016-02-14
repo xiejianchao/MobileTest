@@ -182,7 +182,7 @@ public class VideoPlayer implements OnBufferingUpdateListener,
         long end = System.currentTimeMillis();
         playDelay = (end - start);
         Logger.w(TAG,"videoWidth：" + videoWidth + ",videoHeight:" + videoHeight);
-        Logger.e(TAG, "onPrepared 播放延迟：" + playDelay);
+        Logger.d(TAG, "onPrepared 播放延迟：" + playDelay);
     }
 
     @Override
@@ -198,7 +198,7 @@ public class VideoPlayer implements OnBufferingUpdateListener,
         skbProgress.setSecondaryProgress(bufferingProgress);
         int currentProgress = skbProgress.getMax() * mediaPlayer.getCurrentPosition() /
                 mediaPlayer.getDuration();
-        Logger.e(TAG,"时间：" + sdf.format(new Date()) + "," + currentProgress + "% play" +
+        Logger.d(TAG,"时间：" + sdf.format(new Date()) + "," + currentProgress + "% play" +
 				bufferingProgress + "% buffer");
         if (this.onBufferingCompletion != null && bufferingProgress == 100) {
 

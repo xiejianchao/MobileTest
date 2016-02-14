@@ -6,6 +6,7 @@ import android.content.Context;
 import com.huhuo.mobiletest.constants.AppConfig;
 import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.db.DatabaseHelper;
+import com.huhuo.mobiletest.utils.FileAccessor;
 import com.huhuo.mobiletest.utils.Logger;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -35,14 +36,10 @@ public class MobileTestApplication extends Application{
 
         this.application = this;
         x.Ext.init(this);
-        if (AppConfig.IS_DEBUG) {
-            x.Ext.setDebug(true); // 是否输出debug日志
-        } else {
-            x.Ext.setDebug(false);
-        }
+        x.Ext.setDebug(AppConfig.IS_DEBUG); // 是否输出debug日志
 
+        FileAccessor.initFileAccess();
         initDatabaseHelper();
-
         initImageLoader(getApplicationContext());
     }
 
@@ -69,7 +66,7 @@ public class MobileTestApplication extends Application{
         //  ImageLoaderConfiguration.createDefault(this);
         // method.
         //缓存文件的目录
-        File cacheDir = StorageUtils.getOwnCacheDirectory(context, "universalimageloader/Cache");
+        File cacheDir = StorageUtils.getOwnCacheDirectory(context, "MobileTest/Cache");
         ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
         config.threadPriority(Thread.NORM_PRIORITY - 2);
         config.denyCacheImageMultipleSizesInMemory();

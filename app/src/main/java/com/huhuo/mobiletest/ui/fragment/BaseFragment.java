@@ -19,7 +19,7 @@ import com.huhuo.mobiletest.utils.Logger;
 import org.xutils.x;
 
 
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
 
     private static final String TAG = BaseFragment.class.getSimpleName();
 
@@ -50,6 +50,14 @@ public class BaseFragment extends Fragment {
             x.view().inject(this, this.getView());
         }
     }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        init(savedInstanceState);
+    }
+
+    protected abstract void init(Bundle savedInstanceState);
 
     public Context getContext() {
         return context;
