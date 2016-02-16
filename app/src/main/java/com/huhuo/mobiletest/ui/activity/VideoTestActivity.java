@@ -229,7 +229,7 @@ public class VideoTestActivity extends BaseActivity {
         summaryModel.setTestLevel(testLevel);
         summaryModel.setTestType(TestCode.TEST_TYPE_VIDEO);
         summaryModel.setDelayTime(bufferingTime);
-        DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
+        DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
     }
 
     private String getAvgSpeed(){

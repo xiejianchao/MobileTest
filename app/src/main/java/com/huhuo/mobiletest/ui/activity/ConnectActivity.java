@@ -200,7 +200,7 @@ public class ConnectActivity extends BaseActivity {
                 summaryModel.setTestLevel(level);
                 summaryModel.setTestType(TestCode.TEST_TYPE_CONNECTION);
                 summaryModel.setDelayTime((endTime - startTime));
-                DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
+                DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
                 return;
             }
 

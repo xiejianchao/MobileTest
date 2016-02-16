@@ -43,9 +43,16 @@ public class TestItemModel {
     @DatabaseField
     private int bufferCount;
 
+    @DatabaseField
+    private int callTime;
+
     //呼叫类型
     @DatabaseField
     private String callType;
+
+    //结果
+    @DatabaseField
+    private boolean result;
 
     @DatabaseField(canBeNull = true, foreign = true, foreignAutoRefresh = true)
     private TestResultSummaryModel testResultSummaryModel;
@@ -130,7 +137,21 @@ public class TestItemModel {
         this.testResultSummaryModel = testResultSummaryModel;
     }
 
+    public int getCallTime() {
+        return callTime;
+    }
 
+    public void setCallTime(int callTime) {
+        this.callTime = callTime;
+    }
+
+    public boolean isResult() {
+        return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
+    }
 
     @Override
     public String toString() {
@@ -143,7 +164,9 @@ public class TestItemModel {
                 ", fastestSpeed=" + fastestSpeed +
                 ", avgSpeed=" + avgSpeed +
                 ", bufferCount=" + bufferCount +
+                ", callTime=" + callTime +
                 ", callType='" + callType + '\'' +
+                ", result=" + result +
                 ", testResultSummaryModel=" + testResultSummaryModel +
                 '}';
     }

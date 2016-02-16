@@ -28,13 +28,13 @@ public class TestResultDao {
      *
      * @param model
      */
-    public void insert(TestResultSummaryModel model) {
-        try {
-            testSummaryDao.create(model);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void insert(TestResultSummaryModel model) {
+//        try {
+//            testSummaryDao.create(model);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
     /**
      * 增加一条测试结果
      *

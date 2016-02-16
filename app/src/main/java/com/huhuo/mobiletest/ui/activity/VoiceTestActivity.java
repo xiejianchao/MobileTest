@@ -18,6 +18,7 @@ import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.constants.TestCode;
 import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.RecordEntity;
+import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.utils.DateUtil;
 import com.huhuo.mobiletest.utils.Logger;
@@ -43,7 +44,6 @@ public class VoiceTestActivity extends BaseActivity {
     @ViewInject(R.id.tv_status)
     private TextView tvStatus;
 
-
     @ViewInject(R.id.tv_test_number)
     private TextView tvTestPhoneNumber;
 
@@ -67,12 +67,17 @@ public class VoiceTestActivity extends BaseActivity {
     private Date startCallTime;
     private Date endCallTime;
 
+    private TestResultSummaryModel summaryModel;
+
     @Override
     protected void init(Bundle savedInstanceState) {
         TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
         telephonyManager.listen(new PhoneListener(), PhoneStateListener.LISTEN_CALL_STATE);
 
         registerBroadcastReceive();
+
+        summaryModel = new TestResultSummaryModel();
+        DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
 
         Uri uri = Uri.parse("tel:" + TEST_PHONE_NUMBER);
         Intent call = new Intent(Intent.ACTION_CALL, uri); //直接播出电话
@@ -235,13 +240,24 @@ public class VoiceTestActivity extends BaseActivity {
 
             showCallDetails(entity,format, realStartCallDate, inteval);
 
+
+            String networkType = NetWorkUtil.getCurrentNetworkType();
+            TestItemModel testItemModel = new TestItemModel();
+            testItemModel.setNetType(networkType);
+            testItemModel.setTarget(TEST_PHONE_NUMBER);
+            testItemModel.setCallTime((int) entity.duration);
+            testItemModel.setCallType(callType);
+            testItemModel.setTestResultSummaryModel(summaryModel);
+            testItemModel.setResult(entity.duration == 0 ? false : true);
+            DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
+
+
             //测试完毕，将语音测试数据插入数据库...
-            TestResultSummaryModel summaryModel = new TestResultSummaryModel();
             summaryModel.setTestDate(new Date());
             summaryModel.setTestLevel(getTestLevel(inteval));
             summaryModel.setTestType(TestCode.TEST_TYPE_VOICE);
             summaryModel.setDelayTime(inteval * 1000);
-            DatabaseHelper.getInstance().testResultDao.insert(summaryModel);
+            DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
 
             Logger.d(TAG,sb.toString());
         } else {

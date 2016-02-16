@@ -17,6 +17,7 @@ import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.ui.activity.DownloadTestDetailsActivity;
+import com.huhuo.mobiletest.ui.activity.VoiceTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.WebPageTestDetailsActivity;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ToastUtil;
@@ -98,6 +99,9 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
                 case TestCode.TEST_TYPE_SPEED:
                     //速度测试
                     toTestDetailsActivity(DownloadTestDetailsActivity.class,id);
+                    break;
+                case TestCode.TEST_TYPE_VOICE:
+                    toTestDetailsActivity(VoiceTestDetailsActivity.class,id);
                     break;
                 default:
                     ToastUtil.showShortToast("暂时只显示网页测试详情，其他类型正在等待合并代码");
