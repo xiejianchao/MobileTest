@@ -36,10 +36,10 @@
             />
 
         <TextView
-            android:id="@+id/tv_call_type_title"
+            android:id="@+id/tv_send_count_title"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:text="呼叫类型"
+            android:text="发送/次"
             android:textSize="@dimen/test_list_item_text_size"
             android:textColor="@color/color_white"
             android:layout_weight="1"
@@ -47,10 +47,10 @@
             />
 
         <TextView
-            android:id="@+id/tv_call_time_title"
+            android:id="@+id/tv_receive_title"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:text="通话/s"
+            android:text="接收/次"
             android:textSize="@dimen/test_list_item_text_size"
             android:textColor="@color/color_white"
             android:layout_weight="1"
@@ -58,10 +58,21 @@
             />
 
         <TextView
-            android:id="@+id/tv_result_title"
+            android:id="@+id/tv_success_rate_title"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:text="结果"
+            android:text="成功率"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_delay_title"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:text="时延/ms"
             android:textSize="@dimen/test_list_item_text_size"
             android:textColor="@color/color_white"
             android:layout_weight="1"
@@ -111,10 +122,10 @@
             />
 
         <TextView
-            android:id="@+id/tv_call_type"
+            android:id="@+id/tv_send_count"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:text="CSFB"
+            android:text="10"
             android:textSize="@dimen/test_list_item_text_size"
             android:textColor="@color/color_white"
             android:layout_weight="1"
@@ -124,10 +135,10 @@
             />
 
         <TextView
-            android:id="@+id/tv_call_time"
+            android:id="@+id/tv_receive_count"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:text="3.2"
+            android:text="10"
             android:textSize="@dimen/test_list_item_text_size"
             android:textColor="@color/color_white"
             android:layout_weight="1"
@@ -137,10 +148,23 @@
             />
 
         <TextView
-            android:id="@+id/tv_result"
+            android:id="@+id/tv_success_rate"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:text="成功"
+            android:text="100%"
+            android:textSize="@dimen/test_list_item_text_size"
+            android:textColor="@color/color_white"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/tv_delay"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:text="8"
             android:textSize="@dimen/test_list_item_text_size"
             android:textColor="@color/color_white"
             android:layout_weight="1"

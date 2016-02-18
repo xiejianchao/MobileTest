@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/test_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.huhuo.mobiletest.ui.activity.VoiceTestDetailsActivity"
-    tools:showIn="@layout/activity_voice_test_details">
+    tools:context="com.huhuo.mobiletest.ui.activity.PingTestDetailsActivity"
+    tools:showIn="@layout/activity_ping_test_details">
 
 
     <ScrollView
@@ -42,7 +42,7 @@
                 android:id="@+id/tv_test_type2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="速度测试"
+                android:text="网页浏览"
                 android:textSize="20sp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"

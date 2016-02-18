@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
-import com.huhuo.mobiletest.ui.activity.ConnectActivity;
-import com.huhuo.mobiletest.ui.activity.NetSpeedTestActivity;
+import com.huhuo.mobiletest.ui.activity.PingTestActivity;
+import com.huhuo.mobiletest.ui.activity.DownloadTestActivity;
 import com.huhuo.mobiletest.ui.activity.VideoTestActivity;
 import com.huhuo.mobiletest.ui.activity.VoiceTestActivity;
 import com.huhuo.mobiletest.ui.activity.WebPageTestActivity;
@@ -77,7 +77,7 @@ public class OneKeyTestFragment extends BaseFragment {
 
     @Event(value = R.id.btn_speed_test)
     private void speedTestClick(View view) {
-        startActivity(new Intent(context, NetSpeedTestActivity.class));
+        startActivity(new Intent(context, DownloadTestActivity.class));
     }
 
     @Event(value = R.id.btn_webpage_test)
@@ -87,7 +87,7 @@ public class OneKeyTestFragment extends BaseFragment {
 
     @Event(value = R.id.btn_connect)
     private void connectTestClick(View view) {
-        startActivity(new Intent(context,ConnectActivity.class));
+        startActivity(new Intent(context,PingTestActivity.class));
     }
 
     @Event(value = R.id.btn_video_test)

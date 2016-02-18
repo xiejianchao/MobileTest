@@ -1,7 +1,6 @@
 package com.huhuo.mobiletest.ui.activity;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.CommonTestModel;
 import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
-import com.huhuo.mobiletest.net.HttpHelper;
 import com.huhuo.mobiletest.utils.FileAccessor;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
@@ -41,10 +39,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-@ContentView(R.layout.activity_net_speed_test)
-public class NetSpeedTestActivity extends BaseActivity {
+@ContentView(R.layout.activity_download_test)
+public class DownloadTestActivity extends BaseActivity {
 
-    private static final String TAG = NetSpeedTestActivity.class.getSimpleName();
+    private static final String TAG = DownloadTestActivity.class.getSimpleName();
     @ViewInject(R.id.circle_view)
     private DialChart03View chartView;
 

@@ -2,13 +2,12 @@ package com.huhuo.mobiletest.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
-import com.huhuo.mobiletest.adapter.VoiceTestDetailsAdapter;
+import com.huhuo.mobiletest.adapter.PingTestDetailsAdapter;
 import com.huhuo.mobiletest.adapter.WebPageTestDetailsAdapter;
 import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.constants.TestCode;
@@ -25,10 +24,10 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 
-@ContentView(R.layout.activity_voice_test_details)
-public class VoiceTestDetailsActivity extends BaseActivity {
+@ContentView(R.layout.activity_ping_test_details)
+public class PingTestDetailsActivity extends BaseActivity {
 
-    private static final String TAG = VoiceTestDetailsActivity.class.getSimpleName();
+    private static final String TAG = PingTestDetailsActivity.class.getSimpleName();
 
     @ViewInject(R.id.tv_test_level)
     private TextView tvTestLevel;
@@ -51,7 +50,7 @@ public class VoiceTestDetailsActivity extends BaseActivity {
     @ViewInject(R.id.lv_webpage_test)
     private ListView lvTestItem;
 
-    private VoiceTestDetailsAdapter adapter;
+    private PingTestDetailsAdapter adapter;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -72,7 +71,8 @@ public class VoiceTestDetailsActivity extends BaseActivity {
 
         if (summaryModel != null) {
             float testLevel = summaryModel.getTestLevel();
-            tvTestLevel.setVisibility(View.GONE);
+            String level = getLevel(testLevel);
+            tvTestLevel.setText(level);
 
             rbTestLevel.setRating(testLevel);
             tvTestNetType.setText("网络类型：" + summaryModel.getNetType());
@@ -95,7 +95,7 @@ public class VoiceTestDetailsActivity extends BaseActivity {
                     Logger.d(TAG, "TestItemModel item:" + model);
                 }
 
-                adapter = new VoiceTestDetailsAdapter(list);
+                adapter = new PingTestDetailsAdapter(list);
                 lvTestItem.setAdapter(adapter);
             }
         }

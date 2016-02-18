@@ -253,6 +253,7 @@ public class VoiceTestActivity extends BaseActivity {
 
 
             //测试完毕，将语音测试数据插入数据库...
+            summaryModel.setNetType(networkType);
             summaryModel.setTestDate(new Date());
             summaryModel.setTestLevel(getTestLevel(inteval));
             summaryModel.setTestType(TestCode.TEST_TYPE_VOICE);

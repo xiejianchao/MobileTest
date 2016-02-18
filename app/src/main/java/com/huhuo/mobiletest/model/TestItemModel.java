@@ -16,6 +16,7 @@ public class TestItemModel {
     @DatabaseField(generatedId = true)
     private int id;
 
+    //网络类型
     @DatabaseField
     private String netType;
 
@@ -31,6 +32,18 @@ public class TestItemModel {
     @DatabaseField
     private float delayTime;
 
+    //测试的成功率
+    @DatabaseField
+    private float successRate;
+
+    //发送次数
+    @DatabaseField
+    public int sendCount;
+
+    //接收次数
+    @DatabaseField
+    private int receiveCount;
+
     //最快速率
     @DatabaseField
     private float fastestSpeed;
@@ -43,6 +56,7 @@ public class TestItemModel {
     @DatabaseField
     private int bufferCount;
 
+    //拨打时间
     @DatabaseField
     private int callTime;
 
@@ -153,6 +167,30 @@ public class TestItemModel {
         this.result = result;
     }
 
+    public float getSuccessRate() {
+        return successRate;
+    }
+
+    public void setSuccessRate(float successRate) {
+        this.successRate = successRate;
+    }
+
+    public int getSendCount() {
+        return sendCount;
+    }
+
+    public void setSendCount(int sendCount) {
+        this.sendCount = sendCount;
+    }
+
+    public int getReceiveCount() {
+        return receiveCount;
+    }
+
+    public void setReceiveCount(int receiveCount) {
+        this.receiveCount = receiveCount;
+    }
+
     @Override
     public String toString() {
         return "TestItemModel{" +
@@ -161,6 +199,9 @@ public class TestItemModel {
                 ", target='" + target + '\'' +
                 ", totalSize=" + totalSize +
                 ", delayTime=" + delayTime +
+                ", successRate=" + successRate +
+                ", sendCount=" + sendCount +
+                ", receiveCount=" + receiveCount +
                 ", fastestSpeed=" + fastestSpeed +
                 ", avgSpeed=" + avgSpeed +
                 ", bufferCount=" + bufferCount +

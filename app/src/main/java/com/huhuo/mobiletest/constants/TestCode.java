@@ -14,7 +14,7 @@ public class TestCode {
     public static final int TEST_TYPE_SPEED = 2;
     public static final int TEST_TYPE_VIDEO = 3;
     public static final int TEST_TYPE_VOICE = 4;
-    public static final int TEST_TYPE_CONNECTION = 5;
+    public static final int TEST_TYPE_PING = 5;
 
     public static String getTestName(int testType) {
         Context context = MobileTestApplication.getInstance().getApplicationContext();
@@ -32,7 +32,7 @@ public class TestCode {
             case TEST_TYPE_VOICE:
                 typeName = context.getString(R.string.test_type_voice);
                 break;
-            case TEST_TYPE_CONNECTION:
+            case TEST_TYPE_PING:
                 typeName = context.getString(R.string.test_type_conn);
                 break;
             default:

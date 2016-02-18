@@ -77,6 +77,7 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
     @Override
     public void onBindViewHolder(final TestResultAdapter.MyViewHolder holder, final int position) {
         final TestResultSummaryModel model = models.get(position);
+        Logger.v(TAG,"model:" + model);
         Context context = MobileTestApplication.getInstance().getApplicationContext();
         String testDate = DateUtil.getFormatTime(model.getTestDate(), DateUtil.PATTERN_STANDARD);
         float time = (model.getDelayTime() / 1000);

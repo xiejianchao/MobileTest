@@ -16,8 +16,10 @@ import com.huhuo.mobiletest.adapter.PingTestAdapter;
 import com.huhuo.mobiletest.constants.TestCode;
 import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.CommonTestModel;
+import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.utils.Logger;
+import com.huhuo.mobiletest.utils.NetWorkUtil;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -35,10 +37,10 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 
-@ContentView(R.layout.activity_connect)
-public class ConnectActivity extends BaseActivity {
+@ContentView(R.layout.activity_ping_test)
+public class PingTestActivity extends BaseActivity {
 
-    private static final String TAG = ConnectActivity.class.getSimpleName();
+    private static final String TAG = PingTestActivity.class.getSimpleName();
 
 
     @ViewInject(R.id.rv_ping)
@@ -62,6 +64,7 @@ public class ConnectActivity extends BaseActivity {
     public final static int PING_TIMEOUT = 10;
 
     private long startTime;
+    private TestResultSummaryModel summaryModel;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -70,6 +73,9 @@ public class ConnectActivity extends BaseActivity {
         recyclerView.setLayoutManager(mLayoutManager);
 //        recyclerView.addItemDecoration(new DividerItemDecoration(this,
 //                DividerItemDecoration.VERTICAL_LIST));
+
+        summaryModel = new TestResultSummaryModel();
+        DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
 
         //初始化待测试数据
         initData2RecycleView();
@@ -155,16 +161,28 @@ public class ConnectActivity extends BaseActivity {
             final CommonTestModel model = getTestModel(url);
             model.setDelay(avg);
             model.setIsStart(true);
+            float rate = 0;
             if (loss <= 0) {
-                model.setSuccessRate(100);
+                rate = 100F;
             } else {
-                model.setSuccessRate((1 - (loss / 10)) * 100);
+                rate = (1 - (loss / 10)) * 100;
             }
 
+            model.setSuccessRate(rate);
             adapter.update(testIndex);
 
             Logger.d(TAG, "测试结果：" + sb.toString());
 
+            String networkType = NetWorkUtil.getCurrentNetworkType();
+            TestItemModel testItemModel = new TestItemModel();
+            testItemModel.setNetType(networkType);
+            testItemModel.setTarget(model.getName());
+            testItemModel.setSendCount(PING_COUNT);
+            testItemModel.setReceiveCount(PING_COUNT - loss);
+            testItemModel.setDelayTime(avg);
+            testItemModel.setSuccessRate(rate);
+            testItemModel.setTestResultSummaryModel(summaryModel);
+            DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
 
             if (testIndex == list.size() - 1) {
                 Logger.d(TAG,"第" + (testIndex + 1) + "项测试完毕，一共有：" + (list.size()) + "项");
@@ -173,32 +191,18 @@ public class ConnectActivity extends BaseActivity {
                     delayTotal += m.getDelay();
                 }
 
-                int level = 0;
+//                int level = 0;
                 float avgTotalDelay = delayTotal / list.size();
-                if (avgTotalDelay < 60) {
-                    level = 5;
-                    tvAllInfo.setText(context.getString(R.string.test_speed_level_customer
-                            ,getString(R.string.test_speed_level_faster)));
-                } else if (avgTotalDelay > 60 && avgTotalDelay < 100) {
-                    level = 4;
-                    tvAllInfo.setText(context.getString(R.string.test_speed_level_customer
-                            ,getString(R.string.test_speed_level_general)));
-                } else if (avgTotalDelay > 100){
-                    level = 3;
-                    tvAllInfo.setText(context.getString(R.string.test_speed_level_customer
-                            ,getString(R.string.test_speed_level_very_slow)));
-                } else {
-                    level = 1;
-                    tvAllInfo.setText(context.getString(R.string.test_speed_level_customer
-                            ,getString(R.string.test_speed_level_timeout)));
-                }
+                String speedStr = getNetSpeedResult(avgTotalDelay);
+                int level = getNetSpeedLevel(avgTotalDelay);
+                tvAllInfo.setText(speedStr);
 
                 long endTime = System.currentTimeMillis();
 
-                TestResultSummaryModel summaryModel = new TestResultSummaryModel();
+                summaryModel.setNetType(networkType);
                 summaryModel.setTestDate(new Date());
                 summaryModel.setTestLevel(level);
-                summaryModel.setTestType(TestCode.TEST_TYPE_CONNECTION);
+                summaryModel.setTestType(TestCode.TEST_TYPE_PING);
                 summaryModel.setDelayTime((endTime - startTime));
                 DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
                 return;
@@ -212,6 +216,38 @@ public class ConnectActivity extends BaseActivity {
             tvAllInfo.setText(getString(R.string.common_test_item,testModel.getName()));
         }
     };
+
+    private String getNetSpeedResult(float avgTotalDelay){
+        String sppedStr = null;
+        if (avgTotalDelay < 60) {
+            sppedStr = context.getString(R.string.test_speed_level_customer
+                    ,getString(R.string.test_speed_level_faster));
+        } else if (avgTotalDelay > 60 && avgTotalDelay < 100) {
+            sppedStr = context.getString(R.string.test_speed_level_customer
+                    ,getString(R.string.test_speed_level_general));
+        } else if (avgTotalDelay > 100){
+            sppedStr = context.getString(R.string.test_speed_level_customer
+                    ,getString(R.string.test_speed_level_very_slow));
+        } else {
+            sppedStr = context.getString(R.string.test_speed_level_customer
+                    ,getString(R.string.test_speed_level_timeout));
+        }
+        return sppedStr;
+    }
+
+    private int getNetSpeedLevel(float avgTotalDelay){
+        int level;
+        if (avgTotalDelay < 60) {
+            level = 5;
+        } else if (avgTotalDelay > 60 && avgTotalDelay < 100) {
+            level = 4;
+        } else if (avgTotalDelay > 100){
+            level = 3;
+        } else {
+            level = 1;
+        }
+        return level;
+    }
 
     private CommonTestModel getTestModel(String url) {
         CommonTestModel retVal = null;

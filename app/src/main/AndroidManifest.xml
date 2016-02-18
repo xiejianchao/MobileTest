@@ -78,12 +78,12 @@
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
         <activity
-            android:name=".ui.activity.NetSpeedTestActivity"
+            android:name=".ui.activity.DownloadTestActivity"
             android:label="@string/test_type_speed"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
         <activity
-            android:name=".ui.activity.ConnectActivity"
+            android:name=".ui.activity.PingTestActivity"
             android:label="@string/test_type_conn"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
@@ -104,6 +104,16 @@
         </activity>
         <activity
             android:name=".ui.activity.DownloadTestDetailsActivity"
+            android:label="@string/title_activity_web_page_test_details"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
+        <activity
+            android:name=".ui.activity.VoiceTestDetailsActivity"
+            android:label="@string/title_activity_web_page_test_details"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
+        <activity
+            android:name=".ui.activity.PingTestDetailsActivity"
             android:label="@string/title_activity_web_page_test_details"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>

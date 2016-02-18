@@ -17,6 +17,7 @@ import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.ui.activity.DownloadTestDetailsActivity;
+import com.huhuo.mobiletest.ui.activity.PingTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.VoiceTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.WebPageTestDetailsActivity;
 import com.huhuo.mobiletest.utils.Logger;
@@ -30,7 +31,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
 
 @ContentView(R.layout.fragment_test_result)
 public class TestResultFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener,
@@ -92,16 +92,17 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
             final int testType = model.getTestType();
             int id = model.getId();
             switch (testType) {
-                case TestCode.TEST_TYPE_WEBPAGE:
-                    //网页测试
+                case TestCode.TEST_TYPE_WEBPAGE://网页测试
                     toTestDetailsActivity(WebPageTestDetailsActivity.class,id);
                     break;
-                case TestCode.TEST_TYPE_SPEED:
-                    //速度测试
+                case TestCode.TEST_TYPE_SPEED://速度测试
                     toTestDetailsActivity(DownloadTestDetailsActivity.class,id);
                     break;
-                case TestCode.TEST_TYPE_VOICE:
+                case TestCode.TEST_TYPE_VOICE://语音测试
                     toTestDetailsActivity(VoiceTestDetailsActivity.class,id);
+                    break;
+                case TestCode.TEST_TYPE_PING://PING测试
+                    toTestDetailsActivity(PingTestDetailsActivity.class,id);
                     break;
                 default:
                     ToastUtil.showShortToast("暂时只显示网页测试详情，其他类型正在等待合并代码");
