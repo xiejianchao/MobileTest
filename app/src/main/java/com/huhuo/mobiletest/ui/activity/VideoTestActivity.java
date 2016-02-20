@@ -14,10 +14,12 @@ import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.constants.TestCode;
+import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.model.VideoInfo;
 import com.huhuo.mobiletest.utils.DisplayUtil;
 import com.huhuo.mobiletest.utils.Logger;
+import com.huhuo.mobiletest.utils.NetWorkUtil;
 import com.huhuo.mobiletest.utils.TrafficUtil;
 import com.huhuo.mobiletest.video.util.VideoUtil;
 import com.huhuo.mobiletest.video.VideoPlayer;
@@ -26,6 +28,10 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -73,12 +79,22 @@ public class VideoTestActivity extends BaseActivity {
     private DecimalFormat df;
     private boolean START_TEST = true;
     private static boolean START_TIMER = true;
+    private int videoSize;
+
+    private static final String VIDEO_URL = Constants.PATH2;
 
     private ArrayList<Long> speedList = new ArrayList<Long>();
+    private TestResultSummaryModel summaryModel;
 
     @Override
     protected void init(Bundle savedInstanceState) {
         final long start = System.currentTimeMillis();
+
+        getVideoSize();
+
+        summaryModel = new TestResultSummaryModel();
+        DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
+
         updateHeight();
         skbProgress.setOnSeekBarChangeListener(new SeekBarChangeEvent());
         player = new VideoPlayer(surfaceView, skbProgress);
@@ -93,6 +109,38 @@ public class VideoTestActivity extends BaseActivity {
 
         long end = System.currentTimeMillis();
         Logger.e(TAG, "activity初始化耗时：" + (end - start));
+    }
+
+    private void getVideoSize() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Logger.v(TAG,"现在开始计算在线视频大小...");
+                    URL url = new URL(VIDEO_URL);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setConnectTimeout(10 * 1000);
+                    conn.setRequestMethod("GET");
+                    int code = conn.getResponseCode();
+                    if (code == 200) {
+                        videoSize = conn.getContentLength();
+                            float size = (float)videoSize / 1024;
+                        Logger.d(TAG,"状态正常，在线播放视频大小为：" + size + "kb");
+                    } else {
+                        int length = conn.getContentLength();
+                        Logger.d(TAG,"服务器返回状态不正常，code:，"+ code +",在线播放视频大小为：" + length);
+                    }
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Logger.v(TAG,"计算在线视频大小结束");
+            }
+        }).start();
+
     }
 
     @Event(value = R.id.btn_stop_test)
@@ -212,9 +260,6 @@ public class VideoTestActivity extends BaseActivity {
 
         btnStop.setText("重新测试");
 
-
-        final TestResultSummaryModel summaryModel = new TestResultSummaryModel();
-
         float testLevel = 0;
         if (bufferingTime < 3000) {
             testLevel = 5;
@@ -224,11 +269,22 @@ public class VideoTestActivity extends BaseActivity {
             testLevel = 1;
         }
 
-        //测试时间
+
+        String networkType = NetWorkUtil.getCurrentNetworkType();
+        TestItemModel testItemModel = new TestItemModel();
+        testItemModel.setNetType(networkType);
+        testItemModel.setTotalSize(videoSize);
+        testItemModel.setPlayCount(1);
+        testItemModel.setAvgSpeed(Float.valueOf(avgSpeedStr));
+        testItemModel.setBufferCount(bufferingCount);
+        testItemModel.setTestResultSummaryModel(summaryModel);
+        DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
+
         summaryModel.setTestDate(new Date());
         summaryModel.setTestLevel(testLevel);
         summaryModel.setTestType(TestCode.TEST_TYPE_VIDEO);
         summaryModel.setDelayTime(bufferingTime);
+        summaryModel.setNetType(networkType);
         DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
     }
 
@@ -311,7 +367,7 @@ public class VideoTestActivity extends BaseActivity {
     }
 
     private void startPlayOnlineVideo(){
-        player.playUrl(Constants.PATH2);
+        player.playUrl(VIDEO_URL);
         startTimer();
     }
 

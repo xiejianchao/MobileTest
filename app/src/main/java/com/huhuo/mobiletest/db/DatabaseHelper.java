@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-    private static final int DB_VERSION = 3;
+    private static final int DB_VERSION = 1;
     private static String USER_DB_NAME;
     private static final String DATABASE_NAME_BASE = "mobile_test.db";
 

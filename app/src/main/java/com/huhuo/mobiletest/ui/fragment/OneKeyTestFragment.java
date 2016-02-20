@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.ui.activity.PingTestActivity;
 import com.huhuo.mobiletest.ui.activity.DownloadTestActivity;
+import com.huhuo.mobiletest.ui.activity.SynthesizeActivity;
 import com.huhuo.mobiletest.ui.activity.VideoTestActivity;
 import com.huhuo.mobiletest.ui.activity.VoiceTestActivity;
 import com.huhuo.mobiletest.ui.activity.WebPageTestActivity;
@@ -101,7 +102,7 @@ public class OneKeyTestFragment extends BaseFragment {
     }
     @Event(value = R.id.synthesize_test)
     private void synthesizeClick(View view) {
-        ToastUtil.showShortToast("尚未开发完毕");
+        startActivity(new Intent(context,SynthesizeActivity.class));
     }
 
 

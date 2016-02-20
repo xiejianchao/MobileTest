@@ -78,13 +78,16 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
     public void onBindViewHolder(final TestResultAdapter.MyViewHolder holder, final int position) {
         final TestResultSummaryModel model = models.get(position);
         Logger.v(TAG,"model:" + model);
-        Context context = MobileTestApplication.getInstance().getApplicationContext();
-        String testDate = DateUtil.getFormatTime(model.getTestDate(), DateUtil.PATTERN_STANDARD);
         float time = (model.getDelayTime() / 1000);
         final String testDelay = df.format(time);
 
         holder.tvTestTypeName.setText(TestCode.getTestName(model.getTestType()));
-        holder.tvTestDate.setText(testDate);
+        if (model.getTestDate() != null) {
+            String testDate = DateUtil.getFormatTime(model.getTestDate(), DateUtil.PATTERN_STANDARD);
+            holder.tvTestDate.setText(testDate);
+        } else {
+            Logger.w(TAG,"测试日期字段为null");
+        }
         holder.tvTestDelay.setText(testDelay);
         holder.rbTestLevel.setRating(model.getTestLevel());
 

@@ -69,10 +69,6 @@
             android:exported="false"/>
 
         <activity
-            android:name=".ui.activity.TestActivity"
-            android:theme="@style/AppMaterialBaseTheme.Default">
-        </activity>
-        <activity
             android:name=".ui.activity.WebPageTestActivity"
             android:label="@string/test_type_webpage"
             android:theme="@style/AppMaterialBaseTheme.Default">
@@ -115,6 +111,16 @@
         <activity
             android:name=".ui.activity.PingTestDetailsActivity"
             android:label="@string/title_activity_web_page_test_details"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
+        <activity
+            android:name=".ui.activity.VideoTestDetailsActivity"
+            android:label="@string/title_activity_web_page_test_details"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
+        <activity
+            android:name=".ui.activity.SynthesizeActivity"
+            android:label="@string/title_activity_synthesize"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
     </application>

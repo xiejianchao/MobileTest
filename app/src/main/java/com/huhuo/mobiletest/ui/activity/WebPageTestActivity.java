@@ -12,6 +12,7 @@ import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.model.WebPageTestModel;
 import com.huhuo.mobiletest.net.callback.DefaultHttpRequestCallBack;
+import com.huhuo.mobiletest.test.WebPageTest;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
 import com.huhuo.mobiletest.utils.ToastUtil;
@@ -84,12 +85,13 @@ public class    WebPageTestActivity extends BaseActivity {
 
     private long start;
 
+    private long allTime;
+
     private TestResultSummaryModel summaryModel;
 
     @Override
     protected void init(Bundle savedInstanceState) {
         df = new DecimalFormat("#.##");
-
         initTestItem();
 
         nextTestItem = 0;
@@ -99,166 +101,105 @@ public class    WebPageTestActivity extends BaseActivity {
         summaryModel = new TestResultSummaryModel();
         DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
 
-        testWebPage(model);
+//        testWebPage(model);
+
+        WebPageTest test = new WebPageTest((ArrayList)list);
+        test.setTestListener(listener);
+        test.test();
     }
 
-    private void initTestItem() {
-        WebPageTestModel model = new WebPageTestModel();
-        model.setUrl(getString(R.string.test_10086_url));
-        model.setName(getString(R.string.test_website_10086));
-        model.setProgressView(mobileProgressView);
-        model.setTextView(tv10086Info);
-        list.add(model);
+    private WebPageTest.WebPageTestListener listener = new WebPageTest.WebPageTestListener() {
+        long start = System.currentTimeMillis();
+        @Override
+        public void onPrepare(WebPageTestModel model) {
+            final ColorfulRingProgressView progressView = model.getProgressView();
+            final TextView tvTestInfo = model.getTextView();
+            tvTestAllInfo.setText("正在测试" + tvTestInfo.getText().toString());
+            progressView.setPercent(3);
+        }
 
-        model = new WebPageTestModel();
-        model.setUrl(getString(R.string.test_baidu_url));
-        model.setName(getString(R.string.test_website_baidu));
-        model.setProgressView(baiduProgressView);
-        model.setTextView(tvBaiduInfo);
-        list.add(model);
+        @Override
+        public void onStarted(WebPageTestModel model) {
+            model.getProgressView().setPercent(15);
+            start = System.currentTimeMillis();
+        }
 
-        model = new WebPageTestModel();
-        model.setUrl(getString(R.string.test_tencent_url));
-        model.setName(getString(R.string.test_website_tencent));
-        model.setProgressView(tencentProgressView);
-        model.setTextView(tvTencentInfo);
-        list.add(model);
-
-        model = new WebPageTestModel();
-        model.setUrl(getString(R.string.test_youku_url));
-        model.setName(getString(R.string.test_website_youku));
-        model.setProgressView(youkuProgressView);
-        model.setTextView(tvYoukuInfo);
-        list.add(model);
-
-        model = new WebPageTestModel();
-        model.setUrl(getString(R.string.test_sina_url));
-        model.setName(getString(R.string.test_website_sina));
-        model.setProgressView(sinaProgressView);
-        model.setTextView(tvSinaInfo);
-        list.add(model);
-
-        model = new WebPageTestModel();
-        model.setUrl(getString(R.string.test_taobao_url));
-        model.setName(getString(R.string.test_website_taobao));
-        model.setProgressView(taobaoProgressView);
-        model.setTextView(tvTaobaoInfo);
-        list.add(model);
-
-    }
-    @Event(value = R.id.btn_download)
-    private void downloadClick(View view) {
-        nextTestItem = 0;
-        final WebPageTestModel model = list.get(nextTestItem);
-        testWebPage(model);
-    }
-
-    private long allTime;
-
-    private void testWebPage(final WebPageTestModel model) {
-        final String url = model.getUrl();
-        Logger.d(TAG,"测试URL:" + url);
-        RequestParams params = new RequestParams(url);
-
-        final ColorfulRingProgressView progressView = model.getProgressView();
-        final TextView tvTestInfo = model.getTextView();
-
-        tvTestAllInfo.setText("正在测试" + tvTestInfo.getText().toString());
-
-        SystemClock.sleep(500);
-
-        progressView.setPercent(3);
-
-        x.http().get(params,new DefaultHttpRequestCallBack<String>(){
-
-            String percentStr = null;
-            long start = System.currentTimeMillis();
-            @Override
-            public void onStarted() {
-                progressView.setPercent(15);
+        @Override
+        public void onError(WebPageTestModel model,Throwable e, boolean isOnCallback) {
+            ToastUtil.showShortToast("下载失败，error:" + e == null ? "" : e.getMessage());
+            if (e != null) {
+                Logger.e(TAG, "onError:" + e.toString());
+            } else {
+                Logger.e(TAG, "网络错误，下载失败");
             }
+        }
 
-            @Override
-            public void onError(Throwable e, boolean isOnCallback) {
-                ToastUtil.showShortToast("下载失败，error:" + e == null ? "" : e.getMessage());
-                if (e != null) {
-                    Logger.e(TAG, "onError:" + e.toString());
-                } else {
-                    Logger.e(TAG, "网络错误，下载失败");
-                }
+        @Override
+        public void onLoading(WebPageTestModel model,long total, long current, boolean isDownloading) {
+            float percent = ((float) current / total) * 100;
+            String percentStr = df.format(percent) + "%";
+
+            showStr = "总大小：" + total + " \n当前下载：" + current + " " + "\n进度："
+                    + percentStr;
+
+            Logger.w(TAG, "onLoading:" + showStr);
+        }
+
+        @Override
+        public void onSuccess(WebPageTestModel model, String result) {
+            model.getProgressView().setPercent(80);
+            Logger.d(TAG, "下载网页成功1：" + result);
+            long end = System.currentTimeMillis();
+
+            float webPageSize = (float)result.length() / 1024;
+            long loadPageTime = (end - start);
+            float loadPageTimeSecond = (float)loadPageTime / 1000;
+
+            float speed = webPageSize / loadPageTimeSecond;
+            String speedStr = df.format(speed);
+
+            float kbps = (float)webPageSize * 8 / loadPageTimeSecond;
+            speedList.add(kbps);
+
+            Logger.d(TAG, "网页大小：" + df.format(webPageSize) + "kb");
+
+            allTime += loadPageTime;
+            Logger.d(TAG, "加载网页耗时：" + loadPageTime + " 毫秒");
+            Logger.d(TAG, "加载网页耗时：" + loadPageTimeSecond + " 秒");
+            Logger.d(TAG, "加载网页速率：" + speedStr + "KB/秒");
+
+            model.getTextView().append("\n " + df.format(kbps) + "kbps" + "");
+
+            String networkType = NetWorkUtil.getCurrentNetworkType();
+            TestItemModel testItemModel = new TestItemModel();
+            testItemModel.setNetType(networkType);
+            testItemModel.setTarget(model.getName());
+            testItemModel.setTotalSize(result.length());
+            testItemModel.setDelayTime(loadPageTime);
+            testItemModel.setAvgSpeed(speed);
+            testItemModel.setTestResultSummaryModel(summaryModel);
+            DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
+
+        }
+
+        @Override
+        public void onFinished(WebPageTestModel model) {
+            try {
+                model.getProgressView().setPercent(100);
+                Logger.d(TAG, "onFinished");
+
+            } catch (Exception e) {
+                Logger.e(TAG,"onFinished",e);
             }
+        }
 
-            @Override
-            public void onLoading(long totalSize, long bytesWritten, boolean isDownloading) {
-                float percent = ((float) bytesWritten / totalSize) * 100;
-                percentStr = df.format(percent) + "%";
+        @Override
+        public void onEnd() {
+            cacuAvgSpeed();
+        }
+    };
 
-                showStr = "总大小：" + totalSize + " \n当前下载：" + bytesWritten + " " + "\n进度："
-                        + percentStr;
 
-                Logger.w(TAG, "onLoading:" + showStr);
-            }
-
-            @Override
-            public void onSuccess(String result) {
-                progressView.setPercent(80);
-                Logger.d(TAG, "下载网页成功1：" + result);
-                long end = System.currentTimeMillis();
-
-                float webPageSize = (float)result.length() / 1024;
-                long loadPageTime = (end - start);
-                float loadPageTimeSecond = (float)loadPageTime / 1000;
-
-                float speed = webPageSize / loadPageTimeSecond;
-                String speedStr = df.format(speed);
-
-                float kbps = (float)webPageSize * 8 / loadPageTimeSecond;
-                speedList.add(kbps);
-
-                Logger.d(TAG, "网页大小：" + df.format(webPageSize) + "kb");
-
-                allTime += loadPageTime;
-                Logger.d(TAG, "加载网页耗时：" + loadPageTime + " 毫秒");
-                Logger.d(TAG, "加载网页耗时：" + loadPageTimeSecond + " 秒");
-                Logger.d(TAG, "加载网页速率：" + speedStr + "KB/秒");
-
-                tvTestInfo.append("\n " + df.format(kbps) + "kbps" + "");
-
-                String networkType = NetWorkUtil.getCurrentNetworkType();
-                TestItemModel testItemModel = new TestItemModel();
-                testItemModel.setNetType(networkType);
-                testItemModel.setTarget(model.getName());
-                testItemModel.setTotalSize(result.length());
-                testItemModel.setDelayTime(loadPageTime);
-                testItemModel.setAvgSpeed(speed);
-                testItemModel.setTestResultSummaryModel(summaryModel);
-                DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
-
-                if (nextTestItem <= list.size() - 1) {
-                    nextTestItem ++;
-                    if (nextTestItem == list.size()) {
-                        Logger.e(TAG, "执行测试index超过总量");
-                        cacuAvgSpeed();
-                        return;
-                    }
-                    testWebPage(list.get(nextTestItem));
-                }
-
-            }
-
-            @Override
-            public void onFinished() {
-                super.onFinished();
-                try {
-                    progressView.setPercent(100);
-                    Logger.d(TAG, "onFinished");
-
-                } catch (Exception e) {
-                    Logger.e(TAG,"onFinished",e);
-                }
-            }
-        });
-    }
 
     private void cacuAvgSpeed() {
         final int testCount = speedList.size();
@@ -306,6 +247,51 @@ public class    WebPageTestActivity extends BaseActivity {
                 Logger.d(TAG,"从数据库中取出的测试结果：" + model);
             }
         }
+
+    }
+
+    private void initTestItem() {
+        WebPageTestModel model = new WebPageTestModel();
+        model.setUrl(getString(R.string.test_10086_url));
+        model.setName(getString(R.string.test_website_10086));
+        model.setProgressView(mobileProgressView);
+        model.setTextView(tv10086Info);
+        list.add(model);
+
+        model = new WebPageTestModel();
+        model.setUrl(getString(R.string.test_baidu_url));
+        model.setName(getString(R.string.test_website_baidu));
+        model.setProgressView(baiduProgressView);
+        model.setTextView(tvBaiduInfo);
+        list.add(model);
+
+        model = new WebPageTestModel();
+        model.setUrl(getString(R.string.test_tencent_url));
+        model.setName(getString(R.string.test_website_tencent));
+        model.setProgressView(tencentProgressView);
+        model.setTextView(tvTencentInfo);
+        list.add(model);
+
+        model = new WebPageTestModel();
+        model.setUrl(getString(R.string.test_youku_url));
+        model.setName(getString(R.string.test_website_youku));
+        model.setProgressView(youkuProgressView);
+        model.setTextView(tvYoukuInfo);
+        list.add(model);
+
+        model = new WebPageTestModel();
+        model.setUrl(getString(R.string.test_sina_url));
+        model.setName(getString(R.string.test_website_sina));
+        model.setProgressView(sinaProgressView);
+        model.setTextView(tvSinaInfo);
+        list.add(model);
+
+        model = new WebPageTestModel();
+        model.setUrl(getString(R.string.test_taobao_url));
+        model.setName(getString(R.string.test_website_taobao));
+        model.setProgressView(taobaoProgressView);
+        model.setTextView(tvTaobaoInfo);
+        list.add(model);
 
     }
 

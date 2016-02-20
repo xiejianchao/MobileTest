@@ -68,6 +68,10 @@ public class TestItemModel {
     @DatabaseField
     private boolean result;
 
+    //播放次数
+    @DatabaseField
+    private int playCount;
+
     @DatabaseField(canBeNull = true, foreign = true, foreignAutoRefresh = true)
     private TestResultSummaryModel testResultSummaryModel;
 
@@ -191,6 +195,14 @@ public class TestItemModel {
         this.receiveCount = receiveCount;
     }
 
+    public int getPlayCount() {
+        return playCount;
+    }
+
+    public void setPlayCount(int playCount) {
+        this.playCount = playCount;
+    }
+
     @Override
     public String toString() {
         return "TestItemModel{" +
@@ -208,6 +220,7 @@ public class TestItemModel {
                 ", callTime=" + callTime +
                 ", callType='" + callType + '\'' +
                 ", result=" + result +
+                ", playCount=" + playCount +
                 ", testResultSummaryModel=" + testResultSummaryModel +
                 '}';
     }

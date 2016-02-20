@@ -43,6 +43,7 @@ import java.util.TimerTask;
 public class DownloadTestActivity extends BaseActivity {
 
     private static final String TAG = DownloadTestActivity.class.getSimpleName();
+
     @ViewInject(R.id.circle_view)
     private DialChart03View chartView;
 

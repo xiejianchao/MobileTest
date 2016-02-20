@@ -7,7 +7,6 @@ import android.media.MediaPlayer.OnBufferingUpdateListener;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.SeekBar;
@@ -22,7 +21,7 @@ import java.util.TimerTask;
 
 public class VideoPlayer implements OnBufferingUpdateListener,
         OnCompletionListener, MediaPlayer.OnPreparedListener,
-        SurfaceHolder.Callback, MediaPlayer.OnInfoListener {
+        SurfaceHolder.Callback {
 
     private static final String TAG = VideoPlayer.class.getSimpleName();
 
@@ -88,7 +87,7 @@ public class VideoPlayer implements OnBufferingUpdateListener,
         start = System.currentTimeMillis();
         bufferingCount = 0;
         this.videoUrl = videoUrl;
-        //如果要求播放时，孩mediaplayer尚未创建，那就等surfaceCreated回调执行后再播放
+        //如果要求播放时，该mediaplayer尚未创建，那就等surfaceCreated回调执行后再播放
         if (mediaPlayer == null) {
             //等待SurfaceHolder.Callback回调执行后再播放
             notifyStartPlay = true;
@@ -96,11 +95,18 @@ public class VideoPlayer implements OnBufferingUpdateListener,
             initPlay();
         }
     }
+    private boolean mute;
+    public void setMute(boolean isMute) {
+        this.mute = isMute;
+    }
 
     private void initPlay(){
         try {
             mediaPlayer.reset();
             mediaPlayer.setDataSource(videoUrl);
+            if (mute) {
+                mediaPlayer.setVolume(0,0);
+            }
             mediaPlayer.prepare();//prepare之后自动播放
             //mediaPlayer.start();
         } catch (IllegalArgumentException e) {
@@ -160,7 +166,6 @@ public class VideoPlayer implements OnBufferingUpdateListener,
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnBufferingUpdateListener(this);
         mediaPlayer.setOnPreparedListener(this);
-        mediaPlayer.setOnInfoListener(this);
 
         if (notifyStartPlay) {
             initPlay();
@@ -172,11 +177,11 @@ public class VideoPlayer implements OnBufferingUpdateListener,
      * 通过onPrepared播放
      */
     @Override
-    public void onPrepared(MediaPlayer arg0) {
-        videoWidth = mediaPlayer.getVideoWidth();
-        videoHeight = mediaPlayer.getVideoHeight();
+    public void onPrepared(MediaPlayer mp) {
+        videoWidth = this.mediaPlayer.getVideoWidth();
+        videoHeight = this.mediaPlayer.getVideoHeight();
         if (videoHeight != 0 && videoWidth != 0) {
-            arg0.start();
+            mp.start();
         }
         bufferingCount ++;
         long end = System.currentTimeMillis();
@@ -222,24 +227,5 @@ public class VideoPlayer implements OnBufferingUpdateListener,
 
     public void setOnBufferingCompletion(OnBufferingCompletion listener) {
         this.onBufferingCompletion = listener;
-    }
-
-    @Override
-    public boolean onInfo(MediaPlayer mp, int what, int extra) {
-        switch (what) {
-            case MediaPlayer.MEDIA_INFO_BUFFERING_START:
-                //开始缓存，暂停播放
-                Logger.w(TAG, "开始缓冲" + extra);
-                break;
-            case MediaPlayer.MEDIA_INFO_BUFFERING_END:
-                //缓存完成，继续播放
-                Logger.w(TAG, "缓冲完成 extra:" + extra);
-                break;
-//			case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:
-//				//显示 下载速度
-//				Log.w(TAG, "download rate:" + extra);
-//				break;
-        }
-        return true;
     }
 }

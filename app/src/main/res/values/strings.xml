@@ -121,5 +121,6 @@
 
 
     <string name="media_ejected">储存卡已拔出，语音功能将暂时不可用</string>
+    <string name="title_activity_synthesize">综合测试</string>
 
 </resources>

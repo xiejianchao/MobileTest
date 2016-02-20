@@ -18,6 +18,7 @@ import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.ui.activity.DownloadTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.PingTestDetailsActivity;
+import com.huhuo.mobiletest.ui.activity.VideoTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.VoiceTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.WebPageTestDetailsActivity;
 import com.huhuo.mobiletest.utils.Logger;
@@ -103,6 +104,9 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
                     break;
                 case TestCode.TEST_TYPE_PING://PING测试
                     toTestDetailsActivity(PingTestDetailsActivity.class,id);
+                    break;
+                case TestCode.TEST_TYPE_VIDEO:
+                    toTestDetailsActivity(VideoTestDetailsActivity.class,id);
                     break;
                 default:
                     ToastUtil.showShortToast("暂时只显示网页测试详情，其他类型正在等待合并代码");
