@@ -191,7 +191,6 @@ public class PingTestActivity extends BaseActivity {
                     delayTotal += m.getDelay();
                 }
 
-//                int level = 0;
                 float avgTotalDelay = delayTotal / list.size();
                 String speedStr = getNetSpeedResult(avgTotalDelay);
                 int level = getNetSpeedLevel(avgTotalDelay);
@@ -203,8 +202,9 @@ public class PingTestActivity extends BaseActivity {
                 summaryModel.setTestDate(new Date());
                 summaryModel.setTestLevel(level);
                 summaryModel.setTestType(TestCode.TEST_TYPE_PING);
-                summaryModel.setDelayTime((endTime - startTime));
+                summaryModel.setDelayTime(avgTotalDelay);
                 DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
+                Logger.v(TAG,"全部测试完毕耗时：" + (endTime  - startTime) + "毫秒");
                 return;
             }
 
