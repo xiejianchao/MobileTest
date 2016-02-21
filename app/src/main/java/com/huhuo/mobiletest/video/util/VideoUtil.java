@@ -3,7 +3,12 @@ package com.huhuo.mobiletest.video.util;
 import android.util.Log;
 
 import com.huhuo.mobiletest.model.VideoInfo;
+import com.huhuo.mobiletest.utils.Logger;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 
 /**
@@ -42,6 +47,46 @@ public class VideoUtil {
             mmr.release();
         }
         return null;
+    }
+
+    private OnVideoSizeListener listener;
+
+    public interface OnVideoSizeListener {
+        void onSize(int size);
+    }
+
+    public static void getVideoSize(final String videoUrl, final OnVideoSizeListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Logger.v(TAG, "现在开始计算在线视频大小...");
+                    URL url = new URL(videoUrl);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setConnectTimeout(10 * 1000);
+                    conn.setRequestMethod("GET");
+                    int code = conn.getResponseCode();
+                    if (code == 200) {
+                        int videoSize = conn.getContentLength();
+                        if (listener != null) {
+                            listener.onSize(videoSize);
+                        }
+                        float size = (float) videoSize / 1024;
+                        Logger.d(TAG, "状态正常，在线播放视频大小为：" + size + "kb");
+                    } else {
+                        int length = conn.getContentLength();
+                        Logger.d(TAG, "服务器返回状态不正常，code:，" + code + ",在线播放视频大小为：" + length);
+                    }
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Logger.v(TAG, "计算在线视频大小结束");
+            }
+        }).start();
+
     }
 
 }

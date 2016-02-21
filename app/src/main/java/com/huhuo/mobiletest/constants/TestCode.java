@@ -15,6 +15,7 @@ public class TestCode {
     public static final int TEST_TYPE_VIDEO = 3;
     public static final int TEST_TYPE_VOICE = 4;
     public static final int TEST_TYPE_PING = 5;
+    public static final int TEST_TYPE_SYNTHESIZE = 6;
 
     public static String getTestName(int testType) {
         Context context = MobileTestApplication.getInstance().getApplicationContext();
@@ -34,6 +35,9 @@ public class TestCode {
                 break;
             case TEST_TYPE_PING:
                 typeName = context.getString(R.string.test_type_conn);
+                break;
+            case TEST_TYPE_SYNTHESIZE:
+                typeName = context.getString(R.string.test_type_synthesize);
                 break;
             default:
                 typeName = context.getString(R.string.test_type_unknow);

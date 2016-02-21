@@ -15,6 +15,8 @@ public class CommonTestModel {
     private int speedLevel;
     private String url;
 
+    private float percent;
+
     private boolean isStart;
 
     public float getSlowestSpeed() {
@@ -95,5 +97,30 @@ public class CommonTestModel {
 
     public void setIsStart(boolean isStart) {
         this.isStart = isStart;
+    }
+
+    public float getPercent() {
+        return percent;
+    }
+
+    public void setPercent(float percent) {
+        this.percent = percent;
+    }
+
+    @Override
+    public String toString() {
+        return "CommonTestModel{" +
+                "slowestSpeed=" + slowestSpeed +
+                ", fastestSpeed=" + fastestSpeed +
+                ", avgSpeed=" + avgSpeed +
+                ", currentSpeed=" + currentSpeed +
+                ", name='" + name + '\'' +
+                ", delay=" + delay +
+                ", successRate=" + successRate +
+                ", speedLevel=" + speedLevel +
+                ", url='" + url + '\'' +
+                ", percent=" + percent +
+                ", isStart=" + isStart +
+                '}';
     }
 }

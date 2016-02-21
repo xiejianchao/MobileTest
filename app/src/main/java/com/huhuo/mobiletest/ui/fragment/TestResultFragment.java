@@ -105,11 +105,8 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
                 case TestCode.TEST_TYPE_PING://PING测试
                     toTestDetailsActivity(PingTestDetailsActivity.class,id);
                     break;
-                case TestCode.TEST_TYPE_VIDEO:
+                case TestCode.TEST_TYPE_VIDEO://综合测试
                     toTestDetailsActivity(VideoTestDetailsActivity.class,id);
-                    break;
-                default:
-                    ToastUtil.showShortToast("暂时只显示网页测试详情，其他类型正在等待合并代码");
                     break;
             }
 

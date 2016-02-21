@@ -28,7 +28,6 @@ public class MobileTestApplication extends Application{
 
 
     private static MobileTestApplication application;
-    private String imUserId = null;
 
     @Override
     public void onCreate() {
@@ -40,7 +39,7 @@ public class MobileTestApplication extends Application{
 
         FileAccessor.initFileAccess();
         initDatabaseHelper();
-        initImageLoader(getApplicationContext());
+//        initImageLoader(getApplicationContext());
     }
 
     //测试代码，初始化数据库，根据当前登录用户的id创建db，随时删除
@@ -80,13 +79,4 @@ public class MobileTestApplication extends Application{
         // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config.build());
     }
-
-    public void setImUserId(String userId){
-        this.imUserId = userId;
-    }
-
-    public String getImUserId() {
-        return this.imUserId;
-    }
-
 }

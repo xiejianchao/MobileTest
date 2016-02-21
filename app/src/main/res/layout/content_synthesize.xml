@@ -10,11 +10,34 @@
     tools:context="com.huhuo.mobiletest.ui.activity.SynthesizeActivity"
     tools:showIn="@layout/activity_synthesize">
 
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_black"
+        android:visibility="gone"
+        />
+
+    <SeekBar
+        android:id="@+id/skbProgress"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1.0"
+        android:clickable="false"
+        android:max="100"
+        android:progress="2"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        />
+
     <TextView
-        android:id="@+id/tv_ping_info"
+        android:id="@+id/tv_test_info"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Ping测试开始..."
+        android:text="网页测试开始..."
         android:layout_margin="10dp"
         android:textColor="@color/color_white"
         />
@@ -26,7 +49,7 @@
         android:layout_marginBottom="80dp"
         android:scrollbars="vertical"
         android:fadingEdge="none"
-        android:layout_below="@id/tv_ping_info"
+        android:layout_below="@id/tv_test_info"
         android:visibility="visible"
         />
 

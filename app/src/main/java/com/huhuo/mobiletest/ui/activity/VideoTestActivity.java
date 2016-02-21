@@ -89,21 +89,24 @@ public class VideoTestActivity extends BaseActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         final long start = System.currentTimeMillis();
-
-        getVideoSize();
-
+        timer = new Timer();
+        VideoUtil.getVideoSize(VIDEO_URL,onVideoSizeListener);
         summaryModel = new TestResultSummaryModel();
         DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
 
         updateHeight();
+
         skbProgress.setOnSeekBarChangeListener(new SeekBarChangeEvent());
         player = new VideoPlayer(surfaceView, skbProgress);
         player.setOnBufferingCompletion(onBufferingCompletion);
 
         df = new DecimalFormat("#.##");
 
-        timer = new Timer();
         oldTraffic = TrafficUtil.getMyRxBytes();
+
+//        timer.schedule(task, 1000, 1000);
+//        player.playUrl(VIDEO_URL);
+//        startTimer();
 
         tvView.setOnClickListener(handlerClickListern);
 
@@ -111,37 +114,14 @@ public class VideoTestActivity extends BaseActivity {
         Logger.e(TAG, "activity初始化耗时：" + (end - start));
     }
 
-    private void getVideoSize() {
+    private VideoUtil.OnVideoSizeListener onVideoSizeListener = new VideoUtil.OnVideoSizeListener() {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Logger.v(TAG,"现在开始计算在线视频大小...");
-                    URL url = new URL(VIDEO_URL);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setConnectTimeout(10 * 1000);
-                    conn.setRequestMethod("GET");
-                    int code = conn.getResponseCode();
-                    if (code == 200) {
-                        videoSize = conn.getContentLength();
-                            float size = (float)videoSize / 1024;
-                        Logger.d(TAG,"状态正常，在线播放视频大小为：" + size + "kb");
-                    } else {
-                        int length = conn.getContentLength();
-                        Logger.d(TAG,"服务器返回状态不正常，code:，"+ code +",在线播放视频大小为：" + length);
-                    }
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
-                Logger.v(TAG,"计算在线视频大小结束");
-            }
-        }).start();
-
-    }
+        @Override
+        public void onSize(int size) {
+            videoSize = size;
+        }
+    };
 
     @Event(value = R.id.btn_stop_test)
     private void stopTestClick(View view) {
@@ -191,8 +171,6 @@ public class VideoTestActivity extends BaseActivity {
                 Logger.e(TAG,"调整宽高耗时：" + (end - start));
             }
         }).start();
-
-
     }
 
     class SeekBarChangeEvent implements SeekBar.OnSeekBarChangeListener {
@@ -239,10 +217,10 @@ public class VideoTestActivity extends BaseActivity {
         stopPlay();
 
         float time = ((float) bufferingTime / 1000);
-        final String formatTime = df.format(time);
+        final String playDelayTime = df.format(time);
 
         Logger.e(TAG, "首播缓冲时间："
-                + (bufferingTime < 1000 ? bufferingTime : formatTime + "秒"));
+                + (bufferingTime < 1000 ? bufferingTime : playDelayTime + "秒"));
 
         tvSpeedInfo.setText("测试结束");
         tvSpeed.setText(null);
@@ -256,7 +234,7 @@ public class VideoTestActivity extends BaseActivity {
         String avgSpeedStr = getAvgSpeed();
         tvVideoTestResult.append("平均速度：" + avgSpeedStr + "kbps" + "\n");
         tvVideoTestResult.append("缓冲次数：" + bufferingCount + "\n");
-        tvVideoTestResult.append("首播延时：" + formatTime + "\n");
+        tvVideoTestResult.append("首播延时：" + playDelayTime + "\n");
 
         btnStop.setText("重新测试");
 
@@ -318,7 +296,7 @@ public class VideoTestActivity extends BaseActivity {
                 Logger.v(TAG, "本次新获取的流量：" + (newTraffic - oldTraffic) + "kbp");
                 oldTraffic = newTraffic;
             } else {
-//                Logger.v(TAG,"现在暂停获取流量...");
+                Logger.v(TAG,"现在暂停获取流量...");
             }
 
         }

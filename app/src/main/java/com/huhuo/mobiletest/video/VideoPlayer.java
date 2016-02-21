@@ -40,9 +40,11 @@ public class VideoPlayer implements OnBufferingUpdateListener,
 
     public VideoPlayer(SurfaceView surfaceView, SeekBar skbProgress) {
         this.skbProgress = skbProgress;
-        surfaceHolder = surfaceView.getHolder();
-        surfaceHolder.addCallback(this);
-        surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        if (surfaceView != null) {
+            surfaceHolder = surfaceView.getHolder();
+            surfaceHolder.addCallback(this);
+            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        }
         mTimer.schedule(mTimerTask, 0, 1000);
     }
 
@@ -54,7 +56,7 @@ public class VideoPlayer implements OnBufferingUpdateListener,
         public void run() {
             if (mediaPlayer == null)
                 return;
-            if (mediaPlayer.isPlaying() && skbProgress.isPressed() == false) {
+            if (mediaPlayer.isPlaying() && skbProgress != null && skbProgress.isPressed() == false) {
                 handleProgress.sendEmptyMessage(0);
             }
         }
@@ -68,8 +70,10 @@ public class VideoPlayer implements OnBufferingUpdateListener,
                 int duration = mediaPlayer.getDuration();
 
                 if (duration > 0) {
-                    long pos = skbProgress.getMax() * position / duration;
-                    skbProgress.setProgress((int) pos);
+                    if (skbProgress != null) {
+                        long pos = skbProgress.getMax() * position / duration;
+                        skbProgress.setProgress((int) pos);
+                    }
                 }
             }
             
@@ -84,6 +88,7 @@ public class VideoPlayer implements OnBufferingUpdateListener,
 
 
     public void playUrl(String videoUrl) {
+        Logger.d(TAG,"playUrl");
         start = System.currentTimeMillis();
         bufferingCount = 0;
         this.videoUrl = videoUrl;
@@ -91,16 +96,18 @@ public class VideoPlayer implements OnBufferingUpdateListener,
         if (mediaPlayer == null) {
             //等待SurfaceHolder.Callback回调执行后再播放
             notifyStartPlay = true;
+            initMediaPlayer();
         } else {
             initPlay();
         }
     }
-    private boolean mute;
+    private boolean mute = false;
     public void setMute(boolean isMute) {
         this.mute = isMute;
     }
 
     private void initPlay(){
+        Logger.d(TAG,"initPlay");
         try {
             mediaPlayer.reset();
             mediaPlayer.setDataSource(videoUrl);
@@ -149,6 +156,7 @@ public class VideoPlayer implements OnBufferingUpdateListener,
     public void surfaceCreated(SurfaceHolder arg0) {
         try {
             initMediaPlayer();
+            Logger.d(TAG,"surfaceCreated");
         } catch (Exception e) {
             Logger.d(TAG, "error", e);
         }
@@ -161,8 +169,12 @@ public class VideoPlayer implements OnBufferingUpdateListener,
     }
 
     private void initMediaPlayer(){
+        Logger.d(TAG,"initMediaPlayer");
         mediaPlayer = new MediaPlayer();
-        mediaPlayer.setDisplay(surfaceHolder);
+        boolean creating = surfaceHolder.isCreating();
+        if (creating) {
+            mediaPlayer.setDisplay(surfaceHolder);
+        }
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setOnBufferingUpdateListener(this);
         mediaPlayer.setOnPreparedListener(this);
@@ -178,6 +190,7 @@ public class VideoPlayer implements OnBufferingUpdateListener,
      */
     @Override
     public void onPrepared(MediaPlayer mp) {
+        Logger.d(TAG,"onPrepared");
         videoWidth = this.mediaPlayer.getVideoWidth();
         videoHeight = this.mediaPlayer.getVideoHeight();
         if (videoHeight != 0 && videoWidth != 0) {
@@ -200,14 +213,16 @@ public class VideoPlayer implements OnBufferingUpdateListener,
 
     @Override
     public void onBufferingUpdate(MediaPlayer arg0, int bufferingProgress) {
-        skbProgress.setSecondaryProgress(bufferingProgress);
-        int currentProgress = skbProgress.getMax() * mediaPlayer.getCurrentPosition() /
-                mediaPlayer.getDuration();
-        Logger.d(TAG,"时间：" + sdf.format(new Date()) + "," + currentProgress + "% play" +
-				bufferingProgress + "% buffer");
+        if (skbProgress != null) {
+            skbProgress.setSecondaryProgress(bufferingProgress);
+            int currentProgress = skbProgress.getMax() * mediaPlayer.getCurrentPosition() /
+                    mediaPlayer.getDuration();
+            Logger.d(TAG,"时间：" + sdf.format(new Date()) + "," + currentProgress + "% play" +
+                    bufferingProgress + "% buffer");
+        }
         if (this.onBufferingCompletion != null && bufferingProgress == 100) {
 
-            onBufferingCompletion.onBufferingCompletion(playDelay,bufferingCount);
+            onBufferingCompletion.onBufferingCompletion(playDelay, bufferingCount);
         }
     }
 
@@ -220,6 +235,11 @@ public class VideoPlayer implements OnBufferingUpdateListener,
     }
 
     public interface OnBufferingCompletion {
+        /**
+         *
+         * @param bufferingTime 首次播放缓冲时间
+         * @param bufferingCount 缓冲次数
+         */
         void onBufferingCompletion(long bufferingTime,int bufferingCount);
     }
 

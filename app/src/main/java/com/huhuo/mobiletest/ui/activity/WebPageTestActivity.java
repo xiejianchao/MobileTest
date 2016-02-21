@@ -179,7 +179,6 @@ public class    WebPageTestActivity extends BaseActivity {
             testItemModel.setAvgSpeed(speed);
             testItemModel.setTestResultSummaryModel(summaryModel);
             DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
-
         }
 
         @Override
@@ -238,16 +237,6 @@ public class    WebPageTestActivity extends BaseActivity {
         summaryModel.setNetType(networkType);
 
         DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
-
-        final List<TestResultSummaryModel> models = DatabaseHelper.getInstance()
-                .testResultDao.queryAll();
-
-        if (models != null) {
-            for (TestResultSummaryModel model : models) {
-                Logger.d(TAG,"从数据库中取出的测试结果：" + model);
-            }
-        }
-
     }
 
     private void initTestItem() {
