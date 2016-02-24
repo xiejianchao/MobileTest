@@ -32,10 +32,10 @@ public class WebPageTest {
     }
 
     public void test(){
-        execTest(list.get(nextTestItem));
+        execute(list.get(nextTestItem));
     }
 
-    private void execTest(final WebPageTestModel model) {
+    private void execute(final WebPageTestModel model) {
         final String url = model.getUrl();
         Logger.d(TAG, "测试URL:" + url);
         RequestParams params = new RequestParams(url);
@@ -83,7 +83,7 @@ public class WebPageTest {
                         }
                         return;
                     }
-                    execTest(list.get(nextTestItem));
+                    execute(list.get(nextTestItem));
                 }
 
             }

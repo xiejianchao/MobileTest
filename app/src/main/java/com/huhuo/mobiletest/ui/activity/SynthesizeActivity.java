@@ -19,6 +19,7 @@ import com.huhuo.mobiletest.model.CommonTestModel;
 import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.model.WebPageTestModel;
+import com.huhuo.mobiletest.test.PingTest;
 import com.huhuo.mobiletest.test.WebPageTest;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
@@ -58,6 +59,7 @@ public class SynthesizeActivity extends BaseActivity {
 
     private ArrayList<WebPageTestModel> webPageTestList = new ArrayList<WebPageTestModel>();
     ArrayList<CommonTestModel> testList = new ArrayList<CommonTestModel>();
+    ArrayList<CommonTestModel> pingTestList = new ArrayList<CommonTestModel>();
     private DecimalFormat df;
 
     private ArrayList<Float> speedList = new ArrayList<Float>();
@@ -110,6 +112,7 @@ public class SynthesizeActivity extends BaseActivity {
         initTestItem();
 
         initWebPageTestItem();
+        initPingTestData();
         WebPageTest test = new WebPageTest((ArrayList) webPageTestList);
         test.setTestListener(listener);
         test.test();
@@ -176,26 +179,6 @@ public class SynthesizeActivity extends BaseActivity {
         }
     };
 
-    private void initTestItem() {
-        //添加网页测试项
-        CommonTestModel model = new CommonTestModel();
-        model.setName(getString(R.string.test_webpage));
-        testList.add(model);
-
-        //添加视频测试项
-        model = new CommonTestModel();
-        model.setName(getString(R.string.test_video));
-        testList.add(model);
-
-        //添加连接(ping)测试项
-        model = new CommonTestModel();
-        model.setName(getString(R.string.test_ping));
-        testList.add(model);
-
-        adapter = new SynthesizeTestAdapter(testList);
-        recyclerView.setAdapter(adapter);
-    }
-
     private VideoPlayer.OnBufferingCompletion onBufferingCompletion = new VideoPlayer.OnBufferingCompletion(){
 
         @Override
@@ -251,7 +234,22 @@ public class SynthesizeActivity extends BaseActivity {
 
         currentTestIndex ++;
         //开始执行第三项ping测试
+        PingTest pingTest = new PingTest(pingTestList);
+        pingTest.setPingTestListener(pingTestListener);
+        pingTest.test();
     }
+
+    private PingTest.PingTestListener pingTestListener = new PingTest.PingTestListener() {
+        @Override
+        public void onUpdate(CommonTestModel model) {
+            Logger.v(TAG,"onUpdate... " + model.getUrl() + "测试完毕," + model.toString());
+        }
+
+        @Override
+        public void onFinished(CommonTestModel model) {
+            Logger.v(TAG,"onFinished ping测试结束,计算整个综合测试...");
+        }
+    };
 
     private String getVideoAvgSpeed(){
         long speed = 0;
@@ -415,6 +413,39 @@ public class SynthesizeActivity extends BaseActivity {
 
     }
 
+    private void initPingTestData(){
+        CommonTestModel model = new CommonTestModel();
+
+        model.setName(getString(R.string.test_website_10086));
+        model.setUrl(getString(R.string.test_10086_url));
+        pingTestList.add(model);
+
+        model = new CommonTestModel();
+        model.setName(getString(R.string.test_website_baidu));
+        model.setUrl(getString(R.string.test_baidu_url));
+        pingTestList.add(model);
+
+        model = new CommonTestModel();
+        model.setName(getString(R.string.test_website_tencent));
+        model.setUrl(getString(R.string.test_tencent_url));
+        pingTestList.add(model);
+
+        model = new CommonTestModel();
+        model.setName(getString(R.string.test_website_youku));
+        model.setUrl(getString(R.string.test_youku_url));
+        pingTestList.add(model);
+
+        model = new CommonTestModel();
+        model.setName(getString(R.string.test_website_sina));
+        model.setUrl(getString(R.string.test_sina_url));
+        pingTestList.add(model);
+
+        model = new CommonTestModel();
+        model.setName(getString(R.string.test_website_taobao));
+        model.setUrl(getString(R.string.test_taobao_url));
+        pingTestList.add(model);
+    }
+
     private void initWebPageTestItem() {
         WebPageTestModel model = new WebPageTestModel();
         model.setUrl(getString(R.string.test_10086_url));
@@ -447,6 +478,26 @@ public class SynthesizeActivity extends BaseActivity {
         webPageTestList.add(model);
     }
 
+    private void initTestItem() {
+        //添加网页测试项
+        CommonTestModel model = new CommonTestModel();
+        model.setName(getString(R.string.test_webpage));
+        testList.add(model);
+
+        //添加视频测试项
+        model = new CommonTestModel();
+        model.setName(getString(R.string.test_video));
+        testList.add(model);
+
+        //添加连接(ping)测试项
+        model = new CommonTestModel();
+        model.setName(getString(R.string.test_ping));
+        testList.add(model);
+
+        adapter = new SynthesizeTestAdapter(testList);
+        recyclerView.setAdapter(adapter);
+    }
+
     private void cancelTimer(){
         if (timer != null) {
             timer.cancel();
@@ -465,8 +516,11 @@ public class SynthesizeActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         cancelTimer();
-        player.stop();
-        player.destory();
+        cancelTask();
+        if (player != null) {
+            player.stop();
+            player.destory();
+        }
     }
 
     private void stopPlay(){
