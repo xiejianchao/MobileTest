@@ -49,8 +49,10 @@
     <string name="common_ok">确定</string>
     <string name="common_delay_ms">%1$s ms</string>
     <string name="common_test_item">开始测试 %1$s ...</string>
-    <string name="common_test_start_ping">开始ping测试 ...</string>
-    <string name="common_video_test_start">video 测试开始 ...</string>
+    <string name="common_ping_test_start">开始ping测试 ...</string>
+    <string name="common_video_test_start">视频测试开始 ...</string>
+    <string name="common_webpage_test_start">网页测试开始 ...</string>
+    <string name="common_test_finish">测试结束</string>
     <string name="common_other">其他</string>
 
 

@@ -14,6 +14,8 @@ public class CommonTestModel {
     private float successRate;
     private int speedLevel;
     private String url;
+    private int sendCount;
+    private int receiveCount;
 
     private float percent;
 
@@ -107,6 +109,22 @@ public class CommonTestModel {
         this.percent = percent;
     }
 
+    public int getSendCount() {
+        return sendCount;
+    }
+
+    public void setSendCount(int sendCount) {
+        this.sendCount = sendCount;
+    }
+
+    public int getReceiveCount() {
+        return receiveCount;
+    }
+
+    public void setReceiveCount(int receiveCount) {
+        this.receiveCount = receiveCount;
+    }
+
     @Override
     public String toString() {
         return "CommonTestModel{" +
@@ -119,6 +137,8 @@ public class CommonTestModel {
                 ", successRate=" + successRate +
                 ", speedLevel=" + speedLevel +
                 ", url='" + url + '\'' +
+                ", sendCount=" + sendCount +
+                ", receiveCount=" + receiveCount +
                 ", percent=" + percent +
                 ", isStart=" + isStart +
                 '}';

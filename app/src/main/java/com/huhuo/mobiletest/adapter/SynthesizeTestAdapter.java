@@ -57,7 +57,6 @@ public class SynthesizeTestAdapter extends RecyclerView.Adapter<SynthesizeTestAd
 
     @Override
     public void onBindViewHolder(SynthesizeTestAdapter.MyViewHolder holder, int position) {
-
         final CommonTestModel model = models.get(position);
         holder.tvtestName.setText(model.getName());
         final float delay = model.getDelay();
@@ -66,44 +65,13 @@ public class SynthesizeTestAdapter extends RecyclerView.Adapter<SynthesizeTestAd
         Context context = MobileTestApplication.getInstance().getApplicationContext();
 
         if (model.isStart()) {
-            if (position == 0) {//网页测试设置项
-                setWebPageData(holder, model, delay, context);
-                if (model.getDelay() > 0) {
-                    float delayS = model.getDelay() / 1000;
-                    holder.tvTimeSuccRate.setText(df.format(delayS) + "秒");
-                } else {
-                    holder.tvTimeSuccRate.setText(0 + "秒");
-                }
-            } else if (position == 1) {//视频测试设置项
-                if ((int)model.getPercent() < 100) {
-                    holder.tvSpeedLevel.setVisibility(View.GONE);
-                    holder.tvTimeSuccRate.setVisibility(View.VISIBLE);
-                    holder.tvAvgSpeed.setText("视频测试服务开始...");
-                    holder.tvTimeSuccRate.setText(model.getAvgSpeed() / 1024 * 8 + "kbps");
-                } else {
-                    holder.tvTimeSuccRate.setVisibility(View.VISIBLE);
-                    holder.tvAvgSpeed.setVisibility(View.VISIBLE);
-                    holder.tvAvgSpeed.setText(model.getAvgSpeed() / 1024 + "KB/s");
-                    float delayTime = model.getDelay() / 1024;
-                    String videoDelayTime = df.format(delayTime);
-                    holder.tvTimeSuccRate.setText(videoDelayTime+ "s");
-                    holder.tvSpeedLevel.setVisibility(View.VISIBLE);
-
-                    if (model.getSpeedLevel() == 5) {
-                        holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_faster));
-                    } else if (model.getSpeedLevel() == 4 || model.getSpeedLevel() == 3) {
-                        holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_general));
-                    } else if (model.getSpeedLevel() == 2){
-                        holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_very_slow));
-                    } else {
-                        holder.tvAvgSpeed.setText(context.getString(R.string.common_delay_ms, "0.0"));
-                        holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_timeout));
-                    }
-
-                }
-
+            if (position == 0) {//网页测试
+                setItemData(holder, model, delay, context, position);
+            } else if (position == 1) {//视频测试
+                setVideoItemData(holder, model, context);
+            } else if (position == 2) {//ping测试
+                setItemData(holder, model, delay, context, position);
             }
-
             holder.progressBar.setProgress((int) model.getPercent());
         } else {
             holder.progressBar.setProgress(5);
@@ -115,8 +83,36 @@ public class SynthesizeTestAdapter extends RecyclerView.Adapter<SynthesizeTestAd
 
     }
 
-    private void setWebPageData(MyViewHolder holder, CommonTestModel model, float delay, Context
-            context) {
+    private void setVideoItemData(MyViewHolder holder, CommonTestModel model, Context context) {
+        if ((int)model.getPercent() < 100) {
+            holder.tvSpeedLevel.setVisibility(View.GONE);
+            holder.tvTimeSuccRate.setVisibility(View.VISIBLE);
+            holder.tvAvgSpeed.setText("视频测试服务开始...");
+            holder.tvTimeSuccRate.setText(model.getAvgSpeed() / 1024 * 8 + "kbps");
+        } else {
+            holder.tvTimeSuccRate.setVisibility(View.VISIBLE);
+            holder.tvAvgSpeed.setVisibility(View.VISIBLE);
+            holder.tvAvgSpeed.setText("均速：" + model.getAvgSpeed() / 1024 + "KB/s");
+            float delayTime = model.getDelay() / 1024;
+            String videoDelayTime = df.format(delayTime);
+            holder.tvTimeSuccRate.setText(videoDelayTime+ "秒");
+            holder.tvSpeedLevel.setVisibility(View.VISIBLE);
+
+            if (model.getSpeedLevel() == 5) {
+                holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_faster));
+            } else if (model.getSpeedLevel() == 4 || model.getSpeedLevel() == 3) {
+                holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_general));
+            } else if (model.getSpeedLevel() == 2){
+                holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_very_slow));
+            } else {
+                holder.tvAvgSpeed.setText(context.getString(R.string.common_delay_ms, "0.0"));
+                holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_timeout));
+            }
+        }
+    }
+
+    private void setItemData(MyViewHolder holder, CommonTestModel model, float delay, Context
+            context, int position) {
         holder.tvAvgSpeed.setText(context.getString(R.string.common_delay_ms, delay));
         if ((int)model.getPercent() < 100) {
             holder.tvTimeSuccRate.setVisibility(View.GONE);
@@ -131,16 +127,31 @@ public class SynthesizeTestAdapter extends RecyclerView.Adapter<SynthesizeTestAd
             holder.tvTimeSuccRate.setVisibility(View.VISIBLE);
             holder.tvSpeedLevel.setVisibility(View.VISIBLE);
 
-            holder.tvAvgSpeed.setText("均速：" + model.getAvgSpeed() + "kbp/s");
+            if (position == 0) {
+                holder.tvAvgSpeed.setText("均速：" + model.getAvgSpeed() + "kbp/s");
+            } else if (position == 2) {
+                holder.tvAvgSpeed.setText("时延：" + df.format(model.getDelay()) + "ms");
+            }
 
             holder.tvSpeedLevel.setText(model.getSpeedLevel() + "kbps");
-            holder.tvTimeSuccRate.setText(model.getDelay() + "");
+
+            if (position == 0) {
+                if (model.getDelay() > 0) {
+                    float delayS = model.getDelay() / 1000;
+                    final String delayStr = df.format(delayS);
+                    holder.tvTimeSuccRate.setText(delayStr + "秒");
+                } else {
+                    holder.tvTimeSuccRate.setText(0 + "秒");
+                }
+            } else {
+                holder.tvTimeSuccRate.setText("成功率：" + model.getSuccessRate() + "%");
+            }
 
             if (model.getSpeedLevel() == 5) {
                 holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_faster));
             } else if (model.getSpeedLevel() == 4 || model.getSpeedLevel() == 3) {
                 holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_general));
-            } else if (model.getSpeedLevel() == 2){
+            } else if (model.getSpeedLevel() == 2 || model.getSpeedLevel() == 1){
                 holder.tvSpeedLevel.setText(context.getString(R.string.test_speed_level_very_slow));
             } else {
                 holder.tvAvgSpeed.setText(context.getString(R.string.common_delay_ms, "0.0"));

@@ -81,7 +81,7 @@ public class PingTestActivity extends BaseActivity {
         //初始化待测试数据
         initData2RecycleView();
 
-        tvAllInfo.setText(getString(R.string.common_test_start_ping));
+        tvAllInfo.setText(getString(R.string.common_ping_test_start));
         //开始测试网站连接响应时间，并逐条更新到recycleview上
         startTestRefreshUI(list.get(testIndex));
 

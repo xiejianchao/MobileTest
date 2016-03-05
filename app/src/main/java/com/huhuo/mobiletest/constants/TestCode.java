@@ -17,6 +17,16 @@ public class TestCode {
     public static final int TEST_TYPE_PING = 5;
     public static final int TEST_TYPE_SYNTHESIZE = 6;
 
+
+    public static int[] TEST_TYPE_ARR = {
+            TEST_TYPE_WEBPAGE,
+            TEST_TYPE_SPEED,
+            TEST_TYPE_VIDEO,
+            TEST_TYPE_VOICE,
+            TEST_TYPE_PING,
+            TEST_TYPE_SYNTHESIZE,
+    };
+
     public static String getTestName(int testType) {
         Context context = MobileTestApplication.getInstance().getApplicationContext();
         String typeName = null;

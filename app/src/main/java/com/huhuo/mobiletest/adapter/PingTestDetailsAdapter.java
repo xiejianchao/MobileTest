@@ -58,10 +58,16 @@ public class PingTestDetailsAdapter extends BaseAdapter {
             holder.tvReceiveCount = (TextView) convertView.findViewById(R.id.tv_receive_count);
             holder.tvSuccessRate = (TextView) convertView.findViewById(R.id.tv_success_rate);
             holder.tvDelay = (TextView) convertView.findViewById(R.id.tv_delay);
+            holder.tvDividerTitle = (View) convertView.findViewById(R.id.view_line_divider_type);
+            holder.tvTestTypeTitle = (TextView) convertView.findViewById(R.id.tv_test_type_title);
+
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+
+        holder.tvDividerTitle.setVisibility(View.GONE);
+        holder.tvTestTypeTitle.setVisibility(View.GONE);
 
         if (position == 0) {
             holder.titleLayout.setVisibility(View.VISIBLE);
@@ -89,6 +95,9 @@ public class PingTestDetailsAdapter extends BaseAdapter {
         private TextView tvReceiveCount;
         private TextView tvSuccessRate;
         private TextView tvDelay;
+
+        private View tvDividerTitle;
+        private TextView tvTestTypeTitle;
 
     }
 }

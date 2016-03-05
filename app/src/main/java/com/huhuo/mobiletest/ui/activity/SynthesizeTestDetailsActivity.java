@@ -7,6 +7,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
+import com.huhuo.mobiletest.adapter.SynthesizeTestDetailsAdapter;
 import com.huhuo.mobiletest.adapter.WebPageTestDetailsAdapter;
 import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.constants.TestCode;
@@ -23,10 +24,10 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 
-@ContentView(R.layout.activity_web_page_test_details)
-public class WebPageTestDetailsActivity extends BaseActivity {
+@ContentView(R.layout.activity_synthesize_test_details)
+public class SynthesizeTestDetailsActivity extends BaseActivity {
 
-    private static final String TAG = WebPageTestDetailsActivity.class.getSimpleName();
+    private static final String TAG = SynthesizeTestDetailsActivity.class.getSimpleName();
 
     @ViewInject(R.id.tv_test_level)
     private TextView tvTestLevel;
@@ -46,7 +47,7 @@ public class WebPageTestDetailsActivity extends BaseActivity {
     @ViewInject(R.id.lv_webpage_test)
     private ListView lvTestItem;
 
-    private WebPageTestDetailsAdapter adapter;
+    private SynthesizeTestDetailsAdapter adapter;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -90,7 +91,7 @@ public class WebPageTestDetailsActivity extends BaseActivity {
                     Logger.d(TAG, "TestItemModel item:" + model);
                 }
 
-                adapter = new WebPageTestDetailsAdapter(list);
+                adapter = new SynthesizeTestDetailsAdapter(list);
                 lvTestItem.setAdapter(adapter);
             }
         }

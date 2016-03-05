@@ -9,12 +9,8 @@ import android.os.SystemClock;
 
 import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
-import com.huhuo.mobiletest.constants.TestCode;
-import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.CommonTestModel;
-import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.utils.Logger;
-import com.huhuo.mobiletest.utils.NetWorkUtil;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -26,7 +22,6 @@ import org.apache.http.params.HttpConnectionParams;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by xiejianchao on 16/2/24.
@@ -54,7 +49,6 @@ public class PingTest {
     }
 
     private void execute(final CommonTestModel model){
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -62,6 +56,8 @@ public class PingTest {
             }
         }).start();
     }
+
+    private int lossCount = 0;
 
     Handler mHandler = new Handler() {
         public void dispatchMessage(Message msg) {
@@ -87,18 +83,18 @@ public class PingTest {
             final CommonTestModel model = getTestModel(url);
             model.setDelay(avg);
             model.setIsStart(true);
+            model.setPercent(100f);
             float rate = 0;
             if (loss <= 0) {
                 rate = 100F;
             } else {
+                lossCount++;
                 rate = (1 - (loss / 10)) * 100;
             }
             model.setSuccessRate(rate);
             Logger.d(TAG, "测试结果：" + sb.toString());
 
-
             //执行回调，通知界面更新
-
             if (listener != null) {
                 listener.onUpdate(model);
             }
@@ -115,13 +111,14 @@ public class PingTest {
 //            DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
 
             if (testIndex == list.size() - 1) {
-                Logger.d(TAG,"第" + (testIndex + 1) + "项测试完毕，一共有：" + (list.size()) + "项");
+                Logger.d(TAG, "第" + (testIndex + 1) + "项测试完毕，一共有：" + (list.size()) + "项");
                 float delayTotal = 0;
                 for (CommonTestModel m : list) {
                     delayTotal += m.getDelay();
                 }
 
                 float avgTotalDelay = delayTotal / list.size();
+                Logger.w(TAG, "平均延迟：" + avgTotalDelay);
                 String speedStr = getNetSpeedResult(avgTotalDelay);
                 int level = getNetSpeedLevel(avgTotalDelay);
 
@@ -129,9 +126,20 @@ public class PingTest {
 
                 long endTime = System.currentTimeMillis();
 
-                //ping测试结束的回调
 
+                float allSuccessRate = 0f;
+                for (CommonTestModel m : list) {
+                    allSuccessRate += m.getSuccessRate();
+                }
+
+                float avgRate = allSuccessRate / list.size();
+                //ping测试结束的回调
                 if (listener != null) {
+                    model.setSpeedLevel(level);
+//                    model.setDelay(endTime - startTime);
+                    model.setSuccessRate(avgRate);
+                    model.setDelay(avgTotalDelay);
+                    model.setReceiveCount(PING_COUNT - lossCount);
                     listener.onFinished(model);
                 }
 
@@ -172,7 +180,7 @@ public class PingTest {
         return sppedStr;
     }
 
-    private int getNetSpeedLevel(float avgTotalDelay){
+    public static int getNetSpeedLevel(float avgTotalDelay){
         int level;
         if (avgTotalDelay < 60) {
             level = 5;
@@ -220,16 +228,30 @@ public class PingTest {
             }
             int packetLoss = PING_COUNT - rrts.size();
             disposeResult(address, packetLoss, rrts);
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (final ClientProtocolException e) {
+            Logger.e(TAG, "ClientProtocolException", e);
+            sendErrorListener(e);
+        } catch (final IOException e) {
+            Logger.e(TAG, "IOException", e);
+            sendErrorListener(e);
         } finally {
             if (client != null) {
                 client.close();
             }
         }
     }
+
+    private void sendErrorListener(final Exception e) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (listener != null) {
+                    listener.onError(e,null);
+                }
+            }
+        });
+    }
+
 
     private void disposeResult(String url, int packetLoss, ArrayList<Float> rrts){
         float min = Float.MAX_VALUE;
@@ -249,7 +271,7 @@ public class PingTest {
             total += rrt;
         }
         avg = total / rrts.size();
-        Message msg = new Message();
+        Message msg = Message.obtain();
         Bundle bundle = new Bundle();
         bundle.putFloat("min", min);
         bundle.putFloat("max", max);
@@ -257,6 +279,7 @@ public class PingTest {
         bundle.putInt("send", PING_COUNT);
         bundle.putInt("loss", packetLoss);
         bundle.putString("url",url);
+//        bundle.putBoolean("error",true);
         msg.setData(bundle);
         SystemClock.sleep(300);
         mHandler.sendMessage(msg);
@@ -265,8 +288,10 @@ public class PingTest {
     private PingTestListener listener;
 
     public interface PingTestListener {
+        void onStart(CommonTestModel model);
         void onUpdate(CommonTestModel model);
         void onFinished(CommonTestModel model);
+        void onError(Exception e,CommonTestModel model);
     }
 
     public void setPingTestListener(PingTestListener listener) {

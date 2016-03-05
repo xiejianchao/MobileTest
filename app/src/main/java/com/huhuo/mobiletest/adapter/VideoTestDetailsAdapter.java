@@ -57,10 +57,15 @@ public class VideoTestDetailsAdapter extends BaseAdapter {
             holder.tvTotal = (TextView) convertView.findViewById(R.id.tv_total_size);
             holder.tvDownloadSpeed = (TextView) convertView.findViewById(R.id.tv_download_speed);
             holder.tvBufferCount = (TextView) convertView.findViewById(R.id.tv_buffer_count);
+            holder.tvDividerTitle = (View) convertView.findViewById(R.id.view_line_divider_type);
+            holder.tvTestTypeTitle = (TextView) convertView.findViewById(R.id.tv_test_type_title);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+
+        holder.tvDividerTitle.setVisibility(View.GONE);
+        holder.tvTestTypeTitle.setVisibility(View.GONE);
 
         if (position == 0) {
             holder.titleLayout.setVisibility(View.VISIBLE);
@@ -90,6 +95,7 @@ public class VideoTestDetailsAdapter extends BaseAdapter {
         private TextView tvTotal;
         private TextView tvDownloadSpeed;
         private TextView tvBufferCount;
-
+        private View tvDividerTitle;
+        private TextView tvTestTypeTitle;
     }
 }

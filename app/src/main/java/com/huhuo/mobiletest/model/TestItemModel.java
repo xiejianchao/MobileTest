@@ -16,6 +16,10 @@ public class TestItemModel {
     @DatabaseField(generatedId = true)
     private int id;
 
+    //测试类型
+    @DatabaseField
+    private int testType;
+
     //网络类型
     @DatabaseField
     private String netType;
@@ -203,10 +207,19 @@ public class TestItemModel {
         this.playCount = playCount;
     }
 
+    public int getTestType() {
+        return testType;
+    }
+
+    public void setTestType(int testType) {
+        this.testType = testType;
+    }
+
     @Override
     public String toString() {
         return "TestItemModel{" +
                 "id=" + id +
+                ", testType=" + testType +
                 ", netType='" + netType + '\'' +
                 ", target='" + target + '\'' +
                 ", totalSize=" + totalSize +

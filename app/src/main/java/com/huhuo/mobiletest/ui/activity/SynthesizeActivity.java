@@ -40,7 +40,7 @@ import java.util.TimerTask;
 /**
  * 综合测试包括网页测试，视频测试和ping测试
  */
-@ContentView(R.layout.activity_synthesize)
+@ContentView(R.layout.activity_synthesize_test)
 public class SynthesizeActivity extends BaseActivity {
 
     private static final String TAG = SynthesizeActivity.class.getSimpleName();
@@ -58,12 +58,14 @@ public class SynthesizeActivity extends BaseActivity {
     private SeekBar skbProgress;
 
     private ArrayList<WebPageTestModel> webPageTestList = new ArrayList<WebPageTestModel>();
-    ArrayList<CommonTestModel> testList = new ArrayList<CommonTestModel>();
-    ArrayList<CommonTestModel> pingTestList = new ArrayList<CommonTestModel>();
-    private DecimalFormat df;
-
+    private ArrayList<CommonTestModel> testList = new ArrayList<CommonTestModel>();
+    private ArrayList<CommonTestModel> pingTestList = new ArrayList<CommonTestModel>();
     private ArrayList<Float> speedList = new ArrayList<Float>();
     private ArrayList<Float> videoSpeedList = new ArrayList<Float>();
+    private ArrayList<Float> pingDelayList = new ArrayList<Float>();
+
+    private DecimalFormat df;
+    private PingTest pingTest;
 
     private long allTime;
     private int allWebPageSize;
@@ -85,6 +87,9 @@ public class SynthesizeActivity extends BaseActivity {
     private static final int TRAFFIC_UPDATE = 2;
     private int videoSize;
     private long startVideoTime = 0;
+
+    private float videoTestLevel = 0;
+    private float webpageTestLevel = 0;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -116,6 +121,7 @@ public class SynthesizeActivity extends BaseActivity {
         WebPageTest test = new WebPageTest((ArrayList) webPageTestList);
         test.setTestListener(listener);
         test.test();
+        tvTestInfo.setText(R.string.common_webpage_test_start);
     }
 
     private VideoUtil.OnVideoSizeListener onVideoSizeListener = new VideoUtil.OnVideoSizeListener() {
@@ -173,7 +179,7 @@ public class SynthesizeActivity extends BaseActivity {
                 Logger.v(TAG, "本次新获取的流量：" + (newTraffic - oldTraffic) + "kbp");
                 oldTraffic = newTraffic;
             } else {
-                Logger.v(TAG,"现在暂停获取流量...");
+//                Logger.v(TAG,"现在暂停获取流量...");
             }
 
         }
@@ -189,6 +195,8 @@ public class SynthesizeActivity extends BaseActivity {
         }
     };
 
+
+
     private void videoTestClosed(long bufferingTime, int bufferingCount) {
         closeTimer();
         stopPlay();
@@ -199,7 +207,7 @@ public class SynthesizeActivity extends BaseActivity {
         Logger.e(TAG, "首播缓冲时间："
                 + (bufferingTime < 1000 ? bufferingTime : playDelayTime + "秒"));
 
-        tvTestInfo.setText("视频测试结束");
+//        tvTestInfo.setText("视频测试结束");
 
         skbProgress.setVisibility(View.GONE);
         surfaceView.setVisibility(View.GONE);
@@ -215,8 +223,11 @@ public class SynthesizeActivity extends BaseActivity {
             testLevel = 1;
         }
 
+        videoTestLevel = testLevel;
+
         String networkType = NetWorkUtil.getCurrentNetworkType();
         TestItemModel testItemModel = new TestItemModel();
+        testItemModel.setTestType(TestCode.TEST_TYPE_VIDEO);
         testItemModel.setNetType(networkType);
         testItemModel.setTotalSize(videoSize);
         testItemModel.setPlayCount(1);
@@ -234,20 +245,94 @@ public class SynthesizeActivity extends BaseActivity {
 
         currentTestIndex ++;
         //开始执行第三项ping测试
-        PingTest pingTest = new PingTest(pingTestList);
+        Logger.w(TAG,"开始执行第三项ping测试");
+        pingTest = new PingTest(pingTestList);
         pingTest.setPingTestListener(pingTestListener);
         pingTest.test();
+        tvTestInfo.setText(R.string.common_ping_test_start);
     }
 
     private PingTest.PingTestListener pingTestListener = new PingTest.PingTestListener() {
         @Override
+        public void onStart(CommonTestModel model) {
+
+        }
+
+        @Override
         public void onUpdate(CommonTestModel model) {
             Logger.v(TAG,"onUpdate... " + model.getUrl() + "测试完毕," + model.toString());
+            CommonTestModel allModel = testList.get(currentTestIndex);
+            final float delay = allModel.getDelay();
+            pingDelayList.add(delay);
+            allModel.setIsStart(true);
+            allModel.setPercent(99);
+            allModel.setUrl(model.getUrl());
+            adapter.update(currentTestIndex);
         }
 
         @Override
         public void onFinished(CommonTestModel model) {
             Logger.v(TAG,"onFinished ping测试结束,计算整个综合测试...");
+
+            float delayTotal = 0;
+            for (CommonTestModel m : pingTestList) {
+                delayTotal += m.getDelay();
+            }
+
+            float avgTotalDelay = delayTotal / pingTestList.size();
+            int level = 1;
+            if (pingTest != null) {
+                level = pingTest.getNetSpeedLevel(avgTotalDelay);
+            }
+
+            CommonTestModel allModel = testList.get(currentTestIndex);
+            allModel.setIsStart(true);
+            allModel.setSuccessRate(model.getSuccessRate());
+            allModel.setPercent(100);
+            final float delay = (float)delayTotal / pingTestList.size();
+//            allModel.setDelay(delay);
+            allModel.setDelay(model.getDelay());
+            allModel.setAvgSpeed((long) avgTotalDelay);
+            allModel.setSpeedLevel((int) level);
+            adapter.update(currentTestIndex);
+
+            String networkType = NetWorkUtil.getCurrentNetworkType();
+            TestItemModel testItemModel = new TestItemModel();
+            testItemModel.setTestType(TestCode.TEST_TYPE_PING);
+            testItemModel.setNetType(networkType);
+            testItemModel.setTarget("多网站");
+            testItemModel.setSendCount(PingTest.PING_COUNT);
+            testItemModel.setReceiveCount(model.getReceiveCount());
+
+            testItemModel.setDelayTime(model.getDelay());
+            testItemModel.setSuccessRate(model.getSuccessRate());
+            testItemModel.setTestResultSummaryModel(summaryModel);
+            DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
+
+            final int pingTestLevel = model.getSpeedLevel();
+            float allLevel = pingTestLevel + webpageTestLevel + videoTestLevel;
+            float avgLevel = allLevel / 3;
+            Logger.w(TAG,"网页level:" + pingTestLevel);
+            Logger.w(TAG,"视频level:" + videoTestLevel);
+            Logger.w(TAG,"ping level:" + pingTestLevel);
+            Logger.w(TAG,"网页，视频，ping三项测试，平均level:" + avgLevel);
+
+            //测试时间
+            summaryModel.setTestDate(new Date());
+            summaryModel.setTestLevel(avgLevel);
+            summaryModel.setTestType(TestCode.TEST_TYPE_SYNTHESIZE);
+            summaryModel.setDelayTime(allTime);
+            summaryModel.setNetType(networkType);
+
+            DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
+            tvTestInfo.setText(R.string.common_test_finish);
+
+            //三项测试完成，现在显示完整信息，将本次插入测试结果数据库为综合测试
+        }
+
+        @Override
+        public void onError(Exception e,CommonTestModel model) {
+
         }
     };
 
@@ -267,7 +352,8 @@ public class SynthesizeActivity extends BaseActivity {
 
     private WebPageTest.WebPageTestListener listener = new WebPageTest.WebPageTestListener() {
 
-        long start = System.currentTimeMillis();
+        long startWebPageTime = System.currentTimeMillis();
+        long startWebPageTime1 = System.currentTimeMillis();
 
         @Override
         public void onPrepare(WebPageTestModel model) {
@@ -284,7 +370,7 @@ public class SynthesizeActivity extends BaseActivity {
             allModel.setUrl(model.getUrl());
             adapter.update(currentTestIndex);
 
-            start = System.currentTimeMillis();
+            startWebPageTime = System.currentTimeMillis();
         }
 
         @Override
@@ -302,7 +388,7 @@ public class SynthesizeActivity extends BaseActivity {
             float percent = ((float) current / total) * 100;
             String percentStr = df.format(percent) + "%";
 
-            Logger.d(TAG,model.getName() + "加载进度：" + percentStr);
+            Logger.d(TAG, model.getName() + "加载进度：" + percentStr);
         }
 
 
@@ -314,7 +400,7 @@ public class SynthesizeActivity extends BaseActivity {
 
             allWebPageSize += result.length();
             float webPageSize = (float)result.length() / 1024;
-            long loadPageTime = (end - start);
+            long loadPageTime = (end - startWebPageTime);
             float loadPageTimeSecond = (float)loadPageTime / 1000;
 
             float speed = webPageSize / loadPageTimeSecond;
@@ -345,72 +431,90 @@ public class SynthesizeActivity extends BaseActivity {
 
         @Override
         public void onEnd() {
-            Logger.w(TAG, "全部测试完毕...");
+
             cacuLoadWebPageAvgSpeed();
 
+            Logger.d(TAG, "开始进行第二项静音视频测试...");
             currentTestIndex ++;
-            if (currentTestIndex == 1) {//如果currentTestIndex == 1，进行静音视频测试
-                Logger.d(TAG, "开始进行视频测试...");
-                timer.schedule(task, 1000, 1000);
-                startPlayOnlineVideo();
+            timer.schedule(task, 1000, 1000);
+            startPlayOnlineVideo();
+
+//            currentTestIndex = 2;
+//            pingTest = new PingTest(pingTestList);
+//            pingTest.setPingTestListener(pingTestListener);
+//            pingTest.test();
+
+
+//            String networkType = NetWorkUtil.getCurrentNetworkType();
+//            TestItemModel testItemModel = new TestItemModel();
+//            testItemModel.setNetType(networkType);
+//            testItemModel.setTarget(getString(R.string.test_webpage));
+//            testItemModel.setTotalSize(allWebPageSize);
+////            testItemModel.setDelayTime(loadPageTime);
+//            testItemModel.setAvgSpeed(allTime / speedList.size());
+//            testItemModel.setTestResultSummaryModel(summaryModel);
+//            DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
+        }
+
+        private void cacuLoadWebPageAvgSpeed() {
+            long testEndTime = System.currentTimeMillis();
+            Logger.w(TAG, "w全部测试完毕，耗时：" + (testEndTime - startWebPageTime1));
+            final int testCount = speedList.size();
+            float allKbps = 0f;
+            for (Float f : speedList) {
+                allKbps += f;
             }
+            float avgKbps = 0;
+            float testLevel = 0;
+            if (allKbps > 0) {
+                avgKbps = (float)allKbps / testCount;
+                Logger.d(TAG, "测试完毕，一共测试了" + testCount +
+                        "个网站，平均速度：" + df.format(avgKbps) + "kbps");
+                if (avgKbps >= 2000) {
+                    testLevel = 5;
+                } else if (avgKbps >= 800 && avgKbps < 2000) {
+                    testLevel = 3;
+                } else {
+                    testLevel = 1;
+                }
+            }
+            webpageTestLevel = testLevel;
+
+            CommonTestModel allModel = testList.get(currentTestIndex);
+            allModel.setIsStart(true);
+            allModel.setPercent(100);
+            allModel.setDelay(allTime);
+            allModel.setAvgSpeed((long) avgKbps);
+            allModel.setSpeedLevel((int) testLevel);
+            adapter.update(currentTestIndex);
+
+            long avgTime = allTime / testCount;
+            Logger.w(TAG, "完成全部测试花费了：" + allTime + "毫秒");
+            Logger.w(TAG, "完成每个测试平均花费：" + avgTime + "毫秒");
+            Logger.w(TAG, "speedList.size()：" + speedList.size() + "");
+            Logger.w(TAG, "allTime：" + allTime + "");
+
+//            DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
+
+            String networkType = NetWorkUtil.getCurrentNetworkType();
+            TestItemModel testItemModel = new TestItemModel();
+            testItemModel.setTestType(TestCode.TEST_TYPE_WEBPAGE);
+            testItemModel.setNetType(networkType);
+            testItemModel.setTarget(TestCode.getTestName(TestCode.TEST_TYPE_WEBPAGE));
+            testItemModel.setTotalSize(allWebPageSize);
+            testItemModel.setDelayTime(allTime);
+            testItemModel.setAvgSpeed(allKbps);
+            testItemModel.setTestResultSummaryModel(summaryModel);
+            DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
+
         }
     };
+
 
     private void startPlayOnlineVideo(){
         player.playUrl(Constants.PATH2);
         startTimer();
         startVideoTime = System.currentTimeMillis();
-    }
-
-    private void cacuLoadWebPageAvgSpeed() {
-        final int testCount = speedList.size();
-        float allKbps = 0f;
-        for (Float f : speedList) {
-            allKbps += f;
-        }
-        float avgKbps = 0;
-        float testLevel = 0;
-        if (allKbps > 0) {
-            avgKbps = (float)allKbps / testCount;
-            Logger.d(TAG, "测试完毕，一共测试了" + testCount +
-                    "个网站，平均速度：" + df.format(avgKbps) + "kbps");
-            if (avgKbps >= 2000) {
-                testLevel = 5;
-            } else if (avgKbps >= 800 && avgKbps < 2000) {
-                testLevel = 3;
-            } else {
-                testLevel = 1;
-            }
-        }
-
-
-        CommonTestModel allModel = testList.get(currentTestIndex);
-        allModel.setIsStart(true);
-        allModel.setPercent(100);
-        allModel.setDelay(allTime);
-        allModel.setAvgSpeed((long) avgKbps);
-        allModel.setSpeedLevel((int) testLevel);
-        adapter.update(currentTestIndex);
-
-        long avgTime = allTime / testCount;
-        Logger.w(TAG, "完成全部测试花费了：" + allTime + "毫秒");
-        Logger.w(TAG, "完成每个测试平均花费：" + avgTime + "毫秒");
-        Logger.w(TAG, "speedList.size()：" + speedList.size() + "");
-        Logger.w(TAG, "allTime：" + allTime + "");
-
-        DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
-
-        String networkType = NetWorkUtil.getCurrentNetworkType();
-        TestItemModel testItemModel = new TestItemModel();
-        testItemModel.setNetType(networkType);
-        testItemModel.setTarget(TestCode.getTestName(TestCode.TEST_TYPE_WEBPAGE));
-        testItemModel.setTotalSize(allWebPageSize);
-        testItemModel.setDelayTime(allTime);
-        testItemModel.setAvgSpeed(allKbps);
-        testItemModel.setTestResultSummaryModel(summaryModel);
-        DatabaseHelper.getInstance().testItemDao.insertOrUpdate(testItemModel);
-
     }
 
     private void initPingTestData(){

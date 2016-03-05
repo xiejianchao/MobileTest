@@ -57,10 +57,16 @@ public class WebPageTestDetailsAdapter extends BaseAdapter {
             holder.tvTotal = (TextView) convertView.findViewById(R.id.tv_total);
             holder.tvDelay = (TextView) convertView.findViewById(R.id.tv_delay);
             holder.tvSpeed = (TextView) convertView.findViewById(R.id.tv_speed);
+
+            holder.tvDividerTitle = (View) convertView.findViewById(R.id.view_line_divider_type);
+            holder.tvTestTypeTitle = (TextView) convertView.findViewById(R.id.tv_test_type_title);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+
+        holder.tvDividerTitle.setVisibility(View.GONE);
+        holder.tvTestTypeTitle.setVisibility(View.GONE);
 
         if (position == 0) {
             holder.titleLayout.setVisibility(View.VISIBLE);
@@ -91,6 +97,9 @@ public class WebPageTestDetailsAdapter extends BaseAdapter {
         private TextView tvTotal;
         private TextView tvDelay;
         private TextView tvSpeed;
+
+        private View tvDividerTitle;
+        private TextView tvTestTypeTitle;
 
     }
 }

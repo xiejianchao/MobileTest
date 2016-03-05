@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.OnItemClickListener;
+import com.huhuo.mobiletest.adapter.SynthesizeTestDetailsAdapter;
 import com.huhuo.mobiletest.adapter.TestResultAdapter;
 import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.constants.TestCode;
@@ -18,6 +19,7 @@ import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.ui.activity.DownloadTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.PingTestDetailsActivity;
+import com.huhuo.mobiletest.ui.activity.SynthesizeTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.VideoTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.VoiceTestDetailsActivity;
 import com.huhuo.mobiletest.ui.activity.WebPageTestDetailsActivity;
@@ -107,6 +109,9 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
                     break;
                 case TestCode.TEST_TYPE_VIDEO://综合测试
                     toTestDetailsActivity(VideoTestDetailsActivity.class,id);
+                    break;
+                case TestCode.TEST_TYPE_SYNTHESIZE:
+                    toTestDetailsActivity(SynthesizeTestDetailsActivity.class,id);
                     break;
             }
 

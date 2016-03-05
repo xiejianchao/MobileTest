@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.huhuo.mobiletest.ui.activity.SynthesizeActivity">
+    tools:context="com.huhuo.mobiletest.ui.activity.SynthesizeTestDetailsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,6 +23,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_synthesize"/>
+    <include layout="@layout/content_synthsize_test_details"/>
 
 </android.support.design.widget.CoordinatorLayout>
