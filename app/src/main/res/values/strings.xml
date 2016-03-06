@@ -6,10 +6,7 @@
     <string name="hezu_message">消息</string>
     <string name="hezu_myself">我的</string>
     <string name="hezu_login">登录</string>
-    <string name="fragment_title_task_test">任务测试</string>
-    <string name="fragment_title_report">问题上报</string>
-    <string name="fragment_title_test_result">测试结果</string>
-    <string name="fragment_title_test_stat">测试统计</string>
+
 
     <string name="guide_regist">立即注册</string>
     <string name="regist">注册</string>
@@ -68,7 +65,12 @@
     <string name="test_type_speed">速度测试</string>
     <string name="test_type_conn">连接测试</string>
     <string name="test_type_synthesize">综合测试</string>
-    <string name="test_one_key_test">一键测试</string>
+    <string name="test_type_one_key_test">一键测试</string>
+    <string name="test_type_task_test">任务测试</string>
+    <string name="test_type_report">问题反馈</string>
+    <string name="test_type_test_result">测试结果</string>
+    <string name="test_type_test_stat">测试统计</string>
+
     <string name="test_type_unknow">未知测试</string>
 
     <string name="test_webpage">网页</string>
@@ -128,8 +130,17 @@
     <string name="report_voice_quality">话音质量差本方听不清对方</string>
     <string name="title_activity_web_page_test_details">历史详情</string>
 
+    <string name="plus_profile">个人资料</string>
+    <string name="plus_notify_set">提醒设置</string>
+    <string name="plus_report">问题反馈</string>
+    <string name="plus_contacts_us">联系我们</string>
+    <string name="plus_app_update">版本更新</string>
+    <string name="plus_settings">设置</string>
+    <string name="plus_about">关于</string>
+
 
     <string name="media_ejected">储存卡已拔出，语音功能将暂时不可用</string>
     <string name="title_activity_synthesize">综合测试</string>
+    <string name="title_activity_report">ReportActivity</string>
 
 </resources>

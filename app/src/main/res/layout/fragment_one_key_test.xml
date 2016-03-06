@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/test_bg"
+    android:background="@color/colorPrimary"
     tools:context="com.huhuo.mobiletest.ui.fragment.OneKeyTestFragment"
     android:orientation="vertical"
     >
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
+        android:visibility="gone"
         android:elevation="5dp"
         >
         <TextView

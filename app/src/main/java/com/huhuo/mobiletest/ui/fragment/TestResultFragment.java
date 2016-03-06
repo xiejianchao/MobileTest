@@ -139,6 +139,7 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
     }
 
     public ArrayList<TestResultSummaryModel> initData(){
+        Logger.w(TAG,"initData");
         models = (ArrayList<TestResultSummaryModel>) DatabaseHelper.getInstance().testResultDao.
                 queryAll();
 

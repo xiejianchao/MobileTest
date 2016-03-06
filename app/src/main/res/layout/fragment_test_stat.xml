@@ -3,12 +3,14 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
+              android:background="@color/color_white"
               tools:context="com.huhuo.mobiletest.ui.fragment.ReportFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:text="@string/fragment_title_test_stat"
+        android:visibility="gone"
+        android:text="@string/test_type_test_stat"
         style="@style/FragmentTitleStyle"
         android:layout_alignParentTop="true"
         />

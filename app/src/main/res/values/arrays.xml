@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="tab_arrays">
+        <item>@string/test_type_one_key_test</item>
+        <item>@string/test_type_test_result</item>
+        <item>@string/test_type_test_stat</item>
+        <item>@string/test_type_report</item>
+    </array>
+
+</resources>

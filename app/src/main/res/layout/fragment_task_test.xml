@@ -3,13 +3,15 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
+              android:background="@color/color_white"
               tools:context="com.huhuo.mobiletest.ui.fragment.TaskTestFragment">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:text="@string/fragment_title_task_test"
+        android:visibility="gone"
+        android:text="@string/test_type_task_test"
         style="@style/FragmentTitleStyle"
         android:layout_alignParentTop="true"
         />

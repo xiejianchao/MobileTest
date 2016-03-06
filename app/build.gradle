@@ -47,6 +47,15 @@ dependencies {
     compile 'com.timqi.sectorprogressview:library:2.0.0'
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
     compile 'com.loopj.android:android-async-http:1.4.9'
+
+
+    compile('com.mikepenz:materialdrawer:4.3.4@aar') {
+        transitive = true
+    }
+    compile 'com.mikepenz:google-material-typeface:1.2.0.1@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
+    compile 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
+
     compile files('libs/Yuntx_FullLib_v5.1.9r1.jar')
     compile files('libs/ormlite-android-4.49-SNAPSHOT.jar')
     compile files('libs/ormlite-core-4.49-SNAPSHOT.jar')

@@ -1,7 +1,6 @@
 package com.huhuo.mobiletest.ui.activity;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -15,13 +14,10 @@ import com.huhuo.mobiletest.ui.fragment.TaskTestFragment;
 import com.huhuo.mobiletest.ui.fragment.ReportFragment;
 import com.huhuo.mobiletest.ui.fragment.TestResultFragment;
 import com.huhuo.mobiletest.ui.fragment.TestStatFragment;
-import com.huhuo.mobiletest.utils.Logger;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
-
-import java.io.File;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
@@ -112,11 +108,11 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.layout_test_stat:
                 setTabSelection(3);
-                updateTitleText(R.string.fragment_title_test_stat);
+                updateTitleText(R.string.test_type_test_stat);
             break;
             case R.id.layout_report:
                 setTabSelection(4);
-                updateTitleText(R.string.fragment_title_report);
+                updateTitleText(R.string.test_type_report);
             break;
 
         }

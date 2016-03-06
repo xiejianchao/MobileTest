@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:fitsSystemWindows="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <!-- the layout which will contain (host) the drawerLayout -->
+    <FrameLayout
+        android:id="@+id/drawer_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <!-- the layout which will be the content of the activity (which will be hosted inside the drawer (NOT the list of the drawer)) -->
+        <LinearLayout
+            android:id="@+id/frame_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill_horizontal"
+            android:orientation="vertical"
+            >
+
+            <com.huhuo.mobiletest.view.PagerSlidingTabStrip
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/colorPrimary"
+                app:pstsDividerColor="@color/transparent"
+                app:pstsIndicatorColor="@color/color_yellow"
+                app:pstsIndicatorHeight="3dp"
+                app:pstsShouldExpand="true"
+                app:pstsTabTextColor="@color/color_white"
+                app:pstsSelectedTabTextColor="@color/color_white"
+                app:pstsSelectedTabTextSize="18sp"
+                app:pstsTabTextSize="18sp"
+                app:pstsUnderlineColor="#e0e0e0"
+                app:pstsUnderlineHeight="1dp"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+            </android.support.v4.view.ViewPager>
+        </LinearLayout>
+    </FrameLayout>
+</RelativeLayout>
