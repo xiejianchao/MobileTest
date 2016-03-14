@@ -47,7 +47,8 @@ public abstract class BaseActivity extends SwipeBackActivity {
         x.view().inject(this);
         initToolbar();
         init(savedInstanceState);
-
+        //去掉ToolBar的阴影
+        getSupportActionBar().setElevation(0);
     }
 
     private void initToolbar() {

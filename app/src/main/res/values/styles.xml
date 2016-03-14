@@ -9,6 +9,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowContentOverlay">@null</item>
 
         <!-- 自定义Drawer返回箭头的颜色
         <item name="drawerArrowStyle">@style/MyDrawerArrowToggle</item>
