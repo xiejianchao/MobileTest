@@ -44,35 +44,6 @@ public class RecentMessageDao {
         }
     }
 
-//    public void insertOrUpdate(RecentMessageModel model) {
-//        try {
-//            final QueryBuilder<RecentMessageModel, Integer> query = recentMessageDao.queryBuilder();
-//
-//            final Where<RecentMessageModel, Integer> where = query.where();
-//            where.eq("userId", model.getUserId());
-//
-//            final List<RecentMessageModel> recentLists = query.query();
-//            if (recentLists != null && recentLists.size() > 0) {
-//                Logger.d(TAG, "当前插入的消息列表此前已经插入过，此时只需要更新即可");
-//                final UpdateBuilder<RecentMessageModel, Integer> update = recentMessageDao.updateBuilder();
-//                update.updateColumnValue("recentMsg",model.getRecentMsg());
-//                update.updateColumnValue("fromName",model.getFromName());
-//                update.updateColumnValue("toName",model.getToName());
-//
-//                update.updateColumnValue("recentMsg",model.getRecentMsg()).where().eq("userId",model.getUserId());
-//                update.prepare();
-//                final int retVal = update.update();
-//                Logger.d(TAG,retVal == 1 ? "更新成功" : "更新失败");
-////                recentMessageDao.updateRaw("update table tb_recentmessage recentMsg = "+ model.getRecentMsg() +" where userId = "+ model.getUserId() +"");
-//            } else {
-//                Logger.d(TAG,"当前插入的消息列表没有插入过，此时只需要插入即可");
-//                insert(model);
-//            }
-//        } catch (Exception e) {
-//
-//        }
-//    }
-
     public RecentMessageModel queryById(int id) {
 
         try {

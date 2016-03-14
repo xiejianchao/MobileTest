@@ -126,7 +126,7 @@ public class    WebPageTestActivity extends BaseActivity {
 
         @Override
         public void onError(WebPageTestModel model,Throwable e, boolean isOnCallback) {
-            ToastUtil.showShortToast("下载失败，error:" + e == null ? "" : e.getMessage());
+            ToastUtil.showShortToast("error:" + e == null ? "" : e.getMessage());
             if (e != null) {
                 Logger.e(TAG, "onError:" + e.toString());
             } else {

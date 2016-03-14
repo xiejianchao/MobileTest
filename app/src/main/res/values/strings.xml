@@ -109,7 +109,8 @@
     <string name="test_tencent_url">http://www.qq.com</string>
     <string name="test_youku_url">http://www.youku.com</string>
     <string name="test_sina_url">http://www.sina.com.cn</string>
-    <string name="test_taobao_url">http://re.1688.com/</string>
+    <!--<string name="test_taobao_url">http://re.1688.com/</string>-->
+    <string name="test_taobao_url">http://www.1688.com/</string>
 
     <!-- 问题报告-->
     <string name="report_data_problem">数据业务问题</string>

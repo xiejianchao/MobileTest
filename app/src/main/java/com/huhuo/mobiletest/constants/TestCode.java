@@ -49,9 +49,6 @@ public class TestCode {
             case TEST_TYPE_SYNTHESIZE:
                 typeName = context.getString(R.string.test_type_synthesize);
                 break;
-            default:
-                typeName = context.getString(R.string.test_type_unknow);
-                break;
         }
         return typeName;
     }

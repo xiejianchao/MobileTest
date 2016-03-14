@@ -33,7 +33,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static DatabaseHelper instance;
 
-    public RecentMessageDao conversationDao;
     public MessageDao messageDao;
     public TestResultDao testResultDao;
     public TestItemDao testItemDao;
@@ -74,7 +73,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
     private void initDao() {
-        conversationDao = new RecentMessageDao();
         messageDao = new MessageDao();
         testResultDao = new TestResultDao();
         testItemDao = new TestItemDao();
@@ -86,7 +84,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
             Logger.d(TAG, "onCreate");
-            TableUtils.createTableIfNotExists(connectionSource, RecentMessageModel.class);
             TableUtils.createTableIfNotExists(connectionSource, MessageModel.class);
             TableUtils.createTableIfNotExists(connectionSource, TestResultSummaryModel.class);
             TableUtils.createTableIfNotExists(connectionSource, TestItemModel.class);

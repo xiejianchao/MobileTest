@@ -48,6 +48,18 @@ public class TestResultDao {
         }
     }
 
+    /**
+     * 删除一条记录
+     * @param model
+     */
+    public void delete(TestResultSummaryModel model) {
+        try {
+            testSummaryDao.delete(model);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public TestResultSummaryModel queryById(int id) {
         try {
             final TestResultSummaryModel model = testSummaryDao.queryForId(id);
