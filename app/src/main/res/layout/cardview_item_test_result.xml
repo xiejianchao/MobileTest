@@ -12,7 +12,7 @@
     android:layout_margin="5dp"
     card_view:cardBackgroundColor="@color/transparent"
 
-    >
+    xmlns:app="http://schemas.android.com/tools">
     <!--
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp"

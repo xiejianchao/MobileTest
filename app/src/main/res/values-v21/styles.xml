@@ -27,5 +27,15 @@
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
+    <style name="ViewRippleStyle">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="ViewRippleBroderlessStyle">
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+
+
 
 </resources>

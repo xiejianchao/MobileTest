@@ -87,8 +87,6 @@ public class PingTestActivity extends BaseActivity {
 
     }
 
-    
-
     private void startTestRefreshUI(final CommonTestModel model) {
         startTime = System.currentTimeMillis();
         new Thread(new Runnable() {

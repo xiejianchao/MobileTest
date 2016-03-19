@@ -4,9 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.MyFragmentPagerAdapter;
@@ -15,6 +19,7 @@ import com.huhuo.mobiletest.ui.fragment.ReportFragment;
 import com.huhuo.mobiletest.ui.fragment.TestResultFragment;
 import com.huhuo.mobiletest.ui.fragment.TestStatFragment;
 import com.huhuo.mobiletest.utils.Logger;
+import com.huhuo.mobiletest.utils.ToastUtil;
 import com.huhuo.mobiletest.view.PagerSlidingTabStrip;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -114,23 +119,23 @@ public class MainActivity_New extends BaseActivity {
 
     private void initDrawer(Bundle savedInstanceState) {
         //Create the custome drawer
-//        View customView = LayoutInflater.from(this).inflate(R.layout.layout_drawer_custom_view, null);
-//
-//        Button btn = (Button) customView.findViewById(R.id.btn_test);
-//        TextView tv = (TextView) customView.findViewById(R.id.tv_test);
-//
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getApplicationContext(),"你点击我了2",Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        tv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getApplicationContext(),"你点击我了1",Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        View customView = LayoutInflater.from(this).inflate(R.layout.layout_drawer_custom_view, null);
+
+        RelativeLayout sysInfo = (RelativeLayout) customView.findViewById(R.id.sys_info_layout);
+        RelativeLayout shareLayout = (RelativeLayout) customView.findViewById(R.id.share_layout);
+
+        sysInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.showMessage("系统信息");
+            }
+        });
+        shareLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.showMessage("你点击我了");
+            }
+        });
 
 
         result = new DrawerBuilder(this)
@@ -140,61 +145,26 @@ public class MainActivity_New extends BaseActivity {
                 .withToolbar(toolbar)
                 .withHasStableIds(true)
                 .withActionBarDrawerToggleAnimated(true)
-//                .withCustomView(customView)
-                .addDrawerItems(
-//                        new PrimaryDrawerItem().withName(R.string.plus_profile)
-//                                .withIcon(GoogleMaterial.Icon.gmd_wb_sunny).withIdentifier(1)
-//                                .withSelectable(false),
-//                        new DividerDrawerItem(),
-//                        new PrimaryDrawerItem().withName(R.string.plus_notify_set)
-//                                .withIcon(FontAwesome.Icon.faw_bullhorn).withIdentifier(2)
-//                                .withSelectable(false).withBadge("10")
-//                                .withBadgeStyle(new BadgeStyle()
-//                                        .withTextColor(Color.WHITE)
-//                                        .withColorRes(R.color.md_red_700)),
-                        new PrimaryDrawerItem().withName(R.string.plus_report)
-                                .withIcon(GoogleMaterial.Icon.gmd_style).withIdentifier(3)
-                                .withSelectable(false),
-                        new PrimaryDrawerItem().withName(R.string.plus_contacts_us)
-                                .withIcon(GoogleMaterial.Icon.gmd_adb).withIdentifier(4)
-                                .withSelectable(false),
-                        new PrimaryDrawerItem().withName(R.string.plus_app_update)
-                                .withIcon(FontAwesome.Icon.faw_home).withIdentifier(5)
-                                .withSelectable(false),
-                        new DividerDrawerItem(),
-                        new PrimaryDrawerItem().withName(R.string.plus_settings)
-                                .withIcon(FontAwesome.Icon.faw_gamepad).withIdentifier(6)
-                                .withSelectable(false),
-                        new PrimaryDrawerItem().withName(R.string.plus_about)
-                                .withIcon(FontAwesome.Icon.faw_user).withIdentifier(7)
-                                .withSelectable(false)
-
-                ) // add the items we want to use with our Drawer
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        Logger.d(TAG, "position : " + position);
-                        int id = drawerItem.getIdentifier();
-
-                        if (position == 1) {
-                            return true;
-                        } else if (position == 2) {
-                            toNewActivity(ReportActivity.class);
-                            return true;
-                        } else if (position == 3) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-
-//                        if (id == 5 || id == 6) {
+                .withCustomView(customView)
+                // add the items we want to use with our Drawer
+//                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+//                    @Override
+//                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+//                        Logger.d(TAG, "position : " + position);
+//                        int id = drawerItem.getIdentifier();
+//
+//                        if (position == 1) {
+//                            return true;
+//                        } else if (position == 2) {
+//                            toNewActivity(ReportActivity.class);
+//                            return true;
+//                        } else if (position == 3) {
 //                            return true;
 //                        } else {
 //                            return false;
 //                        }
-
-                    }
-                })
+//                    }
+//                })
                 .withSavedInstance(savedInstanceState)
                 .withShowDrawerOnFirstLaunch(true)
                 .build();
@@ -208,18 +178,23 @@ public class MainActivity_New extends BaseActivity {
         //only set the active selection or active profile if we do not recreate the activity
         if (savedInstanceState == null) {
             // set the selection to the cardview_item_talent with the identifier 11
-            result.setSelection(21, false);
+            if (result != null) {
+                result.setSelection(21, false);
+            }
 
             //set the active profile
         }
-
-        result.updateBadge(4, new StringHolder(10 + ""));
+//        if (result != null) {
+//            result.updateBadge(4, new StringHolder(10 + ""));
+//        }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //add the values which need to be saved from the drawer to the bundle
-        outState = result.saveInstanceState(outState);
+        if (result != null) {
+            outState = result.saveInstanceState(outState);
+        }
         super.onSaveInstanceState(outState);
     }
 

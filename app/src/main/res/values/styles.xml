@@ -94,5 +94,10 @@
 
     </style>
 
+    <style name="ViewRippleStyle">
+    </style>
+    <style name="ViewRippleBroderlessStyle">
+    </style>
+
 </resources>
 

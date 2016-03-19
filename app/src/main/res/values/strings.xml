@@ -51,6 +51,11 @@
     <string name="common_webpage_test_start">网页测试开始 ...</string>
     <string name="common_test_finish">测试结束</string>
     <string name="common_other">其他</string>
+    <string name="common_share">分享</string>
+    <string name="common_clear_cache">清除缓存</string>
+    <string name="common_version_update">版本更新</string>
+    <string name="common_about">关于</string>
+    <string name="common_mobile">手机</string>
 
 
     <!-- 无网络情况 -->
@@ -137,7 +142,10 @@
     <string name="plus_contacts_us">联系我们</string>
     <string name="plus_app_update">版本更新</string>
     <string name="plus_settings">设置</string>
-    <string name="plus_about">关于</string>
+
+
+    <!--侧滑drawer-->
+    <string name="sys_info">系统信息</string>
 
 
     <string name="media_ejected">储存卡已拔出，语音功能将暂时不可用</string>
