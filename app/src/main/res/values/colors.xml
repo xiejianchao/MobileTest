@@ -23,6 +23,10 @@
     <color name="color_group_session_name_bg">#666666</color>
 
 
+    <color name="color_home_info_bg">#e4f6fb</color>
+    <color name="color_home_location_info_bg">#b3e7fc</color>
+
+
 
     <color name="color_gray_bg">#bebebe</color>
     <color name="color_statusbar_bg">#FF0099CC</color>

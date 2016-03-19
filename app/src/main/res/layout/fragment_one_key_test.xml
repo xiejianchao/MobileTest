@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/color_white"
     tools:context="com.huhuo.mobiletest.ui.fragment.OneKeyTestFragment"
     android:orientation="vertical"
     >
@@ -24,24 +24,56 @@
             />
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/loation_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:background="@color/color_home_location_info_bg"
+        android:layout_below="@id/toolbar"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/tv_location_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北京 海淀"
+            android:layout_gravity="center"
+            android:textColor="@color/color_black"
+            android:gravity="center"
+            />
+        <ImageView
+            android:id="@+id/iv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/location_icon"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            />
+
+    </LinearLayout>
+
+
     <RelativeLayout
         android:id="@+id/phone_info_layout"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@drawable/phone_info_bg"
-        android:layout_marginTop="40dp"
-        android:layout_below="@id/toolbar"
+        android:background="@color/color_home_info_bg"
+        android:layout_below="@id/loation_layout"
         >
         <TextView
             android:id="@+id/tv_phone_info_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SIM卡可用\n运营商：中国联通\nSIM卡可用\n运营商：中国联通\n"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_black"
             android:gravity="center"
             android:layout_centerInParent="true"
             android:layout_marginLeft="50dp"
             />
+
         <TextView
             android:id="@+id/tv_phone_info_2"
             android:layout_width="wrap_content"
@@ -56,14 +88,13 @@
 
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/test_layout_1"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:orientation="horizontal"
         android:layout_below="@id/phone_info_layout"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         >
