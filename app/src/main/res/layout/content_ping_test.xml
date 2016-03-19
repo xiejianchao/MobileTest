@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_common_gray_bg"
+    android:background="@color/color_gray"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.activity.PingTestActivity"
     tools:showIn="@layout/activity_ping_test">
