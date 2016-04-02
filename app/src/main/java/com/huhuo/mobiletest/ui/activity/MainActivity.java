@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.ui.fragment.OneKeyTestFragment;
@@ -83,6 +84,8 @@ public class MainActivity extends BaseActivity {
         // 默认选中首屏
         setTabSelection(0);
         enableSwipeBack(false);//首页禁止开启右滑返回
+
+
     }
 
     @Event(value = {
@@ -295,5 +298,6 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         DatabaseHelper.getInstance().close();
+
     }
 }

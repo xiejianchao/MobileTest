@@ -41,6 +41,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
 
+
     <application
         android:name=".MobileTestApplication"
         android:allowBackup="true"
@@ -48,6 +49,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppMaterialBaseTheme.Default">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="36lHWbnZVzBK7bAuwXs9ZabN1rzqb1Q3"/>
+
         <activity
             android:name=".ui.activity.MainActivity_New"
             android:label="@string/app_name"
@@ -65,13 +71,6 @@
             android:label="@string/app_name"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
-
-        <!-- Service Register -->
-        // ECSDK核心服务类
-        <service
-            android:name="com.yuntongxun.ecsdk.ECClientService"
-            android:enabled="true"
-            android:exported="false"/>
 
         <activity
             android:name=".ui.activity.WebPageTestActivity"
@@ -139,6 +138,23 @@
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
+
+        <!-- Service Register -->
+        // ECSDK核心服务类
+        <service
+            android:name="com.yuntongxun.ecsdk.ECClientService"
+            android:enabled="true"
+            android:exported="false"/>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2">
+                </action>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

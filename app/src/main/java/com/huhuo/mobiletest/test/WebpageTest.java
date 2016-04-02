@@ -35,6 +35,10 @@ public class WebPageTest {
         execute(list.get(nextTestItem));
     }
 
+    public void cancel(){
+        nextTestItem = list.size();
+    }
+
     private void execute(final WebPageTestModel model) {
         final String url = model.getUrl();
         Logger.d(TAG, "测试URL:" + url);

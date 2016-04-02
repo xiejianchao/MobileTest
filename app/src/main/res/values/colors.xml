@@ -28,6 +28,9 @@
     <color name="color_common_gray_bg">#f5f5f5</color>
 
 
+    <color name="color_test_webpage_bg">#727272</color>
+
+
 
     <color name="color_gray_bg">#bebebe</color>
     <color name="color_statusbar_bg">#FF0099CC</color>

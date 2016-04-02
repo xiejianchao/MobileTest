@@ -339,7 +339,9 @@ public class VideoTestActivity extends BaseActivity {
             surfaceLayout.setLayoutParams(params);
             surfaceView.setBackgroundColor(getResources().getColor(R.color.transparent));
 
-            timer.schedule(task, 1000, 1000);
+            if (timer != null && task != null) {
+                timer.schedule(task, 1000, 1000);
+            }
             startPlayOnlineVideo();
         }
     }

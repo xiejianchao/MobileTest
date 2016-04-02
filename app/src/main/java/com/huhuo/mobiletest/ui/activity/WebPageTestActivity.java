@@ -1,28 +1,26 @@
 package com.huhuo.mobiletest.ui.activity;
 
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.constants.TestCode;
 import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.model.WebPageTestModel;
-import com.huhuo.mobiletest.net.callback.DefaultHttpRequestCallBack;
 import com.huhuo.mobiletest.test.WebPageTest;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
 import com.huhuo.mobiletest.utils.ToastUtil;
 import com.timqi.sectorprogressview.ColorfulRingProgressView;
 
-import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -40,6 +38,12 @@ public class    WebPageTestActivity extends BaseActivity {
 
     @ViewInject(R.id.tv_test_info)
     private TextView tvTestAllInfo;
+
+    @ViewInject(R.id.tv_addr)
+    private TextView tvAddr;
+
+    @ViewInject(R.id.btn_test_status)
+    private Button btnTestStatus;
 
     @ViewInject(R.id.circle_view_10086)
     private ColorfulRingProgressView mobileProgressView;
@@ -89,6 +93,14 @@ public class    WebPageTestActivity extends BaseActivity {
 
     private TestResultSummaryModel summaryModel;
 
+    private static final int WEB_TESTING = 0;
+    private static final int WEB_STOP = 1;
+
+    private static int TEST_STATUS = WEB_TESTING;
+
+    private WebPageTest test;
+
+
     @Override
     protected void init(Bundle savedInstanceState) {
         df = new DecimalFormat("#.##");
@@ -103,7 +115,7 @@ public class    WebPageTestActivity extends BaseActivity {
 
 //        testWebPage(model);
 
-        WebPageTest test = new WebPageTest((ArrayList)list);
+        test = new WebPageTest((ArrayList)list);
         test.setTestListener(listener);
         test.test();
     }
@@ -284,5 +296,27 @@ public class    WebPageTestActivity extends BaseActivity {
 
     }
 
+    @Event(value = R.id.btn_test_status)
+    private void testStatusClick(View v) {
+        if (TEST_STATUS == WEB_TESTING) {
+            TEST_STATUS = WEB_STOP;
+            btnTestStatus.setText(R.string.test_start);
+            if (test != null) {
+                test.cancel();
+                DatabaseHelper.getInstance().testResultDao.delete(summaryModel);
+            }
+        } else {
+            TEST_STATUS = WEB_TESTING;
+            test.test();
+            btnTestStatus.setText(R.string.test_stop);
+        }
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobileTestApplication application = ((MobileTestApplication)getApplication());
+        application.setLocationTextView(tvAddr,true);
+
+    }
 }

@@ -10,6 +10,7 @@ import android.telephony.gsm.GsmCellLocation;
 import android.view.View;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.ui.activity.PingTestActivity;
 import com.huhuo.mobiletest.ui.activity.DownloadTestActivity;
@@ -21,7 +22,6 @@ import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetStateUtils;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
 import com.huhuo.mobiletest.utils.SimCardUtil;
-import com.huhuo.mobiletest.utils.ToastUtil;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -36,7 +36,10 @@ public class OneKeyTestFragment extends BaseFragment {
     @ViewInject(R.id.tv_phone_info_1)
     private TextView tvInfo;
 
-    private TelephonyManager Tel;
+    @ViewInject(R.id.tv_location_info)
+    private TextView tvAddr;
+
+    private TelephonyManager tel;
     private MyPhoneStateListener phoneStateListener;
     private int signal;
     private String signalLevel;
@@ -45,12 +48,12 @@ public class OneKeyTestFragment extends BaseFragment {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-
         initPhoneInfo();
 
         phoneStateListener = new MyPhoneStateListener();
-        Tel       = ( TelephonyManager )context.getSystemService(Context.TELEPHONY_SERVICE);
-        Tel.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+        tel = (TelephonyManager )context.getSystemService(Context.TELEPHONY_SERVICE);
+        tel.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+
     }
 
     private void initPhoneInfo() {
@@ -138,6 +141,23 @@ public class OneKeyTestFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobileTestApplication application = ((MobileTestApplication)getActivity().getApplication());
+        application.setLocationTextView(tvAddr,false);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+    }
 
     @Override
     public void onAttach(Context context) {

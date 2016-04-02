@@ -67,7 +67,7 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
                 Collection<TestItemModel> testItemModels = model.getTestItemModels();
                 if (testItemModels != null && testItemModels.size() > 0) {
                     for (TestItemModel item : testItemModels) {
-                        Logger.d(TAG,"item:" + item.toString());
+//                        Logger.d(TAG,"item:" + item.toString());
                     }
                 }
                 Logger.d(TAG,"测试结果项：" + model);

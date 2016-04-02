@@ -12,8 +12,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.MyFragmentPagerAdapter;
+import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.ui.fragment.OneKeyTestFragment;
 import com.huhuo.mobiletest.ui.fragment.ReportFragment;
 import com.huhuo.mobiletest.ui.fragment.TestResultFragment;
@@ -74,6 +76,9 @@ public class MainActivity_New extends BaseActivity {
         // Bind the tabs to the ViewPager
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(pager);
+
+        MobileTestApplication application = ((MobileTestApplication)getApplication());
+        application.startLocation();
     }
 
     private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
@@ -225,7 +230,6 @@ public class MainActivity_New extends BaseActivity {
     public void onBackPressed() {
         //handle the back press :D close the drawer first and if the drawer is closed close the
         // activity
-
         if (result != null && result.isDrawerOpen()) {
             Logger.d(TAG, "drawer is open now closed");
             result.closeDrawer();
@@ -234,5 +238,13 @@ public class MainActivity_New extends BaseActivity {
             finish();
             Logger.d(TAG,"finish activity");
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        DatabaseHelper.getInstance().close();
+        MobileTestApplication application = ((MobileTestApplication)getApplication());
+        application.stopLocation();
     }
 }
