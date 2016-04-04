@@ -159,5 +159,6 @@
     <string name="test_mobile_brand">品牌</string>
     <string name="test_mobile_model">型号</string>
     <string name="test_mobile_version">系统版本</string>
+    <string name="test_mobile_device_id">手机识别码</string>
 
 </resources>

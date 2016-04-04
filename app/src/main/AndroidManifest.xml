@@ -135,6 +135,11 @@
             android:theme="@style/AppMaterialBaseTheme.Default"
             android:windowSoftInputMode="adjustPan">
         </activity>
+        <activity
+            android:name=".ui.activity.MobileInfoActivity"
+            android:label="@string/sys_info"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
 
         <!-- Service Register -->
         // ECSDK核心服务类
@@ -152,11 +157,7 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".ui.activity.MobileInfoActivity"
-            android:label="@string/title_activity_mobile_info"
-            android:theme="@style/AppMaterialBaseTheme.Default">
-        </activity>
+
     </application>
 
 </manifest>
