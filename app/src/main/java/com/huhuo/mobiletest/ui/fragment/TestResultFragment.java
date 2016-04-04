@@ -107,10 +107,10 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
                 case TestCode.TEST_TYPE_PING://PING测试
                     toTestDetailsActivity(PingTestDetailsActivity.class,id);
                     break;
-                case TestCode.TEST_TYPE_VIDEO://综合测试
+                case TestCode.TEST_TYPE_VIDEO://视频测试
                     toTestDetailsActivity(VideoTestDetailsActivity.class,id);
                     break;
-                case TestCode.TEST_TYPE_SYNTHESIZE:
+                case TestCode.TEST_TYPE_SYNTHESIZE://综合测试
                     toTestDetailsActivity(SynthesizeTestDetailsActivity.class,id);
                     break;
             }
@@ -146,6 +146,17 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
         if (models == null) {
             return null;
         }
+        ArrayList<TestResultSummaryModel> models2 = new ArrayList<TestResultSummaryModel>();
+        for (TestResultSummaryModel model : models) {
+            Logger.w(TAG,"test type:" + model.getTestType());
+            if (model.getTestType() != TestCode.TEST_TYPE_UNKNOW) {
+                models2.add(model);
+            }
+        }
+
+        models.clear();
+        models.addAll(models2);
+
         Collections.sort(models, new Comparator<TestResultSummaryModel>() {
             @Override
             public int compare(TestResultSummaryModel lhs, TestResultSummaryModel rhs) {

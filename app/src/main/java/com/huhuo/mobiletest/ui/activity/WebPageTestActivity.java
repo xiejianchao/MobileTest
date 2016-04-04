@@ -293,6 +293,31 @@ public class    WebPageTestActivity extends BaseActivity {
         model.setProgressView(taobaoProgressView);
         model.setTextView(tvTaobaoInfo);
         list.add(model);
+    }
+
+    private void resetTestItem(){
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mobileProgressView.setPercent(1);
+                tv10086Info.setText(R.string.test_website_10086);
+
+                baiduProgressView.setPercent(1);
+                tvBaiduInfo.setText(R.string.test_website_baidu);
+
+                tencentProgressView.setPercent(1);
+                tvTencentInfo.setText(R.string.test_website_tencent);
+
+                youkuProgressView.setPercent(1);
+                tvYoukuInfo.setText(R.string.test_website_youku);
+
+                sinaProgressView.setPercent(1);
+                tvSinaInfo.setText(R.string.test_website_sina);
+
+                taobaoProgressView.setPercent(1);
+                tvTaobaoInfo.setText(R.string.test_website_taobao);
+            }
+        },1000);
 
     }
 
@@ -304,9 +329,13 @@ public class    WebPageTestActivity extends BaseActivity {
             if (test != null) {
                 test.cancel();
                 DatabaseHelper.getInstance().testResultDao.delete(summaryModel);
+                resetTestItem();
+                tvTestAllInfo.setText("准备开始测试");
             }
         } else {
             TEST_STATUS = WEB_TESTING;
+            summaryModel = new TestResultSummaryModel();
+            DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
             test.test();
             btnTestStatus.setText(R.string.test_stop);
         }

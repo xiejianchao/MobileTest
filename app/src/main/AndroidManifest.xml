@@ -41,7 +41,6 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
 
-
     <application
         android:name=".MobileTestApplication"
         android:allowBackup="true"
@@ -49,7 +48,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppMaterialBaseTheme.Default">
-
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="36lHWbnZVzBK7bAuwXs9ZabN1rzqb1Q3"/>
@@ -71,7 +69,6 @@
             android:label="@string/app_name"
             android:theme="@style/AppMaterialBaseTheme.Default">
         </activity>
-
         <activity
             android:name=".ui.activity.WebPageTestActivity"
             android:label="@string/test_type_webpage"
@@ -135,8 +132,8 @@
         <activity
             android:name=".ui.activity.ReportActivity"
             android:label="@string/test_type_report"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/AppMaterialBaseTheme.Default">
+            android:theme="@style/AppMaterialBaseTheme.Default"
+            android:windowSoftInputMode="adjustPan">
         </activity>
 
         <!-- Service Register -->
@@ -145,7 +142,6 @@
             android:name="com.yuntongxun.ecsdk.ECClientService"
             android:enabled="true"
             android:exported="false"/>
-
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
@@ -155,6 +151,12 @@
                 </action>
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".ui.activity.MobileInfoActivity"
+            android:label="@string/title_activity_mobile_info"
+            android:theme="@style/AppMaterialBaseTheme.Default">
+        </activity>
     </application>
 
 </manifest>

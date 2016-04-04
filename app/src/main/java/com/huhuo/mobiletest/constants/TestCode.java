@@ -10,6 +10,7 @@ import com.huhuo.mobiletest.R;
  */
 public class TestCode {
 
+    public static final int TEST_TYPE_UNKNOW = 0;
     public static final int TEST_TYPE_WEBPAGE = 1;
     public static final int TEST_TYPE_SPEED = 2;
     public static final int TEST_TYPE_VIDEO = 3;

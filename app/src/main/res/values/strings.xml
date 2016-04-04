@@ -153,5 +153,11 @@
     <string name="media_ejected">储存卡已拔出，语音功能将暂时不可用</string>
     <string name="title_activity_synthesize">综合测试</string>
     <string name="title_activity_report">ReportActivity</string>
+    <string name="title_activity_mobile_info">MobileInfoActivity</string>
+
+    <!--手机信息-->
+    <string name="test_mobile_brand">品牌</string>
+    <string name="test_mobile_model">型号</string>
+    <string name="test_mobile_version">系统版本</string>
 
 </resources>

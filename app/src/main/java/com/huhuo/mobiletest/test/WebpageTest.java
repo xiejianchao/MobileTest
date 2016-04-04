@@ -32,6 +32,7 @@ public class WebPageTest {
     }
 
     public void test(){
+        nextTestItem = 0;
         execute(list.get(nextTestItem));
     }
 

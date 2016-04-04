@@ -1,5 +1,6 @@
 package com.huhuo.mobiletest.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -132,7 +133,7 @@ public class MainActivity_New extends BaseActivity {
         sysInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showMessage("系统信息");
+                startActivity(new Intent(context,MobileInfoActivity.class));
             }
         });
         shareLayout.setOnClickListener(new View.OnClickListener() {
