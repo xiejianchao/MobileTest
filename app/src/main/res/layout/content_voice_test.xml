@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/test_bg"
+    android:background="@color/color_test_detail_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.huhuo.mobiletest.ui.activity.VoiceTestActivity"
     tools:showIn="@layout/activity_voice_test"
@@ -24,7 +24,7 @@
             android:text="通话状态"
             android:gravity="center_vertical"
             android:padding="10dp"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             />
     </ScrollView>
 
@@ -35,7 +35,7 @@
         android:text="测试号码："
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         />
 
     <TextView
@@ -45,7 +45,7 @@
         android:text="接通时延："
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         />
 
     <TextView
@@ -55,7 +55,7 @@
         android:text="呼叫时长："
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         />
 
     <TextView
@@ -65,7 +65,7 @@
         android:text="呼叫类型："
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         />
 
     <TextView
@@ -75,7 +75,7 @@
         android:text="测试结果："
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         />
 
 

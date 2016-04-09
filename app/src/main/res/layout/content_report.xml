@@ -28,7 +28,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@drawable/phone_info_bg"
+            android:background="@color/color_test_result_bg"
             >
 
             <ScrollView
@@ -62,7 +62,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@drawable/phone_info_bg"
+            android:background="@color/color_test_result_bg"
             >
 
             <ImageButton

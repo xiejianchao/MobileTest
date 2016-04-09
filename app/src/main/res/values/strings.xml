@@ -160,5 +160,12 @@
     <string name="test_mobile_model">型号</string>
     <string name="test_mobile_version">系统版本</string>
     <string name="test_mobile_device_id">手机识别码</string>
+    <string name="test_mobile_net_type">当前手机网络</string>
+    <string name="test_mobile_operators">运营商</string>
+    <string name="test_mobile_signals">信号强度</string>
+    <string name="test_mobile_lac">LAC</string>
+    <string name="test_mobile_ci">CI</string>
+    <string name="test_mobile_total_mem">手机总内存</string>
+    <string name="test_mobile_avail_mem">手机可用内存</string>
 
 </resources>

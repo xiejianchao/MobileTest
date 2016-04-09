@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.constants.TestCode;
@@ -53,6 +54,9 @@ public class DownloadTestActivity extends BaseActivity {
     @ViewInject(R.id.btn_test_speed)
     private Button btnTest;
 
+    @ViewInject(R.id.tv_addr)
+    private TextView tvAddr;
+
     private Timer timer;
     private static final int SPEED_CODE = 100;
 
@@ -80,6 +84,9 @@ public class DownloadTestActivity extends BaseActivity {
         DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
 
         startTestDownloadSpeed();
+
+        MobileTestApplication application = ((MobileTestApplication)getApplication());
+        application.setLocationTextView(tvAddr, true);
     }
 
     private final Handler mHandler = new Handler() {

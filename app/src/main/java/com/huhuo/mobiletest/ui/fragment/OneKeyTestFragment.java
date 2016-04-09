@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
+import com.huhuo.mobiletest.constants.StaticValue;
 import com.huhuo.mobiletest.ui.activity.PingTestActivity;
 import com.huhuo.mobiletest.ui.activity.DownloadTestActivity;
 import com.huhuo.mobiletest.ui.activity.SynthesizeActivity;
@@ -127,6 +128,9 @@ public class OneKeyTestFragment extends BaseFragment {
             }
 
             signal = dBm;
+            StaticValue.SIGNALS = signal;
+
+            Logger.v(TAG,"信号强度：" + signal);
 
             signalLevel = NetWorkUtil.getSignalLevel(asu);
             initPhoneInfo();
@@ -134,6 +138,8 @@ public class OneKeyTestFragment extends BaseFragment {
             if (location != null) {
                 lac = location.getLac();
                 cid = location.getCid();
+                StaticValue.LAC = lac;
+                StaticValue.CI = cid;
                 Logger.v(TAG,"cid:" + cid);
                 Logger.v(TAG,"lac:" + lac);
             }

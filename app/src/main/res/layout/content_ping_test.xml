@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_gray"
+    android:background="@color/color_test_detail_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.activity.PingTestActivity"
     tools:showIn="@layout/activity_ping_test">
@@ -17,13 +17,13 @@
         android:layout_height="50dp"
         android:text="Ping测试开始..."
         android:layout_margin="10dp"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_ping"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
         android:scrollbars="vertical"
         android:fadingEdge="none"
@@ -31,40 +31,18 @@
         android:visibility="visible"
         />
 
-    <LinearLayout
-        android:id="@+id/top_layout"
+
+    <TextView
+        android:id="@+id/tv_addr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/rv_ping"
-        >
-        <EditText
-            android:id="@+id/et_addr"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:text="www.baidu.com"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_test_connect"
-            android:text="运行"/>
-    </LinearLayout>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/top_layout"
-        >
-
-        <TextView
-            android:id="@+id/tv_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:layout_centerInParent="true"
-            />
-
-    </ScrollView>
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"
+        android:text="北京市通州区怡乐中街"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        />
 
 </RelativeLayout>

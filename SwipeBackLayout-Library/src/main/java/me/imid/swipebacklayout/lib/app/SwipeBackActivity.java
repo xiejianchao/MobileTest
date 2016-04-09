@@ -8,6 +8,7 @@ import android.view.View;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.Utils;
+import me.imid.swipebacklayout.lib.ViewDragHelper;
 
 public class SwipeBackActivity extends AppCompatActivity implements SwipeBackActivityBase {
     private SwipeBackActivityHelper mHelper;
@@ -41,6 +42,7 @@ public class SwipeBackActivity extends AppCompatActivity implements SwipeBackAct
     @Override
     public void setSwipeBackEnable(boolean enable) {
         getSwipeBackLayout().setEnableGesture(enable);
+        ViewDragHelper.setDragFullScreen(true);
     }
 
     @Override

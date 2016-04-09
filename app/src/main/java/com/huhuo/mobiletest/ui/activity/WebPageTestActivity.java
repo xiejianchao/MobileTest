@@ -346,6 +346,5 @@ public class    WebPageTestActivity extends BaseActivity {
         super.onResume();
         MobileTestApplication application = ((MobileTestApplication)getApplication());
         application.setLocationTextView(tvAddr,true);
-
     }
 }

@@ -29,6 +29,12 @@
 
 
     <color name="color_test_webpage_bg">#727272</color>
+    <color name="color_test_result_bg">#e4f6fb</color>
+    <color name="color_test_result_text_color">#212121</color>
+    <color name="color_test_result_text_date_bg">#727272</color>
+
+    <color name="color_test_detail_bg">#f5f5f5</color>
+    <color name="color_test_detail_gray_bg">#8c8c8c</color>
 
 
 

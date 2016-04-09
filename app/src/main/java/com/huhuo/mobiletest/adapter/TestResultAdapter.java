@@ -1,17 +1,14 @@
 package com.huhuo.mobiletest.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.constants.TestCode;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
@@ -89,6 +86,24 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
         }
         holder.tvTestDelay.setText(testDelay);
         holder.rbTestLevel.setRating(model.getTestLevel());
+
+        switch (model.getTestType()) {
+            case TestCode.TEST_TYPE_WEBPAGE:
+                holder.ivTestType.setImageResource(R.drawable.icon_test_webpage);
+                break;
+            case TestCode.TEST_TYPE_VOICE:
+                holder.ivTestType.setImageResource(R.drawable.icon_test_voice);
+                break;
+            case TestCode.TEST_TYPE_VIDEO:
+                holder.ivTestType.setImageResource(R.drawable.icon_test_video);
+                break;
+            case TestCode.TEST_TYPE_PING:
+                holder.ivTestType.setImageResource(R.drawable.icon_test_ping);
+                break;
+            default:
+                holder.ivTestType.setImageResource(R.drawable.icon_test_signal);
+                break;
+        }
 
         if (onItemClickListener != null) {
             holder.cardView.setOnClickListener(new View.OnClickListener() {

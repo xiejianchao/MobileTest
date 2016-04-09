@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.SynthesizeTestAdapter;
 import com.huhuo.mobiletest.constants.Constants;
@@ -50,6 +51,9 @@ public class SynthesizeActivity extends BaseActivity {
 
     @ViewInject(R.id.tv_test_info)
     private TextView tvTestInfo;
+
+    @ViewInject(R.id.tv_addr)
+    private TextView tvAddr;
 
     @ViewInject(R.id.surfaceView)
     private SurfaceView surfaceView;
@@ -122,6 +126,9 @@ public class SynthesizeActivity extends BaseActivity {
         test.setTestListener(listener);
         test.test();
         tvTestInfo.setText(R.string.common_webpage_test_start);
+
+        MobileTestApplication application = ((MobileTestApplication)getApplication());
+        application.setLocationTextView(tvAddr, true);
     }
 
     private VideoUtil.OnVideoSizeListener onVideoSizeListener = new VideoUtil.OnVideoSizeListener() {

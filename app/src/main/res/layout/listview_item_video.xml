@@ -11,7 +11,7 @@
         android:layout_height="40dp"
         android:text="网页测试"
         android:textSize="@dimen/test_list_item_text_size"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
         />
@@ -20,7 +20,7 @@
         android:id="@+id/view_line_divider_type"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/color_white"
+        android:background="@color/color_test_detail_gray_bg"
         />
 
     <LinearLayout
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="网络"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             />
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="播放"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             />
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:text="总量/MB"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             />
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:text="KB/s"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             />
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:text="缓冲/次"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             />
@@ -92,7 +92,7 @@
         android:id="@+id/line_divider"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/color_white"
+        android:background="@color/color_test_detail_gray_bg"
         />
 
     <LinearLayout
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:text="WiFi"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:text="1"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:text="8"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:text="1.5"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
@@ -160,7 +160,7 @@
             android:layout_height="wrap_content"
             android:text="1"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"

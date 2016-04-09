@@ -108,6 +108,7 @@ public class MobileTestApplication extends Application{
     }
 
     private TextView tvLocation;
+    private boolean showDetailsAddr = false;
 
 //    public void setLocationTextView(TextView textView) {
 //        this.tvLocation = textView;
@@ -118,13 +119,16 @@ public class MobileTestApplication extends Application{
 
     public void setLocationTextView(TextView textView,boolean showDetailsAddr) {
         this.tvLocation = textView;
+        this.showDetailsAddr = showDetailsAddr;
+        Logger.d(TAG,"在" + textView + "上显示位置信息");
         if (bdLocation != null) {
             if (showDetailsAddr) {
                 this.tvLocation.setText(bdLocation.getAddrStr());
             } else {
                 this.tvLocation.setText(bdLocation.getCity() + " " + bdLocation.getDistrict());
             }
-
+        } else {
+            Logger.d(TAG,"未获取到位置...");
         }
     }
 
@@ -135,6 +139,7 @@ public class MobileTestApplication extends Application{
             // TODO Auto-generated method stub
             if (null != location && location.getLocType() != BDLocation.TypeServerError) {
                 bdLocation = location;
+                setLocationTextView(tvLocation,showDetailsAddr);
                 StringBuffer sb = new StringBuffer(256);
                 sb.append("time : ");
                 /**

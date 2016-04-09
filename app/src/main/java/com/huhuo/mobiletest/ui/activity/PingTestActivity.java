@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.PingTestAdapter;
 import com.huhuo.mobiletest.constants.TestCode;
@@ -52,8 +53,8 @@ public class PingTestActivity extends BaseActivity {
     @ViewInject(R.id.tv_ping_info)
     private TextView tvAllInfo;
 
-    @ViewInject(R.id.et_addr)
-    private EditText etAddr;
+    @ViewInject(R.id.tv_addr)
+    private TextView tvAddr;
 
     private StringBuffer sb = new StringBuffer();
 
@@ -85,6 +86,8 @@ public class PingTestActivity extends BaseActivity {
         //开始测试网站连接响应时间，并逐条更新到recycleview上
         startTestRefreshUI(list.get(testIndex));
 
+        MobileTestApplication application = ((MobileTestApplication)getApplication());
+        application.setLocationTextView(tvAddr, true);
     }
 
     private void startTestRefreshUI(final CommonTestModel model) {
@@ -259,17 +262,17 @@ public class PingTestActivity extends BaseActivity {
         return retVal;
     }
 
-    @Event(value = R.id.btn_test_connect)
-    private void connectTestClick(View view) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String url = etAddr.getText().toString();
-                Logger.d(TAG,"PING JAVA url:" + url);
-                ping(url);
-            }
-        }).start();
-    }
+//    @Event(value = R.id.btn_test_connect)
+//    private void connectTestClick(View view) {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                String url = etAddr.getText().toString();
+//                Logger.d(TAG,"PING JAVA url:" + url);
+//                ping(url);
+//            }
+//        }).start();
+//    }
 
     private void ping(String address){
         long pingStartTime = 0;

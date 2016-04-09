@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/test_bg"
+    android:background="@color/color_test_detail_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.activity.DownloadTestActivity"
     tools:showIn="@layout/activity_download_test">
@@ -25,10 +25,11 @@
         android:layout_height="wrap_content"
         android:lines="7"
         android:text=""
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         android:layout_centerInParent="true"
         android:layout_below="@id/circle_view"
         />
+
 
     <Button
         android:id="@+id/btn_test_speed"
@@ -36,6 +37,20 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_below="@id/tv_result"
+        android:visibility="gone"
         android:text="重新测速"/>
+
+    <TextView
+        android:id="@+id/tv_addr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="北京市通州区怡乐中街"
+        android:layout_marginTop="10dp"
+        android:visibility="visible"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

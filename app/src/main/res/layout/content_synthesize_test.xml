@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/test_bg"
+    android:background="@color/color_test_detail_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.huhuo.mobiletest.ui.activity.SynthesizeActivity"
     tools:showIn="@layout/activity_synthesize_test">
@@ -39,7 +39,7 @@
         android:layout_height="50dp"
         android:text="网页测试开始..."
         android:layout_margin="10dp"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         />
 
     <android.support.v7.widget.RecyclerView
@@ -51,6 +51,19 @@
         android:fadingEdge="none"
         android:layout_below="@id/tv_test_info"
         android:visibility="visible"
+        />
+
+    <TextView
+        android:id="@+id/tv_addr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"
+        android:text="北京市通州区怡乐中街"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
         />
 
 </RelativeLayout>

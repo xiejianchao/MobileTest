@@ -106,6 +106,7 @@ public class ViewDragHelper {
     private static final int BASE_SETTLE_DURATION = 256; // ms
 
     private static final int MAX_SETTLE_DURATION = 600; // ms
+    private static boolean isFullScreen = false;
 
     // Current drag state; idle, dragging or settling
     private int mDragState;
@@ -1576,8 +1577,15 @@ public class ViewDragHelper {
             result = EDGE_BOTTOM;
 
         //全屏滑动返回
-//        result = ViewDragHelper.EDGE_LEFT;
+        if (isFullScreen) {
+            result = ViewDragHelper.EDGE_LEFT;
+        }
+
 
         return result;
     }
+    public static void setDragFullScreen(boolean drag) {
+        isFullScreen = drag;
+    }
+
 }

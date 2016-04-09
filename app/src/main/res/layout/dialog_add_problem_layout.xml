@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/test_bg"
+    android:background="@color/color_test_detail_bg"
     >
 
     <TextView
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_no_data"
                 />
 
@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_cant_data_problem"
                 />
 
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_data_stop"
                 />
 
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_website_cant_open"
                 />
 
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_app_cant_connection"
                 />
 
@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/common_other"
                 />
 
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/color_blue_light"
                 android:padding="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_voice_problem"
                 />
 
@@ -102,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_no_signal"
                 />
 
@@ -111,7 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_have_signal_cant_call"
                 />
 
@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_have_signal_cant_call_2"
                 />
 
@@ -129,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_calling_stop"
                 />
 
@@ -138,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_silence_call"
                 />
 
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_echo"
                 />
 
@@ -156,7 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_crosstalk"
                 />
 
@@ -165,7 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/report_voice_quality"
                 />
 
@@ -174,7 +174,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_detail_gray_bg"
                 android:text="@string/common_other"
                 />
 

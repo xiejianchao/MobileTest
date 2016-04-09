@@ -11,6 +11,9 @@
     android:layout_marginRight="5dp"
     android:layout_margin="5dp"
     card_view:cardBackgroundColor="@color/transparent"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
 
     xmlns:app="http://schemas.android.com/tools">
     <!--
@@ -23,7 +26,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/phone_info_bg"
+            android:background="@color/color_test_result_bg"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:paddingTop="5dp"
@@ -34,7 +37,7 @@
                 android:id="@+id/iv_test_item_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_setting"
+                android:src="@drawable/icon_test_webpage"
                 android:layout_margin="10dp"
                 android:layout_centerVertical="true"
                 android:text="@string/test_website_baidu"
@@ -59,7 +62,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/line_divider"
                 android:text="默认网页测试"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_result_text_color"
                 android:textSize="15sp"
                 />
 
@@ -68,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2016-02-08"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_result_text_date_bg"
                 android:lines="1"
                 android:layout_toRightOf="@id/line_divider"
                 android:layout_marginLeft="5dp"
@@ -101,7 +104,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_test_result_text_date_bg"
                 />
 
         </RelativeLayout>

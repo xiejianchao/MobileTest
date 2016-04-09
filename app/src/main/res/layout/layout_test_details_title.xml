@@ -42,7 +42,7 @@
         android:gravity="center|left"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         />
 
     <TextView
@@ -53,7 +53,7 @@
         android:gravity="center|left"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/color_white"
+        android:textColor="@color/color_test_detail_gray_bg"
         />
 
 </LinearLayout>

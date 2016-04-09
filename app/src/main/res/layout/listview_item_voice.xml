@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="网络"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             />
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="目标"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             />
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="呼叫类型"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             />
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:text="通话/s"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             />
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:text="结果"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             />
@@ -74,7 +74,7 @@
         android:id="@+id/line_divider"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/color_white"
+        android:background="@color/color_test_detail_gray_bg"
         />
 
     <LinearLayout
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:text="WiFi"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:text="淘宝"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:text="CSFB"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:text="3.2"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:text="成功"
             android:textSize="@dimen/test_list_item_text_size"
-            android:textColor="@color/color_white"
+            android:textColor="@color/color_test_detail_gray_bg"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
