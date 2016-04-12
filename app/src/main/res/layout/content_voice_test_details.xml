@@ -43,10 +43,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="速度测试"
-                android:textSize="20sp"
+                android:textSize="@dimen/test_list_item_text_size"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:textColor="@color/color_test_detail_gray_bg"
+                android:paddingLeft="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/color_black"
                 />
             <com.huhuo.mobiletest.view.NestListView
                 android:id="@+id/lv_webpage_test"

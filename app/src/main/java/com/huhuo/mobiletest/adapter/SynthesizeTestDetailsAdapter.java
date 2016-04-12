@@ -23,10 +23,12 @@ public class SynthesizeTestDetailsAdapter extends BaseAdapter {
 
     private ArrayList<TestItemModel> items;
     private DecimalFormat df;
+    private Context context;
 
     public SynthesizeTestDetailsAdapter(ArrayList<TestItemModel> items) {
         this.items = items;
         df = new DecimalFormat("#.##");
+        context = MobileTestApplication.getInstance();
     }
 
     @Override
@@ -61,27 +63,32 @@ public class SynthesizeTestDetailsAdapter extends BaseAdapter {
 
         switch (model.getTestType()) {
             case TestCode.TEST_TYPE_WEBPAGE:
-                WebpageViewHolder holder = null;
+                WebpageViewHolder webpageHolder = null;
                 if (convertView == null) {
-                    holder = new WebpageViewHolder();
+                    webpageHolder = new WebpageViewHolder();
                     Context context = MobileTestApplication.getInstance()
                             .getApplicationContext();
                     LayoutInflater inflate = LayoutInflater.from(context);
                     convertView  = inflate.inflate(R.layout.listview_item_webpage, null);
 
-                    holder.titleLayout = (LinearLayout) convertView.findViewById(R.id.title_layout);
-                    holder.tvTestType = (TextView) convertView.findViewById(R.id.tv_test_type_title);
-                    holder.tvNet = (TextView) convertView.findViewById(R.id.tv_net);
-                    holder.tvTarget = (TextView) convertView.findViewById(R.id.tv_target);
-                    holder.tvTotal = (TextView) convertView.findViewById(R.id.tv_total);
-                    holder.tvDelay = (TextView) convertView.findViewById(R.id.tv_delay);
-                    holder.tvSpeed = (TextView) convertView.findViewById(R.id.tv_speed);
+                    webpageHolder.titleLayout = (LinearLayout) convertView.findViewById(R.id.title_layout);
+                    webpageHolder.tvTestType = (TextView) convertView.findViewById(R.id.tv_test_type_title);
+                    webpageHolder.tvNet = (TextView) convertView.findViewById(R.id.tv_net);
+                    webpageHolder.tvTarget = (TextView) convertView.findViewById(R.id.tv_target);
+                    webpageHolder.tvTotal = (TextView) convertView.findViewById(R.id.tv_total);
+                    webpageHolder.tvDelay = (TextView) convertView.findViewById(R.id.tv_delay);
+                    webpageHolder.tvSpeed = (TextView) convertView.findViewById(R.id.tv_speed);
+                    webpageHolder.tvTestTypeTitle = (TextView) convertView.findViewById(R.id.tv_test_type_title);
 
-                    convertView.setTag(holder);
+                    convertView.setTag(webpageHolder);
                 } else {
-                    holder = (WebpageViewHolder) convertView.getTag();
+                    webpageHolder = (WebpageViewHolder) convertView.getTag();
                 }
-                setWebpageData(holder, model);
+                setWebpageData(webpageHolder, model);
+                int color = context.getResources().getColor(R.color.colorPrimaryDark);
+                int colorWebPage = context.getResources().getColor(R.color.color_black);
+                webpageHolder.tvTestTypeTitle.setBackgroundColor(color);
+                webpageHolder.tvTestTypeTitle.setTextColor(colorWebPage);
                 break;
             case TestCode.TEST_TYPE_VIDEO:
                 VideoViewHolder videoHolder = null;
@@ -105,6 +112,10 @@ public class SynthesizeTestDetailsAdapter extends BaseAdapter {
                     videoHolder = (VideoViewHolder) convertView.getTag();
                 }
                 setVideoData(videoHolder, model);
+                int colorBg = context.getResources().getColor(R.color.colorPrimaryDark);
+                int colorVideo = context.getResources().getColor(R.color.color_black);
+                videoHolder.tvTestTypeTitle.setBackgroundColor(colorBg);
+                videoHolder.tvTestTypeTitle.setTextColor(colorVideo);
                 break;
             case TestCode.TEST_TYPE_PING:
                 PingViewHolder pingHolder = null;
@@ -130,7 +141,10 @@ public class SynthesizeTestDetailsAdapter extends BaseAdapter {
                     pingHolder = (PingViewHolder) convertView.getTag();
                 }
                 setPingData(pingHolder, model);
-
+                int colorPingBg = context.getResources().getColor(R.color.colorPrimaryDark);
+                int colorPing = context.getResources().getColor(R.color.color_black);
+                pingHolder.tvTestTypeTitle.setBackgroundColor(colorPingBg);
+                pingHolder.tvTestTypeTitle.setTextColor(colorPing);
                 break;
         }
 
@@ -197,10 +211,7 @@ public class SynthesizeTestDetailsAdapter extends BaseAdapter {
         private TextView tvTotal;
         private TextView tvDelay;
         private TextView tvSpeed;
-
-        private TextView tvTest2Title;
-        private TextView tvTest3Title;
-        private TextView tvTest4Title;
+        private TextView tvTestTypeTitle;
     }
 
     private static final class VideoViewHolder {
