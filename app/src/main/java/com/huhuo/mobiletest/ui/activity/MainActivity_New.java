@@ -22,6 +22,7 @@ import com.huhuo.mobiletest.ui.fragment.ReportFragment;
 import com.huhuo.mobiletest.ui.fragment.TestResultFragment;
 import com.huhuo.mobiletest.ui.fragment.TestStatFragment;
 import com.huhuo.mobiletest.utils.Logger;
+import com.huhuo.mobiletest.utils.ShareUtil;
 import com.huhuo.mobiletest.utils.ToastUtil;
 import com.huhuo.mobiletest.view.PagerSlidingTabStrip;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -139,7 +140,7 @@ public class MainActivity_New extends BaseActivity {
         shareLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showMessage("你点击我了");
+                ShareUtil.shareMsg(MainActivity_New.this,"MobileTest是一个测试网络速度的App，界面新颖，功能齐全.");
             }
         });
 

@@ -249,6 +249,7 @@ public class    WebPageTestActivity extends BaseActivity {
         summaryModel.setNetType(networkType);
 
         DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
+        btnTestStatus.setText(R.string.test_restart);
     }
 
     private void initTestItem() {
