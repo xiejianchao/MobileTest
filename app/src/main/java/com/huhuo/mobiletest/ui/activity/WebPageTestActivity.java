@@ -39,9 +39,6 @@ public class    WebPageTestActivity extends BaseActivity {
     @ViewInject(R.id.tv_test_info)
     private TextView tvTestAllInfo;
 
-    @ViewInject(R.id.tv_addr)
-    private TextView tvAddr;
-
     @ViewInject(R.id.btn_test_status)
     private Button btnTestStatus;
 
@@ -80,6 +77,9 @@ public class    WebPageTestActivity extends BaseActivity {
 
     @ViewInject(R.id.tv_taobao_test_info)
     private TextView tvTaobaoInfo;
+
+    @ViewInject(R.id.tv_addr)
+    private TextView tvAddr;
 
     private ArrayList<WebPageTestModel> list = new ArrayList<WebPageTestModel>();
 

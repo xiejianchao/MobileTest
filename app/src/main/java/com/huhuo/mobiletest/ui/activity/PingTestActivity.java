@@ -8,6 +8,7 @@ import android.os.SystemClock;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -56,6 +57,9 @@ public class PingTestActivity extends BaseActivity {
     @ViewInject(R.id.tv_addr)
     private TextView tvAddr;
 
+    @ViewInject(R.id.btn_test_status)
+    private Button btnTestStatus;
+
     private StringBuffer sb = new StringBuffer();
 
     private ArrayList<CommonTestModel> list = new ArrayList<CommonTestModel>();
@@ -64,6 +68,7 @@ public class PingTestActivity extends BaseActivity {
     public final static int PING_COUNT = 10;
     public final static int PING_TIMEOUT = 10;
     private int testIndex = 0;
+    private boolean START_TEST = true;
 
     private long startTime;
     private TestResultSummaryModel summaryModel;
@@ -83,6 +88,7 @@ public class PingTestActivity extends BaseActivity {
         initData2RecycleView();
 
         tvAllInfo.setText(getString(R.string.common_ping_test_start));
+
         //开始测试网站连接响应时间，并逐条更新到recycleview上
         startTestRefreshUI(list.get(testIndex));
 
@@ -92,16 +98,51 @@ public class PingTestActivity extends BaseActivity {
 
     private void startTestRefreshUI(final CommonTestModel model) {
         startTime = System.currentTimeMillis();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ping(model.getUrl());
-            }
-        }).start();
+        if (START_TEST) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    ping(model.getUrl());
+                }
+            }).start();
+        } else {
+            Logger.d(TAG,"ping测试取消...");
+        }
     }
 
-    private void initData2RecycleView() {
+    @Event(value = R.id.btn_test_status)
+    private void btnTestStatusClick(View view) {
+        if (START_TEST) {
+            btnTestStatus.setText(R.string.test_start);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    tvAllInfo.setText(R.string.test_ping_test_start);
+                }
+            },600);
 
+            START_TEST = false;
+            testIndex = 0;
+            tvAllInfo.setText(R.string.test_ping_test_start);
+            DatabaseHelper.getInstance().testResultDao.delete(summaryModel);
+            list.clear();
+            initData2RecycleView();
+
+        } else {
+            btnTestStatus.setText(R.string.test_stop);
+            START_TEST = true;
+            testIndex = 0;
+
+            summaryModel = new TestResultSummaryModel();
+            DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
+            startTestRefreshUI(list.get(testIndex));
+        }
+
+
+    }
+
+
+    private void initData2RecycleView() {
         CommonTestModel model = new CommonTestModel();
 
         model.setName(getString(R.string.test_website_10086));
@@ -135,7 +176,6 @@ public class PingTestActivity extends BaseActivity {
 
         adapter = new PingTestAdapter(list);
         recyclerView.setAdapter(adapter);
-
     }
 
     Handler mHandler = new Handler(){
@@ -158,7 +198,8 @@ public class PingTestActivity extends BaseActivity {
                     .append("，最长 = ").append(max).append("ms")
                     .append("，平均 = ").append(avg).append("ms")
                     .append("\n\n\n");
-            tvResult.setText(sb.toString());
+//            tvResult.setText(sb.toString());
+            tvAllInfo.setText(sb.toString());
 
             final CommonTestModel model = getTestModel(url);
             model.setDelay(avg);

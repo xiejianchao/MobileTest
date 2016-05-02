@@ -12,8 +12,8 @@
         <item name="android:windowContentOverlay">@null</item>
 
         <!-- 自定义Drawer返回箭头的颜色
-        <item name="drawerArrowStyle">@style/MyDrawerArrowToggle</item>
         -->
+        <item name="drawerArrowStyle">@style/MyDrawerArrowToggle</item>
 
         <!-- 各控制元件(如：check box、switch 或是 radoi) 被勾选 (checked) 或是选定 (selected) 的颜色。-->
         <item name="colorAccent">@color/colorAccent</item>

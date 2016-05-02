@@ -7,6 +7,7 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.VideoTestDetailsAdapter;
 import com.huhuo.mobiletest.adapter.VoiceTestDetailsAdapter;
@@ -50,6 +51,9 @@ public class VideoTestDetailsActivity extends BaseActivity {
 
     @ViewInject(R.id.lv_webpage_test)
     private ListView lvTestItem;
+
+    @ViewInject(R.id.tv_addr)
+    private TextView tvAddr;
 
     private VideoTestDetailsAdapter adapter;
 
@@ -113,6 +117,13 @@ public class VideoTestDetailsActivity extends BaseActivity {
         } else {
             return getString(R.string.test_speed_slow);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobileTestApplication application = ((MobileTestApplication)getApplication());
+        application.setLocationTextView(tvAddr, true);
     }
 
 

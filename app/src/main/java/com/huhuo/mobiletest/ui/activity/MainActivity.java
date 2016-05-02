@@ -101,14 +101,6 @@ public class MainActivity extends BaseActivity {
                 setTabSelection(0);
                 updateTitleText(R.string.app_name);
                 break;
-            case R.id.layout_task_test:
-                setTabSelection(1);
-                updateTitleText(R.string.hezu_message);
-                break;
-            case R.id.layout_test_result:
-                setTabSelection(2);
-                updateTitleText(R.string.hezu_myself);
-                break;
             case R.id.layout_test_stat:
                 setTabSelection(3);
                 updateTitleText(R.string.test_type_test_stat);

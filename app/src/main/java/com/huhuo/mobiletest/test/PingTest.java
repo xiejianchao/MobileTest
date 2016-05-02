@@ -48,6 +48,10 @@ public class PingTest {
         execute(list.get(testIndex));
     }
 
+    public void cancel(){
+        testIndex = list.size();
+    }
+
     private void execute(final CommonTestModel model){
         new Thread(new Runnable() {
             @Override

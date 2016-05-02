@@ -6,6 +6,7 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.PingTestDetailsAdapter;
 import com.huhuo.mobiletest.adapter.WebPageTestDetailsAdapter;
@@ -49,6 +50,9 @@ public class PingTestDetailsActivity extends BaseActivity {
 
     @ViewInject(R.id.lv_webpage_test)
     private ListView lvTestItem;
+
+    @ViewInject(R.id.tv_addr)
+    private TextView tvAddr;
 
     private PingTestDetailsAdapter adapter;
 
@@ -113,6 +117,13 @@ public class PingTestDetailsActivity extends BaseActivity {
         } else {
             return getString(R.string.test_speed_slow);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobileTestApplication application = ((MobileTestApplication)getApplication());
+        application.setLocationTextView(tvAddr, true);
     }
 
 

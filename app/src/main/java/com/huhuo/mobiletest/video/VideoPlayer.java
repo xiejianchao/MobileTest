@@ -128,7 +128,9 @@ public class VideoPlayer implements OnBufferingUpdateListener,
 
 
     public void pause() {
-        mediaPlayer.pause();
+        if (mediaPlayer != null) {
+            mediaPlayer.pause();
+        }
     }
 
     public void stop() {
@@ -215,10 +217,12 @@ public class VideoPlayer implements OnBufferingUpdateListener,
     public void onBufferingUpdate(MediaPlayer arg0, int bufferingProgress) {
         if (skbProgress != null) {
             skbProgress.setSecondaryProgress(bufferingProgress);
-            int currentProgress = skbProgress.getMax() * mediaPlayer.getCurrentPosition() /
-                    mediaPlayer.getDuration();
-            Logger.d(TAG,"时间：" + sdf.format(new Date()) + "," + currentProgress + "% play" +
-                    bufferingProgress + "% buffer");
+            if (mediaPlayer.getDuration() != 0) {
+                int currentProgress = skbProgress.getMax() * mediaPlayer.getCurrentPosition() /
+                        mediaPlayer.getDuration();
+                Logger.d(TAG,"时间：" + sdf.format(new Date()) + "," + currentProgress + "% play" +
+                        bufferingProgress + "% buffer");
+            }
         }
         if (this.onBufferingCompletion != null && bufferingProgress == 100) {
 

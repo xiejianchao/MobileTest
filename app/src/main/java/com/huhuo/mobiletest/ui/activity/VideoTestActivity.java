@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.db.DatabaseHelper;
@@ -64,7 +65,10 @@ public class VideoTestActivity extends BaseActivity {
     @ViewInject(R.id.skbProgress)
     private SeekBar skbProgress;
 
-    @ViewInject(R.id.btn_stop_test)
+    @ViewInject(R.id.tv_addr)
+    private TextView tvAddr;
+
+    @ViewInject(R.id.btn_test_status)
     private Button btnStop;
 
     private VideoPlayer player;
@@ -123,7 +127,7 @@ public class VideoTestActivity extends BaseActivity {
         }
     };
 
-    @Event(value = R.id.btn_stop_test)
+    @Event(value = R.id.btn_test_status)
     private void stopTestClick(View view) {
         long playDelay = player.getPlayDelay();
         int bufferingCount = player.getBufferingCount();
@@ -385,5 +389,10 @@ public class VideoTestActivity extends BaseActivity {
         }
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobileTestApplication application = ((MobileTestApplication)getApplication());
+        application.setLocationTextView(tvAddr,true);
+    }
 }

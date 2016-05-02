@@ -31,7 +31,7 @@
             android:id="@+id/tv_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1024kbps"
+            android:text="正在建立连接..."
             android:textColor="@color/color_yellow"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
@@ -104,6 +104,16 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/stop_test_normal"
         android:text="停止测试"
+        android:visibility="gone"
+        />
+
+    <include
+        layout="@layout/layout_addr_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
         />
 
 </RelativeLayout>

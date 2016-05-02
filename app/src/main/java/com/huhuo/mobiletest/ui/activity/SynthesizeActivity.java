@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ import com.huhuo.mobiletest.video.VideoPlayer;
 import com.huhuo.mobiletest.video.util.VideoUtil;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 import java.text.DecimalFormat;
@@ -57,6 +59,9 @@ public class SynthesizeActivity extends BaseActivity {
 
     @ViewInject(R.id.surfaceView)
     private SurfaceView surfaceView;
+
+    @ViewInject(R.id.btn_test_status)
+    private Button btnTestStatus;
 
     @ViewInject(R.id.skbProgress)
     private SeekBar skbProgress;
@@ -94,6 +99,9 @@ public class SynthesizeActivity extends BaseActivity {
 
     private float videoTestLevel = 0;
     private float webpageTestLevel = 0;
+    private boolean START_TEST = true;
+
+    private WebPageTest test;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -111,9 +119,7 @@ public class SynthesizeActivity extends BaseActivity {
         summaryModel.setTestType(TestCode.TEST_TYPE_SYNTHESIZE);
         DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
 
-        player = new VideoPlayer(surfaceView, skbProgress);
-        player.setOnBufferingCompletion(onBufferingCompletion);
-        player.setMute(true);
+        initPlayer();
 
         df = new DecimalFormat("#.##");
         oldTraffic = TrafficUtil.getMyRxBytes();
@@ -122,13 +128,19 @@ public class SynthesizeActivity extends BaseActivity {
 
         initWebPageTestItem();
         initPingTestData();
-        WebPageTest test = new WebPageTest((ArrayList) webPageTestList);
+        test = new WebPageTest((ArrayList) webPageTestList);
         test.setTestListener(listener);
         test.test();
         tvTestInfo.setText(R.string.common_webpage_test_start);
 
         MobileTestApplication application = ((MobileTestApplication)getApplication());
         application.setLocationTextView(tvAddr, true);
+    }
+
+    private void initPlayer() {
+        player = new VideoPlayer(surfaceView, skbProgress);
+        player.setOnBufferingCompletion(onBufferingCompletion);
+        player.setMute(true);
     }
 
     private VideoUtil.OnVideoSizeListener onVideoSizeListener = new VideoUtil.OnVideoSizeListener() {
@@ -139,6 +151,56 @@ public class SynthesizeActivity extends BaseActivity {
             videoSize = size;
         }
     };
+
+    @Event(value = R.id.btn_test_status)
+    private void btnTestStatusClick(View view) {
+        if (START_TEST) {
+            START_TEST = false;
+            btnTestStatus.setText(R.string.test_start);
+
+            if (test != null) {
+                test.cancel();
+            }
+
+            closeTimer();
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (pingTest != null) {
+                        pingTest.cancel();
+                    }
+
+                    if (player != null) {
+                        player.pause();
+                        player.stop();
+                        player.destory();
+                        player = null;
+                    }
+
+                    testList.clear();
+                    webPageTestList.clear();
+                    pingTestList.clear();
+
+                    initWebPageTestItem();
+                    initPingTestData();
+                    initTestItem();
+
+                    DatabaseHelper.getInstance().testResultDao.delete(summaryModel);
+
+                    tvTestInfo.setText("准备开始测试");
+                }
+            },1000);
+        } else {
+            initPlayer();
+            startTimer();
+            START_TEST = true;
+            summaryModel = new TestResultSummaryModel();
+            DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
+            test.test();
+            btnTestStatus.setText(R.string.test_stop);
+        }
+    }
 
     private Handler handler = new Handler() {
         @Override
@@ -268,13 +330,15 @@ public class SynthesizeActivity extends BaseActivity {
         @Override
         public void onUpdate(CommonTestModel model) {
             Logger.v(TAG,"onUpdate... " + model.getUrl() + "测试完毕," + model.toString());
-            CommonTestModel allModel = testList.get(currentTestIndex);
-            final float delay = allModel.getDelay();
-            pingDelayList.add(delay);
-            allModel.setIsStart(true);
-            allModel.setPercent(99);
-            allModel.setUrl(model.getUrl());
-            adapter.update(currentTestIndex);
+            if (currentTestIndex < testList.size()) {
+                CommonTestModel allModel = testList.get(currentTestIndex);
+                final float delay = allModel.getDelay();
+                pingDelayList.add(delay);
+                allModel.setIsStart(true);
+                allModel.setPercent(99);
+                allModel.setUrl(model.getUrl());
+                adapter.update(currentTestIndex);
+            }
         }
 
         @Override

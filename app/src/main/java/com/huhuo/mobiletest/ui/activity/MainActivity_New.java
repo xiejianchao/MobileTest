@@ -1,10 +1,15 @@
 package com.huhuo.mobiletest.ui.activity;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -12,17 +17,22 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.MyFragmentPagerAdapter;
 import com.huhuo.mobiletest.db.DatabaseHelper;
+import com.huhuo.mobiletest.model.AppInfo;
 import com.huhuo.mobiletest.ui.fragment.OneKeyTestFragment;
 import com.huhuo.mobiletest.ui.fragment.ReportFragment;
 import com.huhuo.mobiletest.ui.fragment.TestResultFragment;
 import com.huhuo.mobiletest.ui.fragment.TestStatFragment;
+import com.huhuo.mobiletest.utils.AppHelper;
+import com.huhuo.mobiletest.utils.DialogBuilder;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ShareUtil;
+import com.huhuo.mobiletest.utils.SimCardUtil;
 import com.huhuo.mobiletest.utils.ToastUtil;
 import com.huhuo.mobiletest.view.PagerSlidingTabStrip;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -55,6 +65,8 @@ public class MainActivity_New extends BaseActivity {
     private TestResultFragment testResultFragment;
     private TestStatFragment testStatFragment;
 
+    private ProgressDialog updateDialog;
+
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -81,6 +93,17 @@ public class MainActivity_New extends BaseActivity {
 
         MobileTestApplication application = ((MobileTestApplication)getApplication());
         application.startLocation();
+
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(getResources().getColor(R.color.color_yellow), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+
+        updateDialog = new ProgressDialog(this);
+        String tips = getString(R.string.test_version_update_tips);
+        updateDialog.setMessage(tips);
+        updateDialog.setCancelable(false);
+
     }
 
     private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
@@ -130,6 +153,19 @@ public class MainActivity_New extends BaseActivity {
 
         RelativeLayout sysInfo = (RelativeLayout) customView.findViewById(R.id.sys_info_layout);
         RelativeLayout shareLayout = (RelativeLayout) customView.findViewById(R.id.share_layout);
+        RelativeLayout updateLayout = (RelativeLayout) customView.findViewById(R.id.update_layout);
+        TextView tvVersion = (TextView) updateLayout.findViewById(R.id.tv_version_update);
+        TextView tvMobile = (TextView) customView.findViewById(R.id.tv_mobile);
+
+        String phoneNumber = SimCardUtil.getPhoneNumber();
+        if (!TextUtils.isEmpty(phoneNumber)) {
+            tvMobile.setText(getString(R.string.common_mobile_number,phoneNumber));
+        } else {
+            tvMobile.setText(getString(R.string.common_mobile_unknow));
+        }
+
+        AppInfo appVersion = AppHelper.getAppVersion(context);
+        tvVersion.setText(getString(R.string.common_version_update_s,appVersion.getVersionName()));
 
         sysInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +173,29 @@ public class MainActivity_New extends BaseActivity {
                 startActivity(new Intent(context,MobileInfoActivity.class));
             }
         });
+        shareLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareUtil.shareMsg(MainActivity_New.this,"MobileTest是一个测试网络速度的App，界面新颖，功能齐全.");
+            }
+        });
+
+        updateLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (updateDialog != null) {
+                    updateDialog.show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            updateDialog.dismiss();
+                            ToastUtil.showMessage(R.string.test_version_latest);
+                        }
+                    },2000);
+                }
+            }
+        });
+
         shareLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

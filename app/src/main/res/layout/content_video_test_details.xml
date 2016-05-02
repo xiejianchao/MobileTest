@@ -57,9 +57,10 @@
                 />
 
             <TextView
+                android:id="@+id/tv_addr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="地址：北京市海淀区朱房北二街"
+                android:text="正在获取地址..."
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"

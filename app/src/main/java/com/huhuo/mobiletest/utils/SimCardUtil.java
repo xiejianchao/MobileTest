@@ -100,4 +100,15 @@ public class SimCardUtil {
         return mTelephonyMgr.getSubscriberId();
     }
 
+    /**
+     * 获取电话号码
+     */
+    public static String getPhoneNumber() {
+        TelephonyManager telephonyManager = (TelephonyManager) context
+                .getSystemService(Context.TELEPHONY_SERVICE);
+        String phoneNumber = null;
+        phoneNumber = telephonyManager.getLine1Number();
+        return phoneNumber;
+    }
+
 }

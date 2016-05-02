@@ -6,6 +6,7 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
 import com.huhuo.mobiletest.adapter.WebPageTestDetailsAdapter;
 import com.huhuo.mobiletest.constants.Constants;
@@ -45,6 +46,9 @@ public class DownloadTestDetailsActivity extends BaseActivity {
 
     @ViewInject(R.id.lv_webpage_test)
     private ListView lvTestItem;
+
+    @ViewInject(R.id.tv_addr)
+    private TextView tvAddr;
 
     private WebPageTestDetailsAdapter adapter;
 
@@ -110,5 +114,11 @@ public class DownloadTestDetailsActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobileTestApplication application = ((MobileTestApplication)getApplication());
+        application.setLocationTextView(tvAddr, true);
+    }
 
 }

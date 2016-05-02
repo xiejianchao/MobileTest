@@ -2,11 +2,6 @@
     <string name="app_name">Mobile Test</string>
     <string name="action_settings">Settings</string>
 
-    <!-- fragment title -->
-    <string name="hezu_message">消息</string>
-    <string name="hezu_myself">我的</string>
-    <string name="hezu_login">登录</string>
-
 
     <string name="guide_regist">立即注册</string>
     <string name="regist">注册</string>
@@ -54,8 +49,11 @@
     <string name="common_share">分享</string>
     <string name="common_clear_cache">清除缓存</string>
     <string name="common_version_update">版本更新</string>
+    <string name="common_version_update_s">版本更新%1$s</string>
     <string name="common_about">关于</string>
     <string name="common_mobile">手机</string>
+    <string name="common_mobile_number">手机%1$s</string>
+    <string name="common_mobile_unknow">手机（暂时无法获取）</string>
 
 
     <!-- 无网络情况 -->
@@ -168,5 +166,11 @@
     <string name="test_mobile_ci">CI</string>
     <string name="test_mobile_total_mem">手机总内存</string>
     <string name="test_mobile_avail_mem">手机可用内存</string>
+
+    <!--提示信息-->
+    <string name="test_version_update_tips">正在检查新版本，请稍后...</string>
+    <string name="test_version_latest">当前已经是最新版本</string>
+    <string name="test_ping_test_start">Ping测试开始...</string>
+
 
 </resources>
