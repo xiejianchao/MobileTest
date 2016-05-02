@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.huhuo.mobiletest.MobileTestApplication;
 import com.huhuo.mobiletest.R;
+import com.huhuo.mobiletest.R.id;
 import com.huhuo.mobiletest.adapter.SynthesizeTestAdapter;
 import com.huhuo.mobiletest.constants.Constants;
 import com.huhuo.mobiletest.constants.TestCode;
