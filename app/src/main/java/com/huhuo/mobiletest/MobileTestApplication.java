@@ -47,7 +47,7 @@ public class MobileTestApplication extends Application{
 
         FileAccessor.initFileAccess();
         initDatabaseHelper();
-//        initImageLoader(getApplicationContext());
+        initImageLoader(this);
 
         locationService = new LocationService(getApplicationContext());
         SDKInitializer.initialize(getApplicationContext());

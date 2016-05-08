@@ -140,7 +140,11 @@ public class VideoTestActivity extends BaseActivity {
             videoTestClosed(playDelay, bufferingCount);
             Logger.d(TAG,"结束视频播放测试...");
             START_TEST = false;
+            START_TIMER = false;
+
+            DatabaseHelper.getInstance().testResultDao.delete(summaryModel);
         } else {
+            START_TIMER = false;
             btnStop.setText("停止测试");
             tvVideoTestResult.setVisibility(View.GONE);
             skbProgress.setVisibility(View.VISIBLE);
@@ -149,6 +153,9 @@ public class VideoTestActivity extends BaseActivity {
             startPlayOnlineVideo();
             Logger.d(TAG, "开始视频播放测试...");
             START_TEST = true;
+
+            summaryModel = new TestResultSummaryModel();
+            DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
         }
 
     }

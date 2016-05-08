@@ -53,7 +53,8 @@
     <string name="common_about">关于</string>
     <string name="common_mobile">手机</string>
     <string name="common_mobile_number">手机%1$s</string>
-    <string name="common_mobile_unknow">手机（暂时无法获取）</string>
+    <string name="common_mobile_unknow">手机（暂时无法获取手机号）</string>
+    <string name="common_share_title">MobileTest是一个测试网络速度的App，界面新颖，功能齐全.</string>
 
 
     <!-- 无网络情况 -->

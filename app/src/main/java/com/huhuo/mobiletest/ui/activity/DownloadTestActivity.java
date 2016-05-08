@@ -87,6 +87,8 @@ public class DownloadTestActivity extends BaseActivity {
 
         MobileTestApplication application = ((MobileTestApplication)getApplication());
         application.setLocationTextView(tvAddr, true);
+
+
     }
 
     private final Handler mHandler = new Handler() {

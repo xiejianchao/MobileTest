@@ -74,7 +74,7 @@ public class TestResultDao {
         try {
             final List<TestResultSummaryModel> models = testSummaryDao.queryForAll();
             return models;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

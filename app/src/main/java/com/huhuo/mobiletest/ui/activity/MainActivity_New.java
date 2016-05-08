@@ -1,7 +1,6 @@
 package com.huhuo.mobiletest.ui.activity;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -14,8 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,24 +22,17 @@ import com.huhuo.mobiletest.adapter.MyFragmentPagerAdapter;
 import com.huhuo.mobiletest.db.DatabaseHelper;
 import com.huhuo.mobiletest.model.AppInfo;
 import com.huhuo.mobiletest.ui.fragment.OneKeyTestFragment;
-import com.huhuo.mobiletest.ui.fragment.ReportFragment;
 import com.huhuo.mobiletest.ui.fragment.TestResultFragment;
 import com.huhuo.mobiletest.ui.fragment.TestStatFragment;
 import com.huhuo.mobiletest.utils.AppHelper;
-import com.huhuo.mobiletest.utils.DialogBuilder;
+import com.huhuo.mobiletest.utils.ImageUtil;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ShareUtil;
 import com.huhuo.mobiletest.utils.SimCardUtil;
 import com.huhuo.mobiletest.utils.ToastUtil;
 import com.huhuo.mobiletest.view.PagerSlidingTabStrip;
-import com.mikepenz.fontawesome_typeface_library.FontAwesome;
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.holder.StringHolder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import org.xutils.view.annotation.ContentView;
 
@@ -65,7 +55,7 @@ public class MainActivity_New extends BaseActivity {
     private TestResultFragment testResultFragment;
     private TestStatFragment testStatFragment;
 
-    private ProgressDialog updateDialog;
+    private ProgressDialog drawerDialog;
 
 
     @Override
@@ -99,10 +89,10 @@ public class MainActivity_New extends BaseActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 
-        updateDialog = new ProgressDialog(this);
+        drawerDialog = new ProgressDialog(this);
         String tips = getString(R.string.test_version_update_tips);
-        updateDialog.setMessage(tips);
-        updateDialog.setCancelable(false);
+        drawerDialog.setMessage(tips);
+        drawerDialog.setCancelable(false);
 
     }
 
@@ -154,6 +144,7 @@ public class MainActivity_New extends BaseActivity {
         RelativeLayout sysInfo = (RelativeLayout) customView.findViewById(R.id.sys_info_layout);
         RelativeLayout shareLayout = (RelativeLayout) customView.findViewById(R.id.share_layout);
         RelativeLayout updateLayout = (RelativeLayout) customView.findViewById(R.id.update_layout);
+        RelativeLayout clearCacheLayout = (RelativeLayout) customView.findViewById(R.id.clear_cache_layout);
         TextView tvVersion = (TextView) updateLayout.findViewById(R.id.tv_version_update);
         TextView tvMobile = (TextView) customView.findViewById(R.id.tv_mobile);
 
@@ -176,19 +167,19 @@ public class MainActivity_New extends BaseActivity {
         shareLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShareUtil.shareMsg(MainActivity_New.this,"MobileTest是一个测试网络速度的App，界面新颖，功能齐全.");
+                ShareUtil.shareMsg(MainActivity_New.this,getString(R.string.common_share_title));
             }
         });
 
         updateLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (updateDialog != null) {
-                    updateDialog.show();
+                if (drawerDialog != null) {
+                    drawerDialog.show();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            updateDialog.dismiss();
+                            drawerDialog.dismiss();
                             ToastUtil.showMessage(R.string.test_version_latest);
                         }
                     },2000);
@@ -199,7 +190,24 @@ public class MainActivity_New extends BaseActivity {
         shareLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShareUtil.shareMsg(MainActivity_New.this,"MobileTest是一个测试网络速度的App，界面新颖，功能齐全.");
+                ShareUtil.shareMsg(MainActivity_New.this,getString(R.string.common_share_title));
+            }
+        });
+
+        clearCacheLayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                drawerDialog.setMessage("正在清理缓存...");
+                drawerDialog.show();
+                ImageUtil.clearAllCache();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtil.showMessage("清理完毕");
+                        drawerDialog.dismiss();
+                    }
+                },1500);
             }
         });
 
