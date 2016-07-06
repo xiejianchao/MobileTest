@@ -166,12 +166,6 @@ public class OneKeyTestFragment extends BaseFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
     }

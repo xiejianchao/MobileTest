@@ -25,12 +25,12 @@ public class HttpHelper {
     private static Context context = MobileTestApplication.getInstance().getApplicationContext();
 
     public static void post(RequestParams params,SimpleHttpRequestCallBack<String> callback){
-        params.setSslSocketFactory(SSLHelper.getSSLSocketFactory(context));
+//        params.setSslSocketFactory(SSLHelper.getSSLSocketFactory(context));
         http.post(params, callback);
     }
 
     public static void get(RequestParams params,SimpleHttpRequestCallBack<String> callback){
-        params.setSslSocketFactory(SSLHelper.getSSLSocketFactory(context));
+//        params.setSslSocketFactory(SSLHelper.getSSLSocketFactory(context));
         http.get(params, callback);
     }
 
@@ -45,8 +45,8 @@ public class HttpHelper {
 
     public static void upload(RequestParams params,boolean isMultipart,Callback.CommonCallback.ProgressCallback callback) {
         // 使用multipart表单上传文件
+//        params.setSslSocketFactory(SSLHelper.getSSLSocketFactory(context));
         params.setMultipart(isMultipart);
-        params.setSslSocketFactory(SSLHelper.getSSLSocketFactory(context));
         http.post(params, callback);
     }
 

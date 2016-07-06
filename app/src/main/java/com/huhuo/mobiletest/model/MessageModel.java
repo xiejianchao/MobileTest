@@ -6,7 +6,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.yuntongxun.ecsdk.ECMessage;
 import com.yuntongxun.ecsdk.im.ECImageMessageBody;
-import com.yuntongxun.ecsdk.im.ECLocationMessageBody;
+//import com.yuntongxun.ecsdk.im.ECLocationMessageBody;
 import com.yuntongxun.ecsdk.im.ECTextMessageBody;
 import com.yuntongxun.ecsdk.im.ECVoiceMessageBody;
 
@@ -178,12 +178,12 @@ public class MessageModel {
                     this.picLocalUrl = imageBody.getLocalUrl();
                     break;
 
-                case LOCATION:
-                    final ECLocationMessageBody locationBody = (ECLocationMessageBody) msg.getBody();
-                    this.latitude = locationBody.getLatitude();
-                    this.longitude = locationBody.getLongitude();
-                    this.title = locationBody.getTitle();
-                    break;
+//                case LOCATION:
+//                    final ECLocationMessageBody locationBody = (ECLocationMessageBody) msg.getBody();
+//                    this.latitude = locationBody.getLatitude();
+//                    this.longitude = locationBody.getLongitude();
+//                    this.title = locationBody.getTitle();
+//                    break;
 
                 case FILE:
                     //TODO 暂不支持

@@ -228,12 +228,6 @@ public class ReportFragment extends BaseFragment implements CompoundButton.OnChe
         problemDialog.getWindow().setAttributes(p);     //设置生效
     }
 
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
     @Override
     public void onDetach() {
         super.onDetach();
