@@ -21,6 +21,13 @@ import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
 import com.huhuo.mobiletest.net.HttpHelper;
 import com.huhuo.mobiletest.net.HttpHelper2;
+import com.huhuo.mobiletest.net.callback.SimpleHttpRequestCallBack;
+import com.huhuo.mobiletest.ui.activity.DownloadTestDetailsActivity;
+import com.huhuo.mobiletest.ui.activity.PingTestDetailsActivity;
+import com.huhuo.mobiletest.ui.activity.SynthesizeTestDetailsActivity;
+import com.huhuo.mobiletest.ui.activity.VideoTestDetailsActivity;
+import com.huhuo.mobiletest.ui.activity.VoiceTestDetailsActivity;
+import com.huhuo.mobiletest.ui.activity.WebPageTestDetailsActivity;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.ToastUtil;
 
@@ -89,40 +96,59 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
 
     @Override
     public void onItemclick(View view, int position) {
-//        if (models != null) {
-//            TestResultSummaryModel model = models.get(position);
-//            final int testType = model.getTestType();
-//            int id = model.getId();
-//            switch (testType) {
-//                case TestCode.TEST_TYPE_WEBPAGE://网页测试
-//                    toTestDetailsActivity(WebPageTestDetailsActivity.class,id);
-//                    break;
-//                case TestCode.TEST_TYPE_SPEED://速度测试
-//                    toTestDetailsActivity(DownloadTestDetailsActivity.class,id);
-//                    break;
-//                case TestCode.TEST_TYPE_VOICE://语音测试
-//                    toTestDetailsActivity(VoiceTestDetailsActivity.class,id);
-//                    break;
-//                case TestCode.TEST_TYPE_PING://PING测试
-//                    toTestDetailsActivity(PingTestDetailsActivity.class,id);
-//                    break;
-//                case TestCode.TEST_TYPE_VIDEO://视频测试
-//                    toTestDetailsActivity(VideoTestDetailsActivity.class,id);
-//                    break;
-//                case TestCode.TEST_TYPE_SYNTHESIZE://综合测试
-//                    toTestDetailsActivity(SynthesizeTestDetailsActivity.class,id);
-//                    break;
-//            }
-//
-//            Logger.v(TAG, "item Click : " + model);
-//        }
+        if (models != null) {
+            TestResultSummaryModel model = models.get(position);
+            final int testType = model.getTestType();
+            int id = model.getId();
+            switch (testType) {
+                case TestCode.TEST_TYPE_WEBPAGE://网页测试
+                    toTestDetailsActivity(WebPageTestDetailsActivity.class,id);
+                    break;
+                case TestCode.TEST_TYPE_SPEED://速度测试
+                    toTestDetailsActivity(DownloadTestDetailsActivity.class,id);
+                    break;
+                case TestCode.TEST_TYPE_VOICE://语音测试
+                    toTestDetailsActivity(VoiceTestDetailsActivity.class,id);
+                    break;
+                case TestCode.TEST_TYPE_PING://PING测试
+                    toTestDetailsActivity(PingTestDetailsActivity.class,id);
+                    break;
+                case TestCode.TEST_TYPE_VIDEO://视频测试
+                    toTestDetailsActivity(VideoTestDetailsActivity.class,id);
+                    break;
+                case TestCode.TEST_TYPE_SYNTHESIZE://综合测试
+                    toTestDetailsActivity(SynthesizeTestDetailsActivity.class,id);
+                    break;
+            }
+
+            Logger.v(TAG, "item Click : " + model);
+        }
 
         Gson gson = new Gson();
         String json=gson.toJson(getHttpModel());
 
         String url = "http://211.154.22.158/Handler/UpLoadDataHttpWork.ashx";
 
-        HttpHelper2.sendRequest(url,json);
+        RequestParams params = new RequestParams(url);
+        params.addBodyParameter("result",json);
+
+        final long start = System.currentTimeMillis();
+        HttpHelper.post(params, new SimpleHttpRequestCallBack<String>() {
+            @Override
+            public void onSuccess(String result) {
+                long end = System.currentTimeMillis();
+                Logger.e(TAG,"result:" + result);
+                Logger.e(TAG,"提交数据耗时:" + (end - start));
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Logger.e(TAG,"",ex);
+            }
+        });
+
+//        HttpHelper2.sendRequest(url,json);
 
     }
 
