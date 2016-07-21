@@ -125,7 +125,7 @@ public class TestResultFragment extends BaseFragment implements SwipeRefreshLayo
         }
 
         Gson gson = new Gson();
-        String json=gson.toJson(getHttpModel());
+        String json = gson.toJson(getHttpModel());
 
         String url = "http://211.154.22.158/Handler/UpLoadDataHttpWork.ashx";
 

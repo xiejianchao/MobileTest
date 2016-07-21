@@ -15,11 +15,14 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.huhuo.mobiletest.R;
+import com.huhuo.mobiletest.constants.AppUrl;
 import com.huhuo.mobiletest.constants.TestCode;
 import com.huhuo.mobiletest.db.DatabaseHelper;
+import com.huhuo.mobiletest.model.HttpPage;
 import com.huhuo.mobiletest.model.RecordEntity;
 import com.huhuo.mobiletest.model.TestItemModel;
 import com.huhuo.mobiletest.model.TestResultSummaryModel;
+import com.huhuo.mobiletest.net.UploadUtil;
 import com.huhuo.mobiletest.utils.DateUtil;
 import com.huhuo.mobiletest.utils.Logger;
 import com.huhuo.mobiletest.utils.NetWorkUtil;
@@ -127,7 +130,6 @@ public class VoiceTestActivity extends BaseActivity {
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK://接听状态
                     Logger.d(TAG,"接听来电");
-//                    sb.append("接听来电\n");
                     tvStatus.append("接听来电\n");
                     break;
                 case TelephonyManager.CALL_STATE_IDLE://挂断后回到空闲状态
@@ -259,6 +261,29 @@ public class VoiceTestActivity extends BaseActivity {
             summaryModel.setTestType(TestCode.TEST_TYPE_VOICE);
             summaryModel.setDelayTime(inteval * 1000);
             DatabaseHelper.getInstance().testResultDao.insertOrUpdate(summaryModel);
+
+            HttpPage page = new HttpPage();
+            //拨打的电话号码
+            page.APP_URL = TEST_PHONE_NUMBER;
+            //通话时长
+            page.APP_DOWNLOAD_TIME = entity.duration;
+            //拨打时间
+            page.APP_CON_STIME = time;
+            //接通时间
+            page.APP_LOGIN_ETIME = realStartCallDate;
+            //通话结束时间点
+            page.APP_RES_TIME = endCallTime;
+            //测试通话结果
+            page.APP_RES_TYPE = entity.duration == 0 ? "2" : "1";
+            //测试任务通话时长
+            page.APP_PROGRAM_TIME = (int)entity.duration;
+            //回落时延
+            page.APP_OPEN_TIME = inteval * 1000;
+            //标记语音测试
+            page.APP_ServiceRequest = "VOICE_SERVICE";
+
+            UploadUtil.upload(AppUrl.VOICE_URL,page);
+
 
             Logger.d(TAG,sb.toString());
         } else {
